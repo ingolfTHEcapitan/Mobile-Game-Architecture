@@ -5,19 +5,19 @@ namespace _Game._Scripts.Infrastructure
 {
     public class Game
     {
-        private IInputService inputService;
+        public static IInputService InputService;
         
         public Game()
         {
             RegisterInputService();
         }
 
-        private void RegisterInputService()
+        private static void RegisterInputService()
         {
             if (Application.isEditor)
-                inputService = new StandaloneInputService();
+                InputService = new StandaloneInputService();
             else
-                inputService = new MobileInputService();
+                InputService = new MobileInputService();
         }
     }
 }
