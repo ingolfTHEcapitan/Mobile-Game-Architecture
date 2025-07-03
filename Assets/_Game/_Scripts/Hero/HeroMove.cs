@@ -1,8 +1,6 @@
-using System;
 using _Game._Scripts.Infrastructure;
 using _Game._Scripts.Services.Input;
 using UnityEngine;
-using UnityEngine.TextCore.Text;
 
 namespace _Game._Scripts.Hero
 {
@@ -23,9 +21,10 @@ namespace _Game._Scripts.Hero
 
         private void Start()
         {
-            _camera = Camera.main; 
+            _camera = Camera.main;
+            CameraFollow();
         }
-
+        
         private void Update()
         {
             _movementVector = Vector3.zero;
@@ -43,6 +42,11 @@ namespace _Game._Scripts.Hero
             
             _characterController.Move(_movementVector * (_movementSpeed * Time.deltaTime));
             
+        }
+        
+        private void CameraFollow()
+        {
+            _camera.GetComponent<CameraFollow>().Follow(gameObject);
         }
     }
 }
