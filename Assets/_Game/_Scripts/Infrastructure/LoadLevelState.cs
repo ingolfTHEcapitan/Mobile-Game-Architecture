@@ -1,3 +1,4 @@
+using _Game._Scripts.Logic;
 using UnityEngine;
 
 namespace _Game._Scripts.Infrastructure
@@ -9,21 +10,24 @@ namespace _Game._Scripts.Infrastructure
         private const string HUDPath = "Prefabs/Hud";
         private readonly GameStateMachine _stateMachine;
         private readonly SceneLoader _sceneLoader;
+        private readonly LoadingCurtain _curtain;
 
-        public LoadLevelState(GameStateMachine stateMachine, SceneLoader sceneLoader)
+        public LoadLevelState(GameStateMachine stateMachine, SceneLoader sceneLoader, LoadingCurtain curtain)
         {
             _stateMachine = stateMachine;
             _sceneLoader = sceneLoader;
+            _curtain = curtain;
         }
 
         public void Enter(string sceneName)
         {
+            _curtain.Show();
             _sceneLoader.Load(sceneName, OnLoaded);
         }
         
         public void Exit()
         {
-            
+            _curtain.Hide();
         }
         
         private void OnLoaded()
@@ -33,6 +37,8 @@ namespace _Game._Scripts.Infrastructure
             
             Instantiate(HUDPath);
             CameraFollow(hero);
+            
+            _stateMachine.Enter<GameLoopState>();
         }
 
         private GameObject Instantiate(string path)
