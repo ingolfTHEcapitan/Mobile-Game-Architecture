@@ -6,11 +6,11 @@ namespace _Game._Scripts.Infrastructure
     public class Game
     {
         public static IInputService InputService;
-        public GameStateMachine StateMachine;
+        public readonly GameStateMachine StateMachine;
 
-        public Game()
+        public Game(ICoroutineRunner coroutineRunner)
         {
-            StateMachine = new GameStateMachine();
+            StateMachine = new GameStateMachine(new SceneLoader(coroutineRunner));
         }
     }
 }

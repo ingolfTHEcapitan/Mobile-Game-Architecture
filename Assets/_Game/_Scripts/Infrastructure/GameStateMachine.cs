@@ -1,4 +1,3 @@
-
 using System;
 using System.Collections.Generic;
 
@@ -6,25 +5,46 @@ namespace _Game._Scripts.Infrastructure
 {
     public class GameStateMachine
     {
-        private readonly Dictionary<Type, IState> _states;
-        private IState _activeState;
+        private readonly Dictionary<Type, IExitableState> _states;
+        private IExitableState _activeState;
 
-        public GameStateMachine()
+        public GameStateMachine(SceneLoader sceneLoader)
         {
-            _states = new Dictionary<Type, IState>()
+            _states = new Dictionary<Type, IExitableState>()
             {
-                { typeof(BootstrapState),  new BootstrapState(this) }
+                { typeof(BootstrapState),  new BootstrapState(this, sceneLoader) },
+                { typeof(LoadLevelState),  new LoadLevelState(this, sceneLoader) }
+
             };
         }
         
-        public void Enter<TState>() where TState : IState
+        public void Enter<TState>() where TState : class, IState
+        {
+            IState state = ChangeState<TState>();
+            state?.Enter();
+        }
+        
+        public void Enter<TState, TPayLoad>(TPayLoad payLoad) where TState : class, IPayLoadedState<TPayLoad>
+        {
+            TState state = ChangeState<TState>();
+            state?.Enter(payLoad); 
+        }
+        
+        private TState ChangeState<TState>() where TState : class, IExitableState
         {
             // Проверка на null нужна потому что
             // при первом заходе в состояние у нас не будет активного состояния что бы с него выйти.
             _activeState?.Exit();
-            IState state = _states[typeof(TState)];
+            
+            TState state = GetState<TState>();
             _activeState = state;
-            _activeState.Enter();
+            
+            return state;
+        }
+        
+        private TState GetState<TState>() where TState : class, IExitableState
+        {
+            return _states[typeof(TState)] as TState;
         }
     }
 }
