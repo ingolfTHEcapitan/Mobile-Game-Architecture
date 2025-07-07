@@ -1,4 +1,4 @@
-namespace _Game._Scripts.Infrastructure
+namespace _Game._Scripts.Infrastructure.States
 {
     public class GameLoopState : IState
     {

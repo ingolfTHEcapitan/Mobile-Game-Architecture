@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using _Game._Scripts.Logic;
 
-namespace _Game._Scripts.Infrastructure
+namespace _Game._Scripts.Infrastructure.States
 {
     public class GameStateMachine
     {
@@ -28,7 +28,7 @@ namespace _Game._Scripts.Infrastructure
         
         public void Enter<TState, TPayLoad>(TPayLoad payLoad) where TState : class, IPayLoadedState<TPayLoad>
         {
-            TState state = ChangeState<TState>();
+            IPayLoadedState<TPayLoad> state = ChangeState<TState>();
             state?.Enter(payLoad); 
         }
         
