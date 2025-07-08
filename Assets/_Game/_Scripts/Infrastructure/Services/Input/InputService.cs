@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace _Game._Scripts.Services.Input
+namespace _Game._Scripts.Infrastructure.Services.Input
 {
     public abstract class  InputService : IInputService
     {

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace _Game._Scripts.Services.Input
+namespace _Game._Scripts.Infrastructure.Services.Input
 {
     public class StandaloneInputService: InputService
     { 
@@ -10,6 +10,7 @@ namespace _Game._Scripts.Services.Input
             {
                 // Получаем ввод с джойстика на экране.
                 Vector2 axis = SimpleInputAxis();
+                
                 // Если он недоступен, получаем ввод методами Unity с клавиатуры.
                 if (axis == Vector2.zero)
                     axis = UnityAxis();

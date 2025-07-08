@@ -1,7 +1,7 @@
 using _Game._Scripts.Infrastructure.AssetManagement;
 using _Game._Scripts.Infrastructure.Factory;
 using _Game._Scripts.Infrastructure.Services;
-using _Game._Scripts.Services.Input;
+using _Game._Scripts.Infrastructure.Services.Input;
 using UnityEngine;
 
 namespace _Game._Scripts.Infrastructure.States

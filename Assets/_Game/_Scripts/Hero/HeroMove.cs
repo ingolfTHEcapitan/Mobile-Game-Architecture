@@ -1,5 +1,5 @@
 using _Game._Scripts.Infrastructure.Services;
-using _Game._Scripts.Services.Input;
+using _Game._Scripts.Infrastructure.Services.Input;
 using UnityEngine;
 
 namespace _Game._Scripts.Hero
@@ -40,7 +40,6 @@ namespace _Game._Scripts.Hero
             _movementVector += Physics.gravity;
             
             _characterController.Move(_movementVector * (_movementSpeed * Time.deltaTime));
-            
         }
     }
 }

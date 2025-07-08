@@ -1,7 +1,6 @@
-using _Game._Scripts.Infrastructure.Services;
 using UnityEngine;
 
-namespace _Game._Scripts.Services.Input
+namespace _Game._Scripts.Infrastructure.Services.Input
 {
     public interface IInputService: IService
     {
