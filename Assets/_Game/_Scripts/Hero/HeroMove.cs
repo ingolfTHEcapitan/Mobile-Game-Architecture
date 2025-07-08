@@ -1,4 +1,4 @@
-using _Game._Scripts.Infrastructure;
+using _Game._Scripts.Infrastructure.Services;
 using _Game._Scripts.Services.Input;
 using UnityEngine;
 
@@ -16,7 +16,7 @@ namespace _Game._Scripts.Hero
 
         private void Awake()
         {
-            _inputService = Game.InputService;
+            _inputService = AllServices.Container.Single<IInputService>();
         }
 
         private void Start()

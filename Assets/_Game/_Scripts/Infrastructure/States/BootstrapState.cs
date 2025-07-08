@@ -1,3 +1,6 @@
+using _Game._Scripts.Infrastructure.AssetManagement;
+using _Game._Scripts.Infrastructure.Factory;
+using _Game._Scripts.Infrastructure.Services;
 using _Game._Scripts.Services.Input;
 using UnityEngine;
 
@@ -9,36 +12,42 @@ namespace _Game._Scripts.Infrastructure.States
         private const string GameScene = "Game";
         private readonly GameStateMachine _stateMachine;
         private readonly SceneLoader _sceneLoader;
+        private readonly AllServices _services;
 
-        public BootstrapState(GameStateMachine stateMachine, SceneLoader sceneLoader)
+        public BootstrapState(GameStateMachine stateMachine, SceneLoader sceneLoader, AllServices services)
         {
             _stateMachine = stateMachine;
             _sceneLoader = sceneLoader;
+            _services = services;
+            // Сервисы регистрируем в конструкторе, что бы при создании состояния
+            // в стейт машине сразу проинициализировать все необходимые сервисы.
+            RegisterServices();
         }
 
         public void Enter()
         {
-            RegisterService();
             // Нужно всегда начинать с начала с Initial, не зависимо от того откуда мы пришли в BootstrapState
             _sceneLoader.Load(InitialScene, onLoaded: EnterLoadLevel);
-        }
-
-         private void EnterLoadLevel()
-        {
-            _stateMachine.Enter<LoadLevelState, string>(GameScene);
         }
 
         public void Exit()
         {
             
         }
-        
-        private void RegisterService()
+
+        private void RegisterServices()
         {
-            Game.InputService = RegisterInputService();
+            _services.RegisterSingle<IInputService>(GetInputService());
+            _services.RegisterSingle<IAssetProvider>(new AssetProvider());
+            _services.RegisterSingle<IGameFactory>(new GameFactory(_services.Single<IAssetProvider>()));
         }
 
-        private static IInputService RegisterInputService()
+        private void EnterLoadLevel()
+        {
+            _stateMachine.Enter<LoadLevelState, string>(GameScene);
+        }
+
+        private static IInputService GetInputService()
         {
             if (Application.isEditor)
                 return new StandaloneInputService();
