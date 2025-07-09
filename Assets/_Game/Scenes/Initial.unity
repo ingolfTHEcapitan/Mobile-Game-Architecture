@@ -355,7 +355,7 @@ PrefabInstance:
     - target: {fileID: 7559299771783246962, guid: dda89792317dd4647a7706a3e9b98c3a,
         type: 3}
       propertyPath: _fadeStep
-      value: 0.1
+      value: 0.03
       objectReference: {fileID: 0}
     - target: {fileID: 9014316045724825862, guid: dda89792317dd4647a7706a3e9b98c3a,
         type: 3}

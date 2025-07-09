@@ -2,6 +2,8 @@ using _Game._Scripts.Infrastructure.AssetManagement;
 using _Game._Scripts.Infrastructure.Factory;
 using _Game._Scripts.Infrastructure.Services;
 using _Game._Scripts.Infrastructure.Services.Input;
+using _Game._Scripts.Infrastructure.Services.PersistantProgress;
+using _Game._Scripts.Infrastructure.Services.SaveLoad;
 using UnityEngine;
 
 namespace _Game._Scripts.Infrastructure.States
@@ -9,7 +11,6 @@ namespace _Game._Scripts.Infrastructure.States
     public class BootstrapState: IState
     {
         private const string InitialScene = "Initial";
-        private const string GameScene = "Game";
         private readonly GameStateMachine _stateMachine;
         private readonly SceneLoader _sceneLoader;
         private readonly AllServices _services;
@@ -35,16 +36,20 @@ namespace _Game._Scripts.Infrastructure.States
             
         }
 
+        private void EnterLoadLevel()
+        {
+            _stateMachine.Enter<LoadProgressState>();
+        }
+
         private void RegisterServices()
         {
             _services.RegisterSingle<IInputService>(GetInputService());
             _services.RegisterSingle<IAssetProvider>(new AssetProvider());
+            _services.RegisterSingle<IPersistantProgressService>(new PersistantProgressService());
             _services.RegisterSingle<IGameFactory>(new GameFactory(_services.Single<IAssetProvider>()));
-        }
-
-        private void EnterLoadLevel()
-        {
-            _stateMachine.Enter<LoadLevelState, string>(GameScene);
+            _services.RegisterSingle<ISaveLoadService>(new SaveLoadService(
+                _services.Single<IPersistantProgressService>(), 
+                _services.Single<IGameFactory>()));
         }
 
         private static IInputService GetInputService()
@@ -54,6 +59,5 @@ namespace _Game._Scripts.Infrastructure.States
             else
                 return new MobileInputService();
         }
-
     }
 }

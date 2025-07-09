@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using _Game._Scripts.Infrastructure.Factory;
 using _Game._Scripts.Infrastructure.Services;
+using _Game._Scripts.Infrastructure.Services.PersistantProgress;
+using _Game._Scripts.Infrastructure.Services.SaveLoad;
 using _Game._Scripts.Logic;
 
 namespace _Game._Scripts.Infrastructure.States
@@ -15,10 +17,12 @@ namespace _Game._Scripts.Infrastructure.States
         {
             _states = new Dictionary<Type, IExitableState>()
             {
-                { typeof(BootstrapState),  new BootstrapState(this, sceneLoader, services) },
-                { typeof(LoadLevelState),  new LoadLevelState(this, sceneLoader, curtain, services.Single<IGameFactory>()) },
-                { typeof(GameLoopState),  new GameLoopState(this) }
-
+                [typeof(BootstrapState)] = new BootstrapState(this, sceneLoader, services),
+                [typeof(LoadProgressState)] = new LoadProgressState(this, 
+                    services.Single<IPersistantProgressService>(), services.Single<ISaveLoadService>()),
+                [typeof(LoadLevelState)] = new LoadLevelState(this, sceneLoader, curtain, 
+                    services.Single<IGameFactory>(), services.Single<IPersistantProgressService>()),
+                [typeof(GameLoopState)] =   new GameLoopState(this)
             };
         }
         
