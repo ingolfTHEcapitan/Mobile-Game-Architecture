@@ -14,6 +14,12 @@ namespace _Game._Scripts.Data
             return new Vector3(vector.X, vector.Y, vector.Z);
         }
 
+        public static Vector3 AddY(this Vector3 vector, float y)
+        {
+           vector.y += y;
+           return vector;
+        }
+        
         public static T ToDeserialized<T>(this string json)
         {
             return JsonUtility.FromJson<T>(json);

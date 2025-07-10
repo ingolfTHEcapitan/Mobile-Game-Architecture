@@ -69,7 +69,7 @@ namespace _Game._Scripts.Hero
             // то объект может застрять где-то или провалиться под текстуры,
             // поэтому CharacterController нужно отключить, поменять позицию и снова включить.
             _characterController.enabled = false;
-            transform.position = to.AsUnityVector();
+            transform.position = to.AsUnityVector().AddY(_characterController.height);
             _characterController.enabled = true;
         }
 
