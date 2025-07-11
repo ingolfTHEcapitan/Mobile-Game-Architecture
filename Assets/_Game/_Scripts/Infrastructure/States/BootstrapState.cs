@@ -11,6 +11,7 @@ namespace _Game._Scripts.Infrastructure.States
     public class BootstrapState: IState
     {
         private const string InitialScene = "Initial";
+        
         private readonly GameStateMachine _stateMachine;
         private readonly SceneLoader _sceneLoader;
         private readonly AllServices _services;
@@ -28,7 +29,7 @@ namespace _Game._Scripts.Infrastructure.States
         public void Enter()
         {
             // Нужно всегда начинать с начала с Initial, не зависимо от того откуда мы пришли в BootstrapState
-            _sceneLoader.Load(InitialScene, onLoaded: EnterLoadLevel);
+            _sceneLoader.Load(InitialScene, onLoaded: EnterLoadProgress);
         }
 
         public void Exit()
@@ -36,7 +37,7 @@ namespace _Game._Scripts.Infrastructure.States
             
         }
 
-        private void EnterLoadLevel()
+        private void EnterLoadProgress()
         {
             _stateMachine.Enter<LoadProgressState>();
         }

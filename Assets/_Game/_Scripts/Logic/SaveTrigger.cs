@@ -1,8 +1,5 @@
-using System;
 using _Game._Scripts.Infrastructure.Services;
-using _Game._Scripts.Infrastructure.Services.PersistantProgress;
 using _Game._Scripts.Infrastructure.Services.SaveLoad;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace _Game._Scripts.Logic
