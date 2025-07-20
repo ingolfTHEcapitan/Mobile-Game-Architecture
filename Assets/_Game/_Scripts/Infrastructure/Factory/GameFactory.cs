@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Threading;
 using _Game._Scripts.Infrastructure.AssetManagement;
@@ -12,6 +13,9 @@ namespace _Game._Scripts.Infrastructure.Factory
 
         public List<ISavedProgressReader> ProgressReaders   {get;} =  new List<ISavedProgressReader>();
         public List<ISavedProgress> ProgressWriters   {get;} =  new List<ISavedProgress>();
+        
+        public GameObject HeroInstance { get; private set; }
+        public event Action HeroCreated;
 
         public GameFactory(IAssetProvider assets)
         {
@@ -20,7 +24,9 @@ namespace _Game._Scripts.Infrastructure.Factory
 
         public GameObject CreateHero(GameObject at)
         {
-            return InstantiateRegistered(AssetPath.HeroPath, at.transform.position);
+            HeroInstance = InstantiateRegistered(AssetPath.HeroPath, at.transform.position);
+            HeroCreated?.Invoke();
+            return HeroInstance;
         }
 
         public void CreateHud()

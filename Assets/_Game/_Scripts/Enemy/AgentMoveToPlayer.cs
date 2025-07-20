@@ -1,0 +1,62 @@
+using System;
+using _Game._Scripts.Infrastructure.Factory;
+using _Game._Scripts.Infrastructure.Services;
+using UnityEngine;
+using UnityEngine.AI;
+
+namespace _Game._Scripts.Enemy
+{
+    public class AgentMoveToPlayer: MonoBehaviour
+    {
+        private const float MinimalDistance = 1f;
+        
+        [SerializeField] private NavMeshAgent _agent;
+        
+        private Transform _heroTransform;
+        private IGameFactory _gameFactory;
+        private LichAnimator _animator;
+
+        private void Awake()
+        {
+            _animator = GetComponent<LichAnimator>();
+        }
+
+        private void Start()
+        {
+            _gameFactory = AllServices.Container.Single<IGameFactory>();
+
+            if (_gameFactory.HeroInstance is not null) 
+                InitializeHeroTransform();
+            else
+            {
+                _gameFactory.HeroCreated += OnHeroCreated;
+            }
+        }
+
+        private void Update()
+        {
+            if (HeroInitialised() && HeroNotReached()) 
+                _agent.destination = _heroTransform.position;
+        }
+
+        private void OnHeroCreated()
+        {
+            InitializeHeroTransform();
+        }
+
+        private void InitializeHeroTransform()
+        {
+            _heroTransform = _gameFactory.HeroInstance.transform;
+        }
+
+        private bool HeroInitialised()
+        {
+            return _heroTransform is not null;
+        }
+
+        private bool HeroNotReached()
+        {
+            return Vector3.Distance(_agent.transform.position, _heroTransform.position) >= MinimalDistance;
+        }
+    }
+}

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using _Game._Scripts.Infrastructure.Services;
 using _Game._Scripts.Infrastructure.Services.PersistantProgress;
@@ -9,6 +10,8 @@ namespace _Game._Scripts.Infrastructure.Factory
     {
         List<ISavedProgressReader> ProgressReaders { get; }
         List<ISavedProgress> ProgressWriters { get; }
+        GameObject HeroInstance { get; }
+        event Action HeroCreated;
         
         GameObject CreateHero(GameObject at);
         void CreateHud();
