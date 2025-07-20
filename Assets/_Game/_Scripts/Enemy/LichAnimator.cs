@@ -61,7 +61,7 @@ namespace _Game._Scripts.Enemy
         public void ExitedState(int stateHash)
         {
             State = GetState(stateHash);
-            StateEntered?.Invoke(State);
+            StateExited?.Invoke(State);
         }
         
         private AnimatorState GetState(int stateHash)

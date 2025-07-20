@@ -820,9 +820,10 @@ GameObject:
   m_Component:
   - component: {fileID: 400048}
   - component: {fileID: 9500000}
-  - component: {fileID: -5489221041893445642}
   - component: {fileID: -6611553811592613819}
+  - component: {fileID: -5489221041893445642}
   - component: {fileID: 5674966267454632671}
+  - component: {fileID: -7895528152896464424}
   m_Layer: 0
   m_Name: Lich
   m_TagString: Untagged
@@ -839,7 +840,7 @@ Transform:
   m_GameObject: {fileID: 100048}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 400046}
@@ -868,18 +869,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &-5489221041893445642
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 100048}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 75c81db61165493eb0e22f4353c5439f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!195 &-6611553811592613819
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -902,6 +891,18 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &-5489221041893445642
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100048}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75c81db61165493eb0e22f4353c5439f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &5674966267454632671
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -915,3 +916,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _agent: {fileID: -6611553811592613819}
+--- !u!114 &-7895528152896464424
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100048}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3a366e4bc0b40188930c44f6e0bc624, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _agent: {fileID: -6611553811592613819}
+  _lichAnimator: {fileID: -5489221041893445642}
