@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Threading;
+using _Game._Scripts.Data;
 using _Game._Scripts.Infrastructure.AssetManagement;
 using _Game._Scripts.Infrastructure.Services.PersistantProgress;
 using UnityEngine;
@@ -22,16 +23,17 @@ namespace _Game._Scripts.Infrastructure.Factory
             _assets = assets;
         }
 
-        public GameObject CreateHero(GameObject at)
+        public GameObject CreateHero(GameObject at, GameObject parent)
         {
             HeroInstance = InstantiateRegistered(AssetPath.HeroPath, at.transform.position);
+            HeroInstance.SetParent(parent);
             HeroCreated?.Invoke();
             return HeroInstance;
         }
 
-        public void CreateHud()
+        public void CreateHud(GameObject parent)
         {
-            InstantiateRegistered(AssetPath.HudPath);
+            InstantiateRegistered(AssetPath.HudPath).SetParent(parent);
         }
 
         public void Cleanup()

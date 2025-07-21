@@ -1,5 +1,6 @@
 using System;
 using _Game._Scripts.CameraLogic;
+using _Game._Scripts.Data;
 using _Game._Scripts.Infrastructure.Factory;
 using _Game._Scripts.Infrastructure.Services.PersistantProgress;
 using _Game._Scripts.Logic;
@@ -10,7 +11,9 @@ namespace _Game._Scripts.Infrastructure.States
     public class LoadLevelState : IPayLoadedState<string>
     {
         private const string InitialPointTag = "InitialPoint";
-        
+        private const string GameTag = "Game";
+        private const string UITag = "UI";
+
         private readonly GameStateMachine _stateMachine;
         private readonly SceneLoader _sceneLoader;
         private readonly LoadingCurtain _curtain;
@@ -49,9 +52,9 @@ namespace _Game._Scripts.Infrastructure.States
 
         private void InitGameWorld()
         {
-            GameObject hero = _gameFactory.CreateHero(at: GameObject.FindWithTag(InitialPointTag));
+            GameObject hero = _gameFactory.CreateHero(at: GameObject.FindWithTag(InitialPointTag), parent: GameObject.FindWithTag(GameTag));
             
-            _gameFactory.CreateHud();
+            _gameFactory.CreateHud(parent: GameObject.FindWithTag(UITag));
             
             CameraFollow(hero);
         }

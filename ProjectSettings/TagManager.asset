@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - InitialPoint
+  - Game
+  - Dynamic
+  - UI
   layers:
   - Default
   - TransparentFX

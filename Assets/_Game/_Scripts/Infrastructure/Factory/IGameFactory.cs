@@ -13,8 +13,8 @@ namespace _Game._Scripts.Infrastructure.Factory
         GameObject HeroInstance { get; }
         event Action HeroCreated;
         
-        GameObject CreateHero(GameObject at);
-        void CreateHud();
+        GameObject CreateHero(GameObject at, GameObject parent);
+        void CreateHud(GameObject parent);
         void Cleanup();
     }
 }
