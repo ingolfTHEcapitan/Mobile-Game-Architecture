@@ -6,7 +6,7 @@ using UnityEngine.AI;
 
 namespace _Game._Scripts.Enemy
 {
-    public class AgentMoveToPlayer: MonoBehaviour
+    public class AgentMoveToPlayer: Follow
     {
         private const float MinimalDistance = 1f;
         
@@ -14,22 +14,16 @@ namespace _Game._Scripts.Enemy
         
         private Transform _heroTransform;
         private IGameFactory _gameFactory;
-        private LichAnimator _animator;
-
-        private void Awake()
-        {
-            _animator = GetComponent<LichAnimator>();
-        }
-
+        
         private void Start()
         {
             _gameFactory = AllServices.Container.Single<IGameFactory>();
 
-            if (_gameFactory.HeroInstance is not null) 
+            if (HeroExist()) 
                 InitializeHeroTransform();
             else
             {
-                _gameFactory.HeroCreated += OnHeroCreated;
+                _gameFactory.HeroCreated += InitializeHeroTransform;
             }
         }
 
@@ -39,20 +33,15 @@ namespace _Game._Scripts.Enemy
                 _agent.destination = _heroTransform.position;
         }
 
-        private void OnHeroCreated()
-        {
-            InitializeHeroTransform();
-        }
+        private bool HeroExist() => 
+            _gameFactory.HeroInstance is not null;
 
-        private void InitializeHeroTransform()
-        {
+        private void InitializeHeroTransform() => 
             _heroTransform = _gameFactory.HeroInstance.transform;
-        }
 
-        private bool HeroInitialised()
-        {
-            return _heroTransform is not null;
-        }
+        private bool HeroInitialised() => 
+            _heroTransform is not null;
+
 
         private bool HeroNotReached()
         {

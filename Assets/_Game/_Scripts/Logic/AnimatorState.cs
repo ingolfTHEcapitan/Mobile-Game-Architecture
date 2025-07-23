@@ -9,6 +9,8 @@ namespace _Game._Scripts.Logic
         GetHit,
         Move,
         Attack01,
-        Attack02
+        Attack02,
+        Load,
+        Hold,
     }
 }
