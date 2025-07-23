@@ -7,6 +7,8 @@ namespace _Game._Scripts.Enemy
         [SerializeField] private TriggerObserver _triggerObserver;
         [SerializeField] private ArcherAnimator _archerAnimator;
         
+        private bool _hasAgroTarget;
+
         private void Start()
         {
             _triggerObserver.TriggerEnter += OnTriggerEnter;
@@ -15,12 +17,20 @@ namespace _Game._Scripts.Enemy
 
         private void OnTriggerEnter(Collider obj)
         {
-            _archerAnimator.PlayLoadBow();
+            if (!_hasAgroTarget)
+            {
+                _hasAgroTarget = true;
+                _archerAnimator.PlayLoadBow();
+            }
         }
 
         private void OnTriggerExit(Collider obj)
         {
-            _archerAnimator.PlayNoTarget();
+            if (_hasAgroTarget)
+            {
+                _hasAgroTarget = false;
+                _archerAnimator.PlayNoTarget();
+            }
         }
     }
 }
