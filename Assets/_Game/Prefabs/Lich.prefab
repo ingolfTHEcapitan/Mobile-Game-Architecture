@@ -962,6 +962,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _lichAnimator: {fileID: -5489221041893445642}
   _attackCooldown: 3
+  _attackRadius: 0.5
+  _attackDistance: 1
 --- !u!1 &3073320323085605029
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using _Game._Scripts.Infrastructure.Factory;
 using _Game._Scripts.Infrastructure.Services;
 using UnityEngine;
@@ -11,16 +12,23 @@ namespace _Game._Scripts.Enemy
     {
         [SerializeField] private LichAnimator _lichAnimator;
         [SerializeField] private float _attackCooldown = 3.0f;
+        [SerializeField] private float _attackRadius = 0.5f;
+        [SerializeField] private float _attackDistance = 0.5f;
+        
         
         private IGameFactory _factory;
         private Transform _heroTransform;
         private float _currentCooldown;
         private bool _isAttacking;
-        
+        private Collider[] _hits = new Collider[1];
+        private int _layerMask;
+        private float _debugLifeTime = 1.0f;
+
         private void Awake()
         {
             _factory = AllServices.Container.Single<IGameFactory>();
             _factory.HeroCreated += OnHeroCreated;
+            _layerMask = LayerMask.GetMask("Player");
         }
 
         private void Update()
@@ -33,7 +41,10 @@ namespace _Game._Scripts.Enemy
 
         public void OnAttack()
         {
-              
+            if (Hit(out Collider hit))
+            {
+                PhysicsDebug.DrawDebugSphere(GetStartPoint(), _attackRadius, _debugLifeTime);
+            }
         }
 
         public void OnAttackEnded()
@@ -41,6 +52,17 @@ namespace _Game._Scripts.Enemy
             _currentCooldown = _attackCooldown;
             _isAttacking = false;
         }
+
+        private bool Hit(out Collider hit)
+        {
+            int hitCount = Physics.OverlapSphereNonAlloc(GetStartPoint(), _attackRadius, _hits, _layerMask);
+
+            hit = _hits.FirstOrDefault();
+            return hitCount > 0;
+        }
+
+        private Vector3 GetStartPoint() => 
+            new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z) + transform.forward * _attackDistance;
 
         private void UpdateCooldown()
         {
