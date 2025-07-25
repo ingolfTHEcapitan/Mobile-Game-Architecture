@@ -825,6 +825,7 @@ GameObject:
   - component: {fileID: 5674966267454632671}
   - component: {fileID: -7895528152896464424}
   - component: {fileID: 5088010471716471091}
+  - component: {fileID: 4115596304831387192}
   m_Layer: 13
   m_Name: Lich
   m_TagString: Untagged
@@ -947,6 +948,20 @@ MonoBehaviour:
   _triggerObserver: {fileID: 2928796617584506437}
   _follow: {fileID: 5674966267454632671}
   _cooldown: 3
+--- !u!114 &4115596304831387192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100048}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47dbbe433af1410aa05d5dd03b2feb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _lichAnimator: {fileID: -5489221041893445642}
+  _attackCooldown: 3
 --- !u!1 &3073320323085605029
 GameObject:
   m_ObjectHideFlags: 0
