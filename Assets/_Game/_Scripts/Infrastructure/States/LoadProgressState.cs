@@ -37,7 +37,12 @@ namespace _Game._Scripts.Infrastructure.States
 
         private PlayerProgress NewProgress()
         {
-            return new PlayerProgress(initialLevel: LevelOne);
+            PlayerProgress progress =  new PlayerProgress(initialLevel: LevelOne);
+            
+            progress.HeroState.MaxHealth = 100;
+            progress.HeroState.ResetHealth();
+            
+            return progress;
         }
     }
 }

@@ -898,8 +898,9 @@ GameObject:
   - component: {fileID: 8333045368248105854}
   - component: {fileID: -5037865783945360515}
   - component: {fileID: 7251545982722552260}
-  - component: {fileID: 8333045368248105852}
   - component: {fileID: 8333045368248105853}
+  - component: {fileID: 8333045368248105852}
+  - component: {fileID: -1721598399198573983}
   m_Layer: 12
   m_Name: Hero
   m_TagString: Untagged
@@ -992,20 +993,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.80949426, y: 1.358087, z: 0.7815168}
   m_Center: {x: -0.0023314655, y: 0.8209565, z: 0.0023151934}
---- !u!114 &8333045368248105852
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8332059166698222306}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bde673fbc61a629439e4b9f81f52b7d6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _characterController: {fileID: 8333045368248105854}
-  _movementSpeed: 4
 --- !u!114 &8333045368248105853
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1020,6 +1007,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _animator: {fileID: 8282159641079062522}
   _characterController: {fileID: 8333045368248105854}
+--- !u!114 &8333045368248105852
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8332059166698222306}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bde673fbc61a629439e4b9f81f52b7d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _characterController: {fileID: 8333045368248105854}
+  _movementSpeed: 4
+--- !u!114 &-1721598399198573983
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8332059166698222306}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f33f81a69cc34ea7b0293f72a7a81e50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _heroAnimator: {fileID: 8333045368248105853}
 --- !u!1 &8332083362927742318
 GameObject:
   m_ObjectHideFlags: 0

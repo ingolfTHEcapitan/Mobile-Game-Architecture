@@ -15,5 +15,10 @@ namespace _Game._Scripts.Hero
         {
             _animator.SetFloat(_speedHash, _characterController.velocity.magnitude);
         }
+
+        public void PlayHit()
+        {
+            
+        }
     }
 }
