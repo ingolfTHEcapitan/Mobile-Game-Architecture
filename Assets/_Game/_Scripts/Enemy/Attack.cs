@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using _Game._Scripts.Infrastructure.Factory;
 using _Game._Scripts.Infrastructure.Services;
+using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -14,15 +15,15 @@ namespace _Game._Scripts.Enemy
         [SerializeField] private float _attackCooldown = 3.0f;
         [SerializeField] private float _attackRadius = 0.5f;
         [SerializeField] private float _attackDistance = 0.5f;
-        
+        [SerializeField] private float _debugLifeTime = 1.0f;
         
         private IGameFactory _factory;
         private Transform _heroTransform;
         private float _currentCooldown;
         private bool _isAttacking;
+        private bool _attackIsActive;
         private Collider[] _hits = new Collider[1];
         private int _layerMask;
-        private float _debugLifeTime = 1.0f;
 
         private void Awake()
         {
@@ -39,7 +40,8 @@ namespace _Game._Scripts.Enemy
                 StartAttack();
         }
 
-        public void OnAttack()
+        [UsedImplicitly]
+        private void OnAttack()
         {
             if (Hit(out Collider hit))
             {
@@ -47,11 +49,18 @@ namespace _Game._Scripts.Enemy
             }
         }
 
-        public void OnAttackEnded()
+        [UsedImplicitly]
+        private void OnAttackEnded()
         { 
             _currentCooldown = _attackCooldown;
             _isAttacking = false;
         }
+
+        public void EnableAttack() => 
+            _attackIsActive = true;
+
+        public void DisableAttack() => 
+            _attackIsActive = false;
 
         private bool Hit(out Collider hit)
         {
@@ -79,7 +88,7 @@ namespace _Game._Scripts.Enemy
         }
 
         private bool CanAttack() => 
-            !_isAttacking && CooldownIsUp();
+            _attackIsActive && !_isAttacking && CooldownIsUp();
 
         private bool CooldownIsUp()
             => _currentCooldown <= 0.0f;
