@@ -589,7 +589,7 @@ GameObject:
   - component: {fileID: 575807657}
   m_Layer: 0
   m_Name: _Dynamic
-  m_TagString: Untagged
+  m_TagString: Dynamic
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
