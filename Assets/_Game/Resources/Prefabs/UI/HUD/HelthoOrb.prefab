@@ -252,6 +252,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1617574320347853650}
+  - component: {fileID: 5126650568567435923}
   m_Layer: 0
   m_Name: HelthoOrb
   m_TagString: Untagged
@@ -281,6 +282,19 @@ RectTransform:
   m_AnchoredPosition: {x: -218, y: 201}
   m_SizeDelta: {x: 300, y: 300}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &5126650568567435923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7041851893852123761}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a08389acbf3526442b9366cd0381716c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _image: {fileID: 4894931761989090648}
 --- !u!1 &7615626937895956573
 GameObject:
   m_ObjectHideFlags: 0
