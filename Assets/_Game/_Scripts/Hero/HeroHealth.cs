@@ -1,7 +1,7 @@
+using System;
+using UnityEngine;
 using _Game._Scripts.Data;
 using _Game._Scripts.Infrastructure.Services.PersistantProgress;
-using Unity.PlasticSCM.Editor.WebApi;
-using UnityEngine;
 
 namespace _Game._Scripts.Hero
 {
@@ -11,11 +11,20 @@ namespace _Game._Scripts.Hero
         [SerializeField] private HeroAnimator _heroAnimator;
         
         private HeroState _state;
+        
+        public event Action HealthChanged;
 
         public float Current
         {
             get => _state.CurrentHealth;
-            private set => _state.CurrentHealth = value;
+            private set
+            {
+                if (_state.CurrentHealth != value)
+                {
+                    _state.CurrentHealth = value; 
+                    HealthChanged?.Invoke();
+                }
+            }
         }
 
         public float Max
@@ -37,6 +46,7 @@ namespace _Game._Scripts.Hero
         public void LoadProgress(PlayerProgress progress)
         {
             _state = progress.HeroState;
+            HealthChanged?.Invoke();
         }
 
         public void UpdateProgress(PlayerProgress progress)

@@ -1,6 +1,5 @@
-using System;
 using _Game._Scripts.CameraLogic;
-using _Game._Scripts.Data;
+using _Game._Scripts.Hero;
 using _Game._Scripts.Infrastructure.Factory;
 using _Game._Scripts.Infrastructure.Services.PersistantProgress;
 using _Game._Scripts.Logic;
@@ -20,7 +19,8 @@ namespace _Game._Scripts.Infrastructure.States
         private readonly IGameFactory _gameFactory;
         private readonly IPersistantProgressService _progressService;
 
-        public LoadLevelState(GameStateMachine stateMachine, SceneLoader sceneLoader, LoadingCurtain curtain, IGameFactory gameFactory, IPersistantProgressService progressService)
+        public LoadLevelState(GameStateMachine stateMachine, SceneLoader sceneLoader, LoadingCurtain curtain,
+            IGameFactory gameFactory, IPersistantProgressService progressService)
         {
             _stateMachine = stateMachine;
             _sceneLoader = sceneLoader;
@@ -36,12 +36,12 @@ namespace _Game._Scripts.Infrastructure.States
             _gameFactory.Cleanup();
             _sceneLoader.Load(sceneName, OnLoaded);
         }
-        
+
         public void Exit()
         {
             _curtain.Hide();
         }
-        
+
         private void OnLoaded()
         {
             InitGameWorld();
@@ -52,11 +52,25 @@ namespace _Game._Scripts.Infrastructure.States
 
         private void InitGameWorld()
         {
-            GameObject hero = _gameFactory.CreateHero(at: GameObject.FindWithTag(InitialPointTag), parent: GameObject.FindWithTag(GameTag));
-            
-            _gameFactory.CreateHud(parent: GameObject.FindWithTag(UITag));
-            
+            GameObject hero = InitHero();
+
+            InitHud(hero);
             CameraFollow(hero);
+        }
+
+        private GameObject InitHero()
+        {
+            return _gameFactory.CreateHero(
+                at: GameObject.FindWithTag(InitialPointTag),
+                parent: GameObject.FindWithTag(GameTag));
+        }
+
+        private void InitHud(GameObject hero)
+        {
+            GameObject hud = _gameFactory.CreateHud(parent: GameObject.FindWithTag(UITag));
+            
+            ActorUI actorUI = hud.GetComponentInChildren<ActorUI>();
+            actorUI.Initialize(hero.GetComponent<HeroHealth>());
         }
 
         private void InformProgressReaders()

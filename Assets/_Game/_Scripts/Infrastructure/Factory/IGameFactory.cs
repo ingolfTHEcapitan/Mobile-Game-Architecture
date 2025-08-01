@@ -14,7 +14,7 @@ namespace _Game._Scripts.Infrastructure.Factory
         event Action HeroCreated;
         
         GameObject CreateHero(GameObject at, GameObject parent);
-        void CreateHud(GameObject parent);
+        GameObject CreateHud(GameObject parent);
         void Cleanup();
     }
 }

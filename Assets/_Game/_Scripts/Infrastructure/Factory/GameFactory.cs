@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Threading;
 using _Game._Scripts.Data;
 using _Game._Scripts.Infrastructure.AssetManagement;
 using _Game._Scripts.Infrastructure.Services.PersistantProgress;
@@ -31,9 +30,9 @@ namespace _Game._Scripts.Infrastructure.Factory
             return HeroInstance;
         }
 
-        public void CreateHud(GameObject parent)
+        public GameObject CreateHud(GameObject parent)
         {
-            InstantiateRegistered(AssetPath.HudPath).SetParent(parent);
+            return InstantiateRegistered(AssetPath.HudPath).SetParent(parent);
         }
 
         public void Cleanup()

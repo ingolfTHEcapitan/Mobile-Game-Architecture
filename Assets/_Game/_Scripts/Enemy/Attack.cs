@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using _Game._Scripts.Hero;
 using _Game._Scripts.Infrastructure.Factory;
 using _Game._Scripts.Infrastructure.Services;
 using JetBrains.Annotations;
@@ -12,6 +13,7 @@ namespace _Game._Scripts.Enemy
     public class Attack: MonoBehaviour
     {
         [SerializeField] private LichAnimator _lichAnimator;
+        [SerializeField] private float _damage = 10f;
         [SerializeField] private float _attackCooldown = 3.0f;
         [SerializeField] private float _attackRadius = 0.5f;
         [SerializeField] private float _attackDistance = 0.5f;
@@ -46,6 +48,9 @@ namespace _Game._Scripts.Enemy
             if (Hit(out Collider hit))
             {
                 PhysicsDebug.DrawDebugSphere(GetStartPoint(), _attackRadius, _debugLifeTime);
+                
+                HeroHealth heroHealth = hit.transform.GetComponent<HeroHealth>();
+                heroHealth.TakeDamage(_damage);
             }
         }
 
