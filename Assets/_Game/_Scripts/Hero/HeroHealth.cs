@@ -1,12 +1,14 @@
 using System;
 using UnityEngine;
 using _Game._Scripts.Data;
+using _Game._Scripts.Enemy;
 using _Game._Scripts.Infrastructure.Services.PersistantProgress;
+using _Game._Scripts.Logic;
 
 namespace _Game._Scripts.Hero
 {
     [RequireComponent(typeof(HeroAnimator))]
-    public class HeroHealth : MonoBehaviour, ISavedProgress
+    public class HeroHealth : MonoBehaviour, ISavedProgress, IHealth
     {
         [SerializeField] private HeroAnimator _heroAnimator;
         
@@ -17,7 +19,7 @@ namespace _Game._Scripts.Hero
         public float Current
         {
             get => _state.CurrentHealth;
-            private set
+            set
             {
                 if (_state.CurrentHealth != value)
                 {
@@ -30,7 +32,7 @@ namespace _Game._Scripts.Hero
         public float Max
         {
             get => _state.MaxHealth;
-            private set => _state.MaxHealth = value;
+            set => _state.MaxHealth = value;
         }
 
         public void TakeDamage(float damage)

@@ -1,13 +1,14 @@
 using System;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace _Game._Scripts.Enemy
 {
-    [RequireComponent(typeof(Attack))]
+    [RequireComponent(typeof(EnemyAttack))]
     public class CheckAttackRange: MonoBehaviour
     {
-        [SerializeField] private Attack _attack;
+        [SerializeField] private EnemyAttack _enemyAttack;
         [SerializeField] private TriggerObserver _triggerObserver;
 
         private void Start()
@@ -15,17 +16,17 @@ namespace _Game._Scripts.Enemy
             _triggerObserver.TriggerEnter += OnTriggerEnter;
             _triggerObserver.TriggerExit += OnTriggerExit;
             
-            _attack.DisableAttack();
+            _enemyAttack.DisableAttack();
         }
 
         private void OnTriggerEnter(Collider obj)
         {
-            _attack.EnableAttack();
+            _enemyAttack.EnableAttack();
         }
 
         private void OnTriggerExit(Collider obj)
         {
-            _attack.DisableAttack();
+            _enemyAttack.DisableAttack();
         }
     }
 }

@@ -3,6 +3,7 @@ using System.Linq;
 using _Game._Scripts.Hero;
 using _Game._Scripts.Infrastructure.Factory;
 using _Game._Scripts.Infrastructure.Services;
+using _Game._Scripts.Logic;
 using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -10,7 +11,7 @@ using UnityEngine.Serialization;
 namespace _Game._Scripts.Enemy
 {
     [RequireComponent(typeof(LichAnimator))]
-    public class Attack: MonoBehaviour
+    public class EnemyAttack: MonoBehaviour
     {
         [SerializeField] private LichAnimator _lichAnimator;
         [SerializeField] private float _damage = 10f;
@@ -45,11 +46,12 @@ namespace _Game._Scripts.Enemy
         [UsedImplicitly]
         private void OnAttack()
         {
+            PhysicsDebug.DrawDebugSphere(GetStartPoint(), _attackRadius, _debugLifeTime, Color.red);
             if (Hit(out Collider hit))
             {
-                PhysicsDebug.DrawDebugSphere(GetStartPoint(), _attackRadius, _debugLifeTime);
+                PhysicsDebug.DrawDebugSphere(GetStartPoint(), _attackRadius, _debugLifeTime, Color.green);
                 
-                HeroHealth heroHealth = hit.transform.GetComponent<HeroHealth>();
+                IHealth heroHealth = hit.transform.GetComponent<IHealth>();
                 heroHealth.TakeDamage(_damage);
             }
         }
@@ -67,6 +69,14 @@ namespace _Game._Scripts.Enemy
         public void DisableAttack() => 
             _attackIsActive = false;
 
+        private void StartAttack()
+        {
+            transform.LookAt(_heroTransform);
+            _lichAnimator.PlayAttack01();
+            
+            _isAttacking = true;
+        }
+
         private bool Hit(out Collider hit)
         {
             int hitCount = Physics.OverlapSphereNonAlloc(GetStartPoint(), _attackRadius, _hits, _layerMask);
@@ -75,22 +85,14 @@ namespace _Game._Scripts.Enemy
             return hitCount > 0;
         }
 
-        private Vector3 GetStartPoint() => 
-            new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z) + transform.forward * _attackDistance;
-
         private void UpdateCooldown()
         {
             if (!CooldownIsUp()) 
                 _currentCooldown -= Time.deltaTime;
         }
 
-        private void StartAttack()
-        {
-            transform.LookAt(_heroTransform);
-            _lichAnimator.PlayAttack01();
-            
-            _isAttacking = true;
-        }
+        private Vector3 GetStartPoint() => 
+            new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z) + transform.forward * _attackDistance;
 
         private bool CanAttack() => 
             _attackIsActive && !_isAttacking && CooldownIsUp();
