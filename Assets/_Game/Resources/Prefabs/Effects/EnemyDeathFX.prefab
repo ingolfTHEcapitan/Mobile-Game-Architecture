@@ -107,7 +107,7 @@ GameObject:
   - component: {fileID: 5515400301767673886}
   - component: {fileID: 114114994653804418}
   m_Layer: 0
-  m_Name: CFXR2 Souls Escape
+  m_Name: EnemyDeathFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -139,7 +139,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5642766282230003982}
   serializedVersion: 8
-  lengthInSec: 2
+  lengthInSec: 3
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 3
