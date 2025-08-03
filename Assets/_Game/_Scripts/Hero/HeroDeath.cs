@@ -9,6 +9,7 @@ namespace _Game._Scripts.Hero
         [SerializeField] private HeroHealth _heroHealth;
         [SerializeField] private HeroAnimator _heroAnimator;
         [SerializeField] private HeroMove _heroMove;
+        [SerializeField] private HerroAttack _heroAttack;
         [SerializeField] private GameObject _DeathEffect;
         
         private bool _isDeath;
@@ -39,6 +40,7 @@ namespace _Game._Scripts.Hero
             _isDeath = true;
             
             _heroMove.enabled = false;
+            _heroAttack.enabled = false;
             _heroAnimator.PlayDeath();
         }
 

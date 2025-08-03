@@ -1,4 +1,5 @@
 using System;
+using UnityEngine.Serialization;
 
 namespace _Game._Scripts.Data
 {
@@ -7,20 +8,13 @@ namespace _Game._Scripts.Data
     {
         public WorldData WorldData;
         public HeroState HeroState;
+        [FormerlySerializedAs("Stats")] public HeroStats heroStats;
         
         public PlayerProgress(string initialLevel)
         {
             WorldData = new WorldData(initialLevel);
             HeroState = new HeroState();
+            heroStats = new HeroStats();
         }
-    }
-
-    [Serializable]
-    public class HeroState
-    {
-        public float CurrentHealth;
-        public float MaxHealth;
-
-        public void ResetHealth() => CurrentHealth = MaxHealth;
     }
 }

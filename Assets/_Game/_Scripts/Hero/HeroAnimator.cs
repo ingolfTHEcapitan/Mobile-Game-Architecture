@@ -22,6 +22,7 @@ namespace _Game._Scripts.Hero
         private readonly int _attack01StateHash = Animator.StringToHash("Hero_Attack01");
         
         public AnimatorState State { get; private set; }
+        public bool IsAttacking => State == AnimatorState.Attack01;
         
         public event Action<AnimatorState> StateEntered;
         public event Action<AnimatorState> StateExited;

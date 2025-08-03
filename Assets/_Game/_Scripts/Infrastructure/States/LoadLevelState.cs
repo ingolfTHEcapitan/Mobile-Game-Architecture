@@ -1,8 +1,10 @@
 using _Game._Scripts.CameraLogic;
 using _Game._Scripts.Hero;
 using _Game._Scripts.Infrastructure.Factory;
+using _Game._Scripts.Infrastructure.Services.Input;
 using _Game._Scripts.Infrastructure.Services.PersistantProgress;
 using _Game._Scripts.Logic;
+using _Game._Scripts.UI;
 using UnityEngine;
 
 namespace _Game._Scripts.Infrastructure.States
@@ -18,15 +20,18 @@ namespace _Game._Scripts.Infrastructure.States
         private readonly LoadingCurtain _curtain;
         private readonly IGameFactory _gameFactory;
         private readonly IPersistantProgressService _progressService;
+        private readonly IInputService _inputService;
+
 
         public LoadLevelState(GameStateMachine stateMachine, SceneLoader sceneLoader, LoadingCurtain curtain,
-            IGameFactory gameFactory, IPersistantProgressService progressService)
+            IGameFactory gameFactory, IPersistantProgressService progressService, IInputService inputService)
         {
             _stateMachine = stateMachine;
             _sceneLoader = sceneLoader;
             _curtain = curtain;
             _gameFactory = gameFactory;
             _progressService = progressService;
+            _inputService = inputService;
         }
 
         public void Enter(string sceneName)
@@ -60,9 +65,12 @@ namespace _Game._Scripts.Infrastructure.States
 
         private GameObject InitHero()
         {
-            return _gameFactory.CreateHero(
+            GameObject hero =  _gameFactory.CreateHero(
                 at: GameObject.FindWithTag(InitialPointTag),
                 parent: GameObject.FindWithTag(GameTag));
+            
+            hero.GetComponent<HerroAttack>().Initialize(_inputService);
+            return hero;
         }
 
         private void InitHud(GameObject hero)
