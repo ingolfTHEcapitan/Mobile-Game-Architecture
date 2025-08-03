@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace _Game._Scripts.Logic
+namespace _Game._Scripts.UI
 {
     public class ProgressBar : MonoBehaviour
     {
