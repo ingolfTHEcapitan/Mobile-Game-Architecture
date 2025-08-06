@@ -1,12 +1,9 @@
-using System;
 using System.Linq;
-using _Game._Scripts.Hero;
 using _Game._Scripts.Infrastructure.Factory;
 using _Game._Scripts.Infrastructure.Services;
 using _Game._Scripts.Logic;
 using JetBrains.Annotations;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace _Game._Scripts.Enemy
 {

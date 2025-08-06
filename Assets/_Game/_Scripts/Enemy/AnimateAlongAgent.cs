@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.Serialization;
 
 namespace _Game._Scripts.Enemy
 {

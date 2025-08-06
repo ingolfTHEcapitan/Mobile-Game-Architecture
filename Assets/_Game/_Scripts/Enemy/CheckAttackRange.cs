@@ -1,7 +1,4 @@
-using System;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace _Game._Scripts.Enemy
 {

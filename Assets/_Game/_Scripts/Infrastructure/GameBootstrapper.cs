@@ -1,7 +1,6 @@
 using _Game._Scripts.Infrastructure.States;
 using _Game._Scripts.Logic;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace _Game._Scripts.Infrastructure
 {

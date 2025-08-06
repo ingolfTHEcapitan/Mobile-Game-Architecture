@@ -1,4 +1,3 @@
-using System;
 using _Game._Scripts.Data;
 using _Game._Scripts.Enemy;
 using _Game._Scripts.Infrastructure.Services.Input;
