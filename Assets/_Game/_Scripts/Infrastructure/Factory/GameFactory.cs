@@ -35,38 +35,38 @@ namespace _Game._Scripts.Infrastructure.Factory
             return InstantiateRegistered(AssetPath.HudPath).SetParent(parent);
         }
 
-        public void Cleanup()
+        public void CleanupProgressReadersWriters()
         {
             ProgressReaders.Clear();
             ProgressWriters.Clear();
         }
 
+        public void RegisterProgressReaders(GameObject gameObject)
+        {
+            foreach (ISavedProgressReader progressReader in gameObject.GetComponentsInChildren<ISavedProgressReader>())
+                RegisterProgressWriters(progressReader);
+        }
+
+        public void RegisterProgressWriters(ISavedProgressReader progressReader)
+        {
+            if (progressReader is ISavedProgress progressWriters)
+                ProgressWriters.Add(progressWriters);
+            
+            ProgressReaders.Add(progressReader);
+        }
+
         private GameObject InstantiateRegistered(string prefabPath, Vector3 at)
         {
             GameObject gameObject = _assets.Instantiate(prefabPath, at);
-            RegisterProgressWatchers(gameObject);
+            RegisterProgressReaders(gameObject);
             return gameObject;
         }
 
         private GameObject InstantiateRegistered(string prefabPath)
         {
             GameObject gameObject = _assets.Instantiate(prefabPath);
-            RegisterProgressWatchers(gameObject);
+            RegisterProgressReaders(gameObject);
             return gameObject;
-        }
-
-        private void RegisterProgressWatchers(GameObject gameObject)
-        {
-            foreach (ISavedProgressReader progressReader in gameObject.GetComponentsInChildren<ISavedProgressReader>())
-                Register(progressReader);
-        }
-
-        private void Register(ISavedProgressReader progressReader)
-        {
-            if (progressReader is ISavedProgress progressWriters)
-                ProgressWriters.Add(progressWriters);
-            
-            ProgressReaders.Add(progressReader);
         }
     }
 }

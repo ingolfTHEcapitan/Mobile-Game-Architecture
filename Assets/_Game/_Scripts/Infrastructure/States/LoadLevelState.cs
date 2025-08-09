@@ -1,3 +1,4 @@
+using System;
 using _Game._Scripts.CameraLogic;
 using _Game._Scripts.Hero;
 using _Game._Scripts.Infrastructure.Factory;
@@ -14,6 +15,7 @@ namespace _Game._Scripts.Infrastructure.States
         private const string InitialPointTag = "InitialPoint";
         private const string GameTag = "Game";
         private const string UITag = "UI";
+        private const string EnemySpawnerTag = "EnemySpawner";
 
         private readonly GameStateMachine _stateMachine;
         private readonly SceneLoader _sceneLoader;
@@ -21,7 +23,6 @@ namespace _Game._Scripts.Infrastructure.States
         private readonly IGameFactory _gameFactory;
         private readonly IPersistantProgressService _progressService;
         private readonly IInputService _inputService;
-
 
         public LoadLevelState(GameStateMachine stateMachine, SceneLoader sceneLoader, LoadingCurtain curtain,
             IGameFactory gameFactory, IPersistantProgressService progressService, IInputService inputService)
@@ -37,8 +38,7 @@ namespace _Game._Scripts.Infrastructure.States
         public void Enter(string sceneName)
         {
             _curtain.Show();
-            // При загрузке новой сцены очищаем список тех кому нужен прогресс
-            _gameFactory.Cleanup();
+            _gameFactory.CleanupProgressReadersWriters();
             _sceneLoader.Load(sceneName, OnLoaded);
         }
 
@@ -57,10 +57,21 @@ namespace _Game._Scripts.Infrastructure.States
 
         private void InitGameWorld()
         {
+            InitSpawners();
+
             GameObject hero = InitHero();
 
             InitHud(hero);
             CameraFollow(hero);
+        }
+
+        private void InitSpawners()
+        {
+            foreach (GameObject spawnerObject in GameObject.FindGameObjectsWithTag(EnemySpawnerTag))
+            {
+                EnemySpawner spawner = spawnerObject.GetComponent<EnemySpawner>();
+                _gameFactory.RegisterProgressWriters(spawner);
+            }
         }
 
         private GameObject InitHero()

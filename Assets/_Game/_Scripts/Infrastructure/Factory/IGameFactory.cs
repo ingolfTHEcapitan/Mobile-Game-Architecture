@@ -6,15 +6,18 @@ using UnityEngine;
 
 namespace _Game._Scripts.Infrastructure.Factory
 {
-    public interface IGameFactory: IService
+    public interface IGameFactory : IService
     {
         List<ISavedProgressReader> ProgressReaders { get; }
         List<ISavedProgress> ProgressWriters { get; }
         GameObject HeroInstance { get; }
         event Action HeroCreated;
-        
+
         GameObject CreateHero(GameObject at, GameObject parent);
         GameObject CreateHud(GameObject parent);
-        void Cleanup();
+        void CleanupProgressReadersWriters();
+        void RegisterProgressWriters(ISavedProgressReader progressReader);
+        void RegisterProgressReaders(GameObject gameObject);
+        
     }
 }

@@ -8,13 +8,15 @@ namespace _Game._Scripts.Data
     {
         public WorldData WorldData;
         public HeroState HeroState;
-        [FormerlySerializedAs("Stats")] public HeroStats heroStats;
-        
+        public HeroStats heroStats;
+        public KillData KillData;
+
         public PlayerProgress(string initialLevel)
         {
             WorldData = new WorldData(initialLevel);
             HeroState = new HeroState();
             heroStats = new HeroStats();
+            KillData = new KillData();
         }
     }
 }
