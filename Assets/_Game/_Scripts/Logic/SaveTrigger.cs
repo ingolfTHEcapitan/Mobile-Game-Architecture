@@ -4,12 +4,17 @@ using UnityEngine;
 
 namespace _Game._Scripts.Logic
 {
-        
     public class SaveTrigger: MonoBehaviour
     {
         [SerializeField] private BoxCollider _boxCollider;
 
         private ISaveLoadService saveLoadService;
+
+        public BoxCollider BoxCollider
+        {
+            get => _boxCollider;
+            private set => _boxCollider = value; 
+        }
 
         private void Awake()
         {
@@ -21,15 +26,6 @@ namespace _Game._Scripts.Logic
             saveLoadService.SaveProgress();
             Debug.Log("ProgressSaved");
             gameObject.SetActive(false);
-        }
-
-        private void OnDrawGizmos()
-        {
-            if (_boxCollider is null)
-                return; 
-            
-            Gizmos.color = new Color32(15, 161, 49, 130);
-            Gizmos.DrawCube(transform.position + _boxCollider.center, _boxCollider.size);
         }
     }
 }
