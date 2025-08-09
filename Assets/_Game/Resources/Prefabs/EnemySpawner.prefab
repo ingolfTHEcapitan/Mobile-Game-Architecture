@@ -10,10 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 5243727612617043534}
   - component: {fileID: 5243727612617043505}
+  - component: {fileID: 4562968393310944719}
   m_Layer: 0
   m_Name: EnemySpawner
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_TagString: EnemySpawner
+  m_Icon: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -45,3 +46,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EnemyesTypeId: 0
+--- !u!114 &4562968393310944719
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5243727612617043535}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 931ec7e8f197c0946bd58a30b57635eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Id: 9083bc5d-82e3-4ff2-a629-666d3252673e

@@ -8,6 +8,7 @@ TagManager:
   - Game
   - Dynamic
   - UI
+  - EnemySpawner
   layers:
   - Default
   - TransparentFX
