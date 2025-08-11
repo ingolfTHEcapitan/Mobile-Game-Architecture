@@ -12,31 +12,17 @@ namespace _Game._Scripts.Enemy
         [SerializeField] private NavMeshAgent _agent;
         
         private Transform _heroTransform;
-        private IGameFactory _gameFactory;
-        
-        private void Start()
+
+        public void Initialize(Transform heroTransform)
         {
-            _gameFactory = AllServices.Container.Single<IGameFactory>();
-
-            if (HeroExist()) 
-                InitializeHeroTransform();
-            else
-            {
-                _gameFactory.HeroCreated += InitializeHeroTransform;
-            }
+            _heroTransform = heroTransform;
         }
-
+        
         private void Update()
         {
-            if (HeroInitialised() && HeroNotReached()) 
+            if (HeroInitialised() && HeroNotReached())
                 _agent.destination = _heroTransform.position;
         }
-
-        private bool HeroExist() => 
-            _gameFactory.HeroInstance is not null;
-
-        private void InitializeHeroTransform() => 
-            _heroTransform = _gameFactory.HeroInstance.transform;
 
         private bool HeroInitialised() => 
             _heroTransform is not null;

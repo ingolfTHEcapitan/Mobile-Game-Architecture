@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90b099fb897e9e648a1cd9a5b41ffe85, type: 3}
+  m_Name: Archer
+  m_EditorClassIdentifier: 
+  EnemyTypeId: 5
+  Helth: 50
+  Damage: 15
+  AttackCooldown: 1.5
+  AttackRadius: 0.5
+  AttackDistance: 0.5
+  Model: {fileID: 6647369244572926527, guid: 1004336e9ed494a489fabcaee7b6a672, type: 3}

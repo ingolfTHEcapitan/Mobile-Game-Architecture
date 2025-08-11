@@ -10,14 +10,12 @@ namespace _Game._Scripts.Infrastructure.Factory
     {
         List<ISavedProgressReader> ProgressReaders { get; }
         List<ISavedProgress> ProgressWriters { get; }
-        GameObject HeroInstance { get; }
-        event Action HeroCreated;
-
+        GameObject HeroGameObject { get; }
         GameObject CreateHero(GameObject at, GameObject parent);
         GameObject CreateHud(GameObject parent);
+        GameObject CreateEnemy(EnemyesTypeId enemyeTypeId, Transform transform);
         void CleanupProgressReadersWriters();
         void RegisterProgressWriters(ISavedProgressReader progressReader);
         void RegisterProgressReaders(GameObject gameObject);
-        
     }
 }

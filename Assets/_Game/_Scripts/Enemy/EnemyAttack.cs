@@ -10,11 +10,12 @@ namespace _Game._Scripts.Enemy
     [RequireComponent(typeof(LichAnimator))]
     public class EnemyAttack: MonoBehaviour
     {
+        public float Damage = 10f;
+        public float AttackCooldown = 3.0f;
+        public float AttackRadius = 0.5f;
+        public float AttackDistance = 0.5f;
+        
         [SerializeField] private LichAnimator _lichAnimator;
-        [SerializeField] private float _damage = 10f;
-        [SerializeField] private float _attackCooldown = 3.0f;
-        [SerializeField] private float _attackRadius = 0.5f;
-        [SerializeField] private float _attackDistance = 0.5f;
         [SerializeField] private float _debugLifeTime = 1.0f;
         
         private IGameFactory _factory;
@@ -27,15 +28,13 @@ namespace _Game._Scripts.Enemy
 
         private void Awake()
         {
-            _factory = AllServices.Container.Single<IGameFactory>();
-            _factory.HeroCreated += OnHeroCreated;
             _layerMask = LayerMask.GetMask("Player");
         }
 
         private void Update()
         {
             UpdateCooldown();
-            
+
             if (CanAttack())
                 StartAttack();
         }
@@ -43,24 +42,29 @@ namespace _Game._Scripts.Enemy
         [UsedImplicitly]
         private void OnAttack()
         {
-            PhysicsDebug.DrawDebugSphere(GetStartPoint(), _attackRadius, _debugLifeTime, Color.red);
+            PhysicsDebug.DrawDebugSphere(GetStartPoint(), AttackRadius, _debugLifeTime, Color.red);
             if (Hit(out Collider hit))
             {
-                PhysicsDebug.DrawDebugSphere(GetStartPoint(), _attackRadius, _debugLifeTime, Color.green);
+                PhysicsDebug.DrawDebugSphere(GetStartPoint(), AttackRadius, _debugLifeTime, Color.green);
                 
                 IHealth heroHealth = hit.transform.GetComponent<IHealth>();
-                heroHealth.TakeDamage(_damage);
+                heroHealth.TakeDamage(Damage);
             }
         }
 
         [UsedImplicitly]
         private void OnAttackEnded()
         { 
-            _currentCooldown = _attackCooldown;
+            _currentCooldown = AttackCooldown;
             _isAttacking = false;
         }
 
-        public void EnableAttack() => 
+        public void Initialize(Transform heroTransform)
+        {
+            _heroTransform = heroTransform;
+        }
+
+        public void EnableAttack() =>
             _attackIsActive = true;
 
         public void DisableAttack() => 
@@ -76,7 +80,7 @@ namespace _Game._Scripts.Enemy
 
         private bool Hit(out Collider hit)
         {
-            int hitCount = Physics.OverlapSphereNonAlloc(GetStartPoint(), _attackRadius, _hits, _layerMask);
+            int hitCount = Physics.OverlapSphereNonAlloc(GetStartPoint(), AttackRadius, _hits, _layerMask);
 
             hit = _hits.FirstOrDefault();
             return hitCount > 0;
@@ -89,15 +93,12 @@ namespace _Game._Scripts.Enemy
         }
 
         private Vector3 GetStartPoint() => 
-            new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z) + transform.forward * _attackDistance;
+            new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z) + transform.forward * AttackDistance;
 
         private bool CanAttack() => 
             _attackIsActive && !_isAttacking && CooldownIsUp();
 
         private bool CooldownIsUp()
             => _currentCooldown <= 0.0f;
-
-        private void OnHeroCreated() => 
-            _heroTransform = _factory.HeroInstance.transform;
     }
 }

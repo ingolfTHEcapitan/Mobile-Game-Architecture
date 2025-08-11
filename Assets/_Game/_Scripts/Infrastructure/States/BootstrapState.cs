@@ -8,10 +8,10 @@ using UnityEngine;
 
 namespace _Game._Scripts.Infrastructure.States
 {
-    public class BootstrapState: IState
+    public class BootstrapState : IState
     {
         private const string InitialScene = "Initial";
-        
+
         private readonly GameStateMachine _stateMachine;
         private readonly SceneLoader _sceneLoader;
         private readonly AllServices _services;
@@ -21,20 +21,20 @@ namespace _Game._Scripts.Infrastructure.States
             _stateMachine = stateMachine;
             _sceneLoader = sceneLoader;
             _services = services;
-            // Сервисы регистрируем в конструкторе, что бы при создании состояния
-            // в стейт машине сразу проинициализировать все необходимые сервисы.
+            // РЎРµСЂРІРёСЃС‹ СЂРµРіРёСЃС‚СЂРёСЂСѓРµРј РІ РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂРµ, С‡С‚Рѕ Р±С‹ РїСЂРё СЃРѕР·РґР°РЅРёРё СЃРѕСЃС‚РѕСЏРЅРёСЏ
+            // РІ СЃС‚РµР№С‚ РјР°С€РёРЅРµ СЃСЂР°Р·Сѓ РїСЂРѕРёРЅРёС†РёР°Р»РёР·РёСЂРѕРІР°С‚СЊ РІСЃРµ РЅРµРѕР±С…РѕРґРёРјС‹Рµ СЃРµСЂРІРёСЃС‹.
             RegisterServices();
         }
 
         public void Enter()
         {
-            // Нужно всегда начинать с начала с Initial, не зависимо от того откуда мы пришли в BootstrapState
+            // РќСѓР¶РЅРѕ РІСЃРµРіРґР° РЅР°С‡РёРЅР°С‚СЊ СЃ РЅР°С‡Р°Р»Р° СЃ Initial, РЅРµ Р·Р°РІРёСЃРёРјРѕ РѕС‚ С‚РѕРіРѕ РѕС‚РєСѓРґР° РјС‹ РїСЂРёС€Р»Рё РІ BootstrapState
             _sceneLoader.Load(InitialScene, onLoaded: EnterLoadProgress);
         }
 
         public void Exit()
         {
-            
+
         }
 
         private void EnterLoadProgress()
@@ -45,11 +45,14 @@ namespace _Game._Scripts.Infrastructure.States
         private void RegisterServices()
         {
             _services.RegisterSingle<IInputService>(GetInputService());
+            _services.RegisterSingle<IStaticDataService>(GetStaticDataService());
             _services.RegisterSingle<IAssetProvider>(new AssetProvider());
             _services.RegisterSingle<IPersistantProgressService>(new PersistantProgressService());
-            _services.RegisterSingle<IGameFactory>(new GameFactory(_services.Single<IAssetProvider>()));
+            _services.RegisterSingle<IGameFactory>(new GameFactory(
+                _services.Single<IAssetProvider>(),
+                _services.Single<IStaticDataService>()));
             _services.RegisterSingle<ISaveLoadService>(new SaveLoadService(
-                _services.Single<IPersistantProgressService>(), 
+                _services.Single<IPersistantProgressService>(),
                 _services.Single<IGameFactory>()));
         }
 
@@ -59,6 +62,13 @@ namespace _Game._Scripts.Infrastructure.States
                 return new StandaloneInputService();
             else
                 return new MobileInputService();
+        }
+
+        private StaticDataService GetStaticDataService()
+        {
+            var staticData = new StaticDataService();
+            staticData.LoadEnemys();
+            return staticData;
         }
     }
 }

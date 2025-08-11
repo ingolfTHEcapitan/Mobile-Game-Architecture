@@ -10,23 +10,11 @@ namespace _Game._Scripts.Enemy
         
         private Transform _heroTransform;
         private Vector3 _positionToLook;
-        private IGameFactory _gameFactory;
         
-        private void Start()
+        public void Initialize(Transform heroTransform)
         {
-            _gameFactory = AllServices.Container.Single<IGameFactory>();
-
-            if (HeroExist()) 
-                InitializeHeroTransform();
-            else
-                _gameFactory.HeroCreated += InitializeHeroTransform;
+            _heroTransform = heroTransform;
         }
-
-        private bool HeroExist() => 
-            _gameFactory.HeroInstance is not null;
-        
-        private void InitializeHeroTransform() => 
-            _heroTransform = _gameFactory.HeroInstance.transform;
         
         private void Update()
         {
