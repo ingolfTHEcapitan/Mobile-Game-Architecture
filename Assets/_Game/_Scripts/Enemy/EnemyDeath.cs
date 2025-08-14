@@ -7,7 +7,7 @@ namespace _Game._Scripts.Enemy
 {
     public class EnemyDeath: MonoBehaviour
     {
-        [SerializeField] private LichAnimator _animator;
+        [SerializeField] private EnemyAnimator _animator;
         [SerializeField] private EnemyHealth _health;
         [SerializeField] private GameObject _deathEffect;
         [SerializeField] private NavMeshAgent _agent;

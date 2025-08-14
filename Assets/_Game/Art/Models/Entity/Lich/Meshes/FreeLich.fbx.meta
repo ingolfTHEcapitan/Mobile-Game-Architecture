@@ -188,7 +188,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 1
+    globalScale: 0.8
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
@@ -219,7 +219,7 @@ ModelImporter:
     secondaryUVMinLightmapResolution: 40
     secondaryUVMinObjectScale: 1
     secondaryUVPackMargin: 4
-    useFileScale: 0
+    useFileScale: 1
     strictVertexDataChecks: 0
   tangentSpace:
     normalSmoothAngle: 60
@@ -383,112 +383,112 @@ ModelImporter:
       scale: {x: 0.01, y: 0.01, z: 0.01}
     - name: Hips
       parentName: 
-      position: {x: -6.101346e-33, y: 0.38521665, z: 0.019774662}
+      position: {x: -4.881077e-33, y: 0.30817333, z: 0.015819728}
       rotation: {x: -0.4531652, y: 0.5428088, z: -0.4531652, w: 0.5428087}
       scale: {x: 0.01, y: 0.009999998, z: 0.01}
     - name: Spine
       parentName: 
-      position: {x: -25.582716, y: -8.881784e-16, z: -2.3017142e-15}
+      position: {x: -20.466175, y: -7.1054275e-16, z: -1.841371e-15}
       rotation: {x: 0.99459624, y: -0.10381841, z: 0.0000000023641265, w: -0.00000006257764}
       scale: {x: 0.99999964, y: 0.9999999, z: 1}
     - name: Head
       parentName: 
-      position: {x: -62.965614, y: 2.6645353e-14, z: -5.6825615e-15}
+      position: {x: -50.372494, y: 2.1316284e-14, z: -4.5460487e-15}
       rotation: {x: -0.49282864, y: 0.50707, z: 0.49282864, w: 0.50706995}
       scale: {x: 1.0000002, y: 1.0000002, z: 1.0000002}
     - name: Upper_Arm_L
       parentName: 
-      position: {x: -14.02746, y: -3.4342408, z: 28.74915}
+      position: {x: -11.221968, y: -2.7473924, z: 22.999317}
       rotation: {x: -0.49405396, y: 0.46970534, z: 0.52964777, w: 0.50473845}
       scale: {x: 1, y: 1.0000002, z: 1}
     - name: Lower_Arm_L
       parentName: 
-      position: {x: -53.133537, y: 0, z: 9.769963e-15}
+      position: {x: -42.506836, y: 0, z: 7.81597e-15}
       rotation: {x: -0.000000025087257, y: 0.07637346, z: -0.000000005877709, w: 0.9970793}
       scale: {x: 1, y: 0.9999999, z: 1.0000002}
     - name: Hand_L
       parentName: 
-      position: {x: -30.30516, y: 1.4210855e-14, z: 4.440892e-15}
+      position: {x: -24.24413, y: 1.1368684e-14, z: 3.5527137e-15}
       rotation: {x: 0.038784187, y: -0.033872277, z: 0.0024660104, w: 0.9986703}
       scale: {x: 1, y: 1.0000001, z: 1}
     - name: Index_Proximal_L
       parentName: 
-      position: {x: -20.035412, y: -8.526513e-14, z: -2.0067281e-14}
+      position: {x: -16.02833, y: -6.82121e-14, z: -1.6053824e-14}
       rotation: {x: -0.0000000018236791, y: -0.007203495, z: 0.000000010032828, w: 0.99997413}
       scale: {x: 1.0000001, y: 0.99999994, z: 1}
     - name: Upper_Arm_R
       parentName: 
-      position: {x: -14.027475, y: -3.4342446, z: -28.7491}
+      position: {x: -11.221979, y: -2.7473958, z: -22.99928}
       rotation: {x: -0.49405393, y: 0.46970534, z: -0.5296477, w: -0.50473857}
       scale: {x: 1, y: 1.0000001, z: 0.99999994}
     - name: Rower_Arm_R
       parentName: 
-      position: {x: -53.133564, y: 4.2632564e-14, z: 3.5527137e-15}
+      position: {x: -42.506855, y: 3.410605e-14, z: 2.842171e-15}
       rotation: {x: 0.00000006340652, y: -0.07637318, z: -0.0000000047924598, w: 0.9970794}
       scale: {x: 1.0000001, y: 0.99999994, z: 1.0000006}
     - name: Hand_R
       parentName: 
-      position: {x: -30.305365, y: -2.842171e-14, z: 1.7763568e-15}
+      position: {x: -24.244293, y: -2.2737368e-14, z: 1.4210855e-15}
       rotation: {x: -0.038784135, y: 0.033871707, z: 0.0024660027, w: 0.9986704}
       scale: {x: 1.0000001, y: 1.0000001, z: 0.99999976}
     - name: Index_Proximal_R
       parentName: 
-      position: {x: -20.03508, y: -8.526513e-14, z: 2.2343238e-14}
+      position: {x: -16.028063, y: -6.82121e-14, z: 1.7874592e-14}
       rotation: {x: 0.007203791, y: -0.000000039131617, z: 0.99997413, w: 0.000000016681657}
       scale: {x: 0.9999995, y: 0.9999994, z: 0.9999997}
     - name: Armor_L
       parentName: 
-      position: {x: -24.040743, y: -4.678337, z: 63.996086}
+      position: {x: -19.232594, y: -3.742669, z: 51.196873}
       rotation: {x: -0.49282864, y: 0.50707, z: 0.49282864, w: 0.50706995}
       scale: {x: 1.0000004, y: 1.0000002, z: 1.0000002}
     - name: Armor_R
       parentName: 
-      position: {x: -26.861208, y: -4.8427153, z: -58.25304}
+      position: {x: -21.488968, y: -3.8741724, z: -46.60244}
       rotation: {x: 0.50706995, y: 0.49282864, z: -0.50707, w: 0.49282864}
       scale: {x: 1.0000004, y: 1.0000004, z: 1.0000002}
     - name: Upper_Leg_L
       parentName: 
-      position: {x: 9.580402, y: 2.1624858, z: -21.182056}
+      position: {x: 7.6643224, y: 1.7299886, z: -16.945648}
       rotation: {x: 0.07039547, y: -0.004895438, z: 0.9914676, w: 0.10960213}
       scale: {x: 0.9999997, y: 0.9999997, z: 1}
     - name: Lower_Leg_L
       parentName: 
-      position: {x: -16.481838, y: -5.551115e-16, z: 7.1054274e-15}
+      position: {x: -13.185473, y: -4.440892e-16, z: 5.684342e-15}
       rotation: {x: 0.0019331947, y: 0.012124086, z: 0.19746347, w: 0.9802334}
       scale: {x: 1.0000001, y: 1.0000004, z: 1.0000001}
     - name: Foot_L
       parentName: 
-      position: {x: -12.725127, y: 1.7763568e-15, z: 0}
+      position: {x: -10.180103, y: 1.4210855e-15, z: 0}
       rotation: {x: 0.03499278, y: -0.051277064, z: -0.81516325, w: 0.57589513}
       scale: {x: 0.9999997, y: 0.9999998, z: 0.9999999}
     - name: Toes_L
       parentName: 
-      position: {x: -30.232239, y: -2.9837244e-15, z: -7.1054274e-15}
+      position: {x: -24.185791, y: -2.3869793e-15, z: -5.684342e-15}
       rotation: {x: -0.05121681, y: -0.69676024, z: 0.11369071, w: 0.70638263}
       scale: {x: 1.0000001, y: 0.99999976, z: 0.99999994}
     - name: Staff
       parentName: 
-      position: {x: -50.983036, y: -54.37775, z: -77.06237}
+      position: {x: -40.78643, y: -43.502205, z: -61.6499}
       rotation: {x: 0.4531652, y: -0.5428088, z: 0.4531652, w: 0.5428087}
       scale: {x: 0.9999997, y: 0.99999994, z: 0.99999976}
     - name: Upper_Reg_R
       parentName: 
-      position: {x: 9.58039, y: 2.162486, z: 21.1821}
+      position: {x: 7.6643124, y: 1.7299889, z: 16.945683}
       rotation: {x: -0.070393994, y: 0.0048953136, z: 0.9914677, w: 0.10960202}
       scale: {x: 0.99999976, y: 0.99999976, z: 0.99999994}
     - name: Rower_Reg_R
       parentName: 
-      position: {x: -16.481844, y: 4.32987e-15, z: 0}
+      position: {x: -13.185476, y: 3.463896e-15, z: 0}
       rotation: {x: -0.0019331855, y: -0.012124047, z: 0.19746312, w: 0.9802335}
       scale: {x: 0.9999997, y: 0.99999976, z: 0.99999994}
     - name: Foot_R
       parentName: 
-      position: {x: -12.725123, y: -8.881784e-16, z: 3.5527137e-15}
+      position: {x: -10.180099, y: -7.1054275e-16, z: 2.842171e-15}
       rotation: {x: -0.035076935, y: 0.05140028, z: -0.8151553, w: 0.5758901}
       scale: {x: 1.0000005, y: 1.0000005, z: 1.0000005}
     - name: Toes_R
       parentName: 
-      position: {x: -30.23228, y: -7.4246165e-15, z: -7.1054274e-15}
+      position: {x: -24.185825, y: -5.9396936e-15, z: -5.684342e-15}
       rotation: {x: 0.69674265, y: -0.051321186, z: 0.70637596, w: -0.11379372}
       scale: {x: 1, y: 0.99999964, z: 0.9999996}
     armTwist: 0.5
@@ -498,7 +498,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 1
+    globalScale: 0.8
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0

@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace _Game._Scripts.Enemy
 {
-    [RequireComponent(typeof(LichAnimator))]
+    [RequireComponent(typeof(EnemyAnimator))]
     public class EnemyAttack: MonoBehaviour
     {
         public float Damage = 10f;
@@ -15,7 +15,7 @@ namespace _Game._Scripts.Enemy
         public float AttackRadius = 0.5f;
         public float AttackDistance = 0.5f;
         
-        [SerializeField] private LichAnimator _lichAnimator;
+        [SerializeField] private EnemyAnimator _lichAnimator;
         [SerializeField] private float _debugLifeTime = 1.0f;
         
         private IGameFactory _factory;

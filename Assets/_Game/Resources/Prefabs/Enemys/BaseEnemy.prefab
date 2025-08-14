@@ -36,7 +36,7 @@ Transform:
   m_GameObject: {fileID: 100048}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 561159195328961081}
@@ -62,49 +62,7 @@ Animator:
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
-  m_WarningMessage: '
-
-    Transform ''Head'' has been deleted
-
-    Transform ''Hand_L''
-    has been deleted
-
-    Transform ''Lower_Arm_L'' has been deleted
-
-    Transform
-    ''Upper_Arm_L'' has been deleted
-
-    Transform ''Hand_R'' has been deleted
-
-    Transform
-    ''Rower_Arm_R'' has been deleted
-
-    Transform ''Upper_Arm_R'' has been deleted
-
-    Transform
-    ''Spine'' has been deleted
-
-    Transform ''Toes_L'' has been deleted
-
-    Transform
-    ''Foot_L'' has been deleted
-
-    Transform ''Lower_Leg_L'' has been deleted
-
-    Transform
-    ''Upper_Leg_L'' has been deleted
-
-    Transform ''Toes_R'' has been deleted
-
-    Transform
-    ''Foot_R'' has been deleted
-
-    Transform ''Rower_Reg_R'' has been deleted
-
-    Transform
-    ''Upper_Reg_R'' has been deleted
-
-    Transform ''Hips'' has been deleted'
+  m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
@@ -197,11 +155,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47dbbe433af1410aa05d5dd03b2feb86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Damage: 10
+  AttackCooldown: 3
+  AttackRadius: 0.5
+  AttackDistance: 0.5
   _lichAnimator: {fileID: -5489221041893445642}
-  _damage: 10
-  _attackCooldown: 1
-  _attackRadius: 0.5
-  _attackDistance: 1
   _debugLifeTime: 3
 --- !u!114 &7031066814932692955
 MonoBehaviour:
@@ -300,7 +258,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 2.5}
-  m_SizeDelta: {x: 2, y: 0.25}
+  m_SizeDelta: {x: 1.6, y: 0.2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &7755322524628622435
 Canvas:
@@ -519,7 +477,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1.72, y: 1.963064, z: 1.4809209}
-  m_Center: {x: 0.04400447, y: 0.94943964, z: 0.08169796}
+  m_Center: {x: 0, y: 0.94943964, z: 0}
 --- !u!1001 &7747274602530051776
 PrefabInstance:
   m_ObjectHideFlags: 0

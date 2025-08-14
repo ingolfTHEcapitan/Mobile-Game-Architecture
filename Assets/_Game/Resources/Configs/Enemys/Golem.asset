@@ -15,7 +15,8 @@ MonoBehaviour:
   EnemyTypeId: 10
   Helth: 150
   Damage: 35
-  AttackCooldown: 6
-  AttackRadius: 0.5
+  AttackCooldown: 4
+  AttackRadius: 1
   AttackDistance: 1
-  Model: {fileID: 100038, guid: d19f0e375a0203a4ca72964404dbd39e, type: 3}
+  MoveSpeed: 1.8
+  Model: {fileID: 3932544871551375525, guid: 2029a6cc805999c4980c9286f451e7d8, type: 3}

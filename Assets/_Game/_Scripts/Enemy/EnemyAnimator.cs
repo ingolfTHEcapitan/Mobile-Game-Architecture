@@ -4,7 +4,8 @@ using UnityEngine;
 
 namespace _Game._Scripts.Enemy
 {
-    public class LichAnimator: MonoBehaviour, IAnimationStateReader
+    [RequireComponent(typeof(Animator))]
+    public class EnemyAnimator : MonoBehaviour, IAnimationStateReader
     {
         private static readonly int Die = Animator.StringToHash("Die");
         private static readonly int Win = Animator.StringToHash("Win");
@@ -13,20 +14,20 @@ namespace _Game._Scripts.Enemy
         private static readonly int Attack_2 = Animator.StringToHash("Attack_2");
         private static readonly int Speed = Animator.StringToHash("Speed");
         private static readonly int IsMoving = Animator.StringToHash("IsMoving");
-        
-        private readonly int _idleStateHash = Animator.StringToHash("idle");
-        private readonly int _dieStateHash = Animator.StringToHash("die");
-        private readonly int _victoryStateHash = Animator.StringToHash("victory");
+
+        private readonly int _idleStateHash = Animator.StringToHash("Idle");
+        private readonly int _dieStateHash = Animator.StringToHash("Die");
+        private readonly int _victoryStateHash = Animator.StringToHash("Victory");
         private readonly int _getHitStateHash = Animator.StringToHash("GetHit");
         private readonly int _moveStateHash = Animator.StringToHash("Move");
-        private readonly int _attack01StateHash = Animator.StringToHash("attack01");
-        private readonly int _attack02StateHash = Animator.StringToHash("attack02");
-        
+        private readonly int _attack01StateHash = Animator.StringToHash("Attack01");
+        private readonly int _attack02StateHash = Animator.StringToHash("Attack02");
+
         private Animator _animator;
-        
+
         public event Action<AnimatorState> StateEntered;
         public event Action<AnimatorState> StateExited;
-        
+
         public AnimatorState State { get; private set; }
 
         private void Awake()
@@ -43,7 +44,7 @@ namespace _Game._Scripts.Enemy
             _animator.SetBool(IsMoving, true);
             _animator.SetFloat(Speed, speed);
         }
-        
+
         public void StopMoving()
         {
             _animator.SetBool(IsMoving, false);
@@ -57,34 +58,34 @@ namespace _Game._Scripts.Enemy
             State = GetState(stateHash);
             StateEntered?.Invoke(State);
         }
-        
+
         public void ExitedState(int stateHash)
         {
             State = GetState(stateHash);
             StateExited?.Invoke(State);
         }
-        
+
         private AnimatorState GetState(int stateHash)
         {
             AnimatorState state;
 
-            if (stateHash == _idleStateHash) 
+            if (stateHash == _idleStateHash)
                 state = AnimatorState.Idle;
-            else if (stateHash == _dieStateHash) 
+            else if (stateHash == _dieStateHash)
                 state = AnimatorState.Die;
-            else if (stateHash == _victoryStateHash) 
+            else if (stateHash == _victoryStateHash)
                 state = AnimatorState.Victory;
-            else if (stateHash == _getHitStateHash) 
+            else if (stateHash == _getHitStateHash)
                 state = AnimatorState.GetHit;
-            else if (stateHash == _moveStateHash) 
+            else if (stateHash == _moveStateHash)
                 state = AnimatorState.Move;
-            else if (stateHash == _attack01StateHash) 
+            else if (stateHash == _attack01StateHash)
                 state = AnimatorState.Attack01;
-            else if (stateHash == _attack02StateHash) 
+            else if (stateHash == _attack02StateHash)
                 state = AnimatorState.Attack02;
-            else 
+            else
                 state = AnimatorState.Unknown;
-            
+
             return state;
         }
     }

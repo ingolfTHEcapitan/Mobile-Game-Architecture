@@ -4,13 +4,13 @@ using UnityEngine.AI;
 namespace _Game._Scripts.Enemy
 {
     [RequireComponent(typeof(NavMeshAgent))]
-    [RequireComponent(typeof(LichAnimator))]
+    [RequireComponent(typeof(EnemyAnimator))]
     public class AnimateAlongAgent : MonoBehaviour
     {
         private const float MinimalVelocity = 0.01f;
         
         [SerializeField] private NavMeshAgent _agent;
-        [SerializeField] private LichAnimator _lichAnimator;
+        [SerializeField] private EnemyAnimator _lichAnimator;
 
         private void Update()
         {

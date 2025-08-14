@@ -6,7 +6,7 @@ namespace _Game._Scripts.Enemy
 {
     public class EnemyHealth : MonoBehaviour, IHealth
     {
-        [SerializeField] private LichAnimator _lichAnimator;
+        [SerializeField] private EnemyAnimator _lichAnimator;
         [SerializeField] private float _current;
         [SerializeField] private float _max;
 
