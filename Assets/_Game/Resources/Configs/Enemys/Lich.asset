@@ -17,6 +17,6 @@ MonoBehaviour:
   Damage: 10
   AttackCooldown: 3
   AttackRadius: 0.5
-  AttackDistance: 0.5
+  AttackDistance: 1.2
   MoveSpeed: 2.5
   Model: {fileID: 6137534830241198975, guid: 94ded69a849c80e408fe21534c95b392, type: 3}
