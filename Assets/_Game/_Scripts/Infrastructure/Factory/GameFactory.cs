@@ -44,10 +44,13 @@ namespace _Game._Scripts.Infrastructure.Factory
             GameObject enemy = UnityEngine.Object.Instantiate(monsterData.Model, parent.position, Quaternion.identity, parent);
 
             EnemyHealth health = enemy.GetComponent<EnemyHealth>();
-            health.Current = monsterData.Helth;
             health.Max = monsterData.Helth;
+            health.Current = monsterData.Helth;
 
-            enemy.GetComponent<ActorUI>().Initialize(health);
+            ActorUI actorUI = enemy.GetComponent<ActorUI>();
+            actorUI.Initialize(health);
+            actorUI.UpdateHealthBar();
+            
             enemy.GetComponent<AgentMoveToPlayer>().Initialize(HeroGameObject.transform);
             enemy.GetComponent<NavMeshAgent>().speed = monsterData.MoveSpeed;
 

@@ -278,7 +278,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -485,6 +485,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 9124005087331989495}
     m_Modifications:
+    - target: {fileID: 1761987661924921502, guid: 7c8b5a50047257243b76d833421321e1,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0.0925
+      objectReference: {fileID: 0}
+    - target: {fileID: 1761987661924921502, guid: 7c8b5a50047257243b76d833421321e1,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.096
+      objectReference: {fileID: 0}
     - target: {fileID: 2635704809549166219, guid: 7c8b5a50047257243b76d833421321e1,
         type: 3}
       propertyPath: m_Pivot.x
@@ -590,11 +600,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8196837065790265608, guid: 7c8b5a50047257243b76d833421321e1,
+    - target: {fileID: 3115314870493967527, guid: 7c8b5a50047257243b76d833421321e1,
         type: 3}
-      propertyPath: _image
-      value: 
-      objectReference: {fileID: 6918804421411950233}
+      propertyPath: m_fontSize
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3115314870493967527, guid: 7c8b5a50047257243b76d833421321e1,
+        type: 3}
+      propertyPath: m_fontSizeBase
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5579499140804954729, guid: 7c8b5a50047257243b76d833421321e1,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.0029296875
+      objectReference: {fileID: 0}
     - target: {fileID: 8725870971414122306, guid: 7c8b5a50047257243b76d833421321e1,
         type: 3}
       propertyPath: m_Name
@@ -620,15 +640,3 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 7747274602530051776}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &6918804421411950233 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 830736845831460953, guid: 7c8b5a50047257243b76d833421321e1,
-    type: 3}
-  m_PrefabInstance: {fileID: 7747274602530051776}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

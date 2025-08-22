@@ -22,7 +22,7 @@ namespace _Game._Scripts.Hero
             {
                 if (_state.CurrentHealth != value)
                 {
-                    _state.CurrentHealth = value; 
+                    _state.CurrentHealth = Mathf.Clamp(value, 0, Max); 
                     HealthChanged?.Invoke();
                 }
             }

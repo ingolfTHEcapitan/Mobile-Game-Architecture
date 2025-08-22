@@ -15,15 +15,7 @@ namespace _Game._Scripts.UI
             _health.HealthChanged += UpdateHealthBar;
         }
 
-        private void Start()
-        {
-            IHealth health = GetComponent<IHealth>();
-            
-            if (health != null) 
-                Initialize(health);
-        }
-
-        private void UpdateHealthBar()
+        public void UpdateHealthBar()
         {
             _progressBar.SetValue(_health.Current, _health.Max);
         }

@@ -13,7 +13,7 @@ namespace _Game._Scripts.Enemy
         public float Current
         {
             get => _current;
-            set => _current = value;
+            set => _current = Mathf.Clamp(value, 0, Max);
         }
 
         public float Max
@@ -26,6 +26,9 @@ namespace _Game._Scripts.Enemy
 
         public void TakeDamage(float damage)
         {
+            if (Current <= 0)
+                return;
+            
             Current -= damage;
             
             _lichAnimator.PlayHit();
