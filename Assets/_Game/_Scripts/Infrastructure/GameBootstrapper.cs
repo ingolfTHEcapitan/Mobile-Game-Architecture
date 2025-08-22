@@ -1,4 +1,4 @@
-using _Game._Scripts.Infrastructure.States;
+using _Game._Scripts.Infrastructure.States.GameStates;
 using _Game._Scripts.Logic;
 using UnityEngine;
 

@@ -1,8 +1,9 @@
 using System.Collections.Generic;
 using System.Linq;
+using _Game._Scripts.StaticData;
 using UnityEngine;
 
-namespace _Game._Scripts.Infrastructure.Services
+namespace _Game._Scripts.Infrastructure.Services.StaticData
 {
     class StaticDataService : IStaticDataService
     {

@@ -1,7 +1,6 @@
-using _Game._Scripts.Enemy;
 using UnityEngine;
 
-namespace _Game._Scripts.Logic
+namespace _Game._Scripts.Logic.Animation
 {
     public class AnimationStateReporter: StateMachineBehaviour
     {

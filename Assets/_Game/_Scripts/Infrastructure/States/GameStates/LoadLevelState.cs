@@ -1,14 +1,13 @@
-using System;
-using _Game._Scripts.CameraLogic;
 using _Game._Scripts.Hero;
-using _Game._Scripts.Infrastructure.Factory;
+using _Game._Scripts.Infrastructure.Services.Factory;
 using _Game._Scripts.Infrastructure.Services.Input;
 using _Game._Scripts.Infrastructure.Services.PersistantProgress;
 using _Game._Scripts.Logic;
+using _Game._Scripts.Logic.Camera;
 using _Game._Scripts.UI;
 using UnityEngine;
 
-namespace _Game._Scripts.Infrastructure.States
+namespace _Game._Scripts.Infrastructure.States.GameStates
 {
     public class LoadLevelState : IPayLoadedState<string>
     {

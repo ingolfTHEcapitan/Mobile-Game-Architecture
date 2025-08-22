@@ -1,12 +1,13 @@
-using _Game._Scripts.Infrastructure.AssetManagement;
-using _Game._Scripts.Infrastructure.Factory;
 using _Game._Scripts.Infrastructure.Services;
+using _Game._Scripts.Infrastructure.Services.AssetManagement;
+using _Game._Scripts.Infrastructure.Services.Factory;
 using _Game._Scripts.Infrastructure.Services.Input;
 using _Game._Scripts.Infrastructure.Services.PersistantProgress;
 using _Game._Scripts.Infrastructure.Services.SaveLoad;
+using _Game._Scripts.Infrastructure.Services.StaticData;
 using UnityEngine;
 
-namespace _Game._Scripts.Infrastructure.States
+namespace _Game._Scripts.Infrastructure.States.GameStates
 {
     public class BootstrapState : IState
     {

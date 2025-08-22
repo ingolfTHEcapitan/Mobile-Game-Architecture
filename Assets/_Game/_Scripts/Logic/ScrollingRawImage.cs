@@ -1,34 +1,37 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class ScrollingRawImage : MonoBehaviour
+namespace _Game._Scripts.Logic
 {
-    public float horizontalSpeed;
-    public float verticalSpeed;
-
-    RawImage myRawImage;
-
-    public void Start()
+    public class ScrollingRawImage : MonoBehaviour
     {
-        myRawImage = GetComponent<RawImage>();
-    }
+        public float horizontalSpeed;
+        public float verticalSpeed;
 
-    public void Update()
-    {
-        Rect currentUV = myRawImage.uvRect;
-        currentUV.x -= Time.deltaTime * horizontalSpeed;
-        currentUV.y -= Time.deltaTime * verticalSpeed;
+        RawImage myRawImage;
 
-        if (currentUV.x <= -1f || currentUV.x >= 1f)
+        public void Start()
         {
-            currentUV.x = 0f;
+            myRawImage = GetComponent<RawImage>();
         }
 
-        if (currentUV.y <= -1f || currentUV.y >= 1f)
+        public void Update()
         {
-            currentUV.y = 0f;
-        }
+            Rect currentUV = myRawImage.uvRect;
+            currentUV.x -= Time.deltaTime * horizontalSpeed;
+            currentUV.y -= Time.deltaTime * verticalSpeed;
 
-        myRawImage.uvRect = currentUV;
+            if (currentUV.x <= -1f || currentUV.x >= 1f)
+            {
+                currentUV.x = 0f;
+            }
+
+            if (currentUV.y <= -1f || currentUV.y >= 1f)
+            {
+                currentUV.y = 0f;
+            }
+
+            myRawImage.uvRect = currentUV;
+        }
     }
 }

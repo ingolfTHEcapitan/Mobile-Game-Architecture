@@ -1,15 +1,15 @@
-using System;
 using System.Collections.Generic;
 using _Game._Scripts.Data;
 using _Game._Scripts.Enemy;
-using _Game._Scripts.Infrastructure.AssetManagement;
-using _Game._Scripts.Infrastructure.Services;
+using _Game._Scripts.Infrastructure.Services.AssetManagement;
 using _Game._Scripts.Infrastructure.Services.PersistantProgress;
+using _Game._Scripts.Infrastructure.Services.StaticData;
+using _Game._Scripts.StaticData;
 using _Game._Scripts.UI;
 using UnityEngine;
 using UnityEngine.AI;
 
-namespace _Game._Scripts.Infrastructure.Factory
+namespace _Game._Scripts.Infrastructure.Services.Factory
 {
     public class GameFactory : IGameFactory
     {

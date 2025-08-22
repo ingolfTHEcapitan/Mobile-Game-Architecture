@@ -1,6 +1,9 @@
 using UnityEngine;
 
-public class UniqueId : MonoBehaviour
+namespace _Game._Scripts.Logic
 {
-    public string Id;
+    public class UniqueId : MonoBehaviour
+    {
+        public string Id;
+    }
 }

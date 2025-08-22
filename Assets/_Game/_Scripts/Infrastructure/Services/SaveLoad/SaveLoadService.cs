@@ -1,5 +1,6 @@
 using _Game._Scripts.Data;
-using _Game._Scripts.Infrastructure.Factory;
+using _Game._Scripts.Data.Player;
+using _Game._Scripts.Infrastructure.Services.Factory;
 using _Game._Scripts.Infrastructure.Services.PersistantProgress;
 using UnityEngine;
 

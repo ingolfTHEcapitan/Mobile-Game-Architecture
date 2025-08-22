@@ -1,6 +1,5 @@
 using System;
-using _Game._Scripts.Enemy;
-using _Game._Scripts.Logic;
+using _Game._Scripts.Logic.Animation;
 using UnityEngine;
 
 namespace _Game._Scripts.Hero

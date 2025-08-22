@@ -1,15 +1,19 @@
-using UnityEngine;
+using _Game._Scripts.Logic;
 using UnityEditor;
+using UnityEngine;
 
-[CustomEditor(typeof(EnemySpawner))]
-public class EnemySpawnerEditor : Editor
+namespace _Game._Scripts.Editor
 {
-    private static float _sphereRadius = 0.5f;
-
-    [DrawGizmo(GizmoType.Active | GizmoType.NonSelected | GizmoType.Pickable)]
-    public static void RenderCustomGismo(EnemySpawner spawner, GizmoType gismo)
+    [CustomEditor(typeof(EnemySpawner))]
+    public class EnemySpawnerEditor : UnityEditor.Editor
     {
-        Gizmos.color = new Color32(90, 10, 10, 220);
-        Gizmos.DrawSphere(spawner.transform.position, _sphereRadius);
+        private static float _sphereRadius = 0.5f;
+
+        [DrawGizmo(GizmoType.Active | GizmoType.NonSelected | GizmoType.Pickable)]
+        public static void RenderCustomGismo(EnemySpawner spawner, GizmoType gismo)
+        {
+            Gizmos.color = new Color32(90, 10, 10, 220);
+            Gizmos.DrawSphere(spawner.transform.position, _sphereRadius);
+        }
     }
 }

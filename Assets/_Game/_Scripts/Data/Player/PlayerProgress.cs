@@ -1,7 +1,6 @@
 using System;
-using UnityEngine.Serialization;
 
-namespace _Game._Scripts.Data
+namespace _Game._Scripts.Data.Player
 {
     [Serializable]
     public class PlayerProgress

@@ -1,4 +1,4 @@
-namespace _Game._Scripts.Logic
+namespace _Game._Scripts.Logic.Animation
 {
     public enum AnimatorState
     {

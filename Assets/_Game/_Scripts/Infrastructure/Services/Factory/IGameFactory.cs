@@ -1,10 +1,9 @@
-using System;
 using System.Collections.Generic;
-using _Game._Scripts.Infrastructure.Services;
 using _Game._Scripts.Infrastructure.Services.PersistantProgress;
+using _Game._Scripts.StaticData;
 using UnityEngine;
 
-namespace _Game._Scripts.Infrastructure.Factory
+namespace _Game._Scripts.Infrastructure.Services.Factory
 {
     public interface IGameFactory : IService
     {

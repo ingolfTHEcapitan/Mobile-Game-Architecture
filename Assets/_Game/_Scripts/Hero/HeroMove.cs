@@ -1,4 +1,5 @@
 using _Game._Scripts.Data;
+using _Game._Scripts.Data.Player;
 using _Game._Scripts.Infrastructure.Services;
 using _Game._Scripts.Infrastructure.Services.Input;
 using _Game._Scripts.Infrastructure.Services.PersistantProgress;
@@ -31,7 +32,7 @@ namespace _Game._Scripts.Hero
         {
             _movementVector = Vector3.zero;
 
-            if (_inputService.Axis.sqrMagnitude > Constants.Epsilon)
+            if (_inputService.Axis.sqrMagnitude > float.Epsilon)
             {
                 _movementVector = _camera.transform.TransformDirection(_inputService.Axis);
                 _movementVector.y = 0;

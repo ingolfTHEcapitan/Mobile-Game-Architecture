@@ -1,6 +1,5 @@
 using System.Linq;
-using _Game._Scripts.Infrastructure.Factory;
-using _Game._Scripts.Infrastructure.Services;
+using _Game._Scripts.Infrastructure.Services.Factory;
 using _Game._Scripts.Logic;
 using JetBrains.Annotations;
 using UnityEngine;

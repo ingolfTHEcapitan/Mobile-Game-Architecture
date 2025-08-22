@@ -1,5 +1,3 @@
-using _Game._Scripts.Infrastructure.Factory;
-using _Game._Scripts.Infrastructure.Services;
 using UnityEngine;
 using UnityEngine.AI;
 

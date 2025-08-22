@@ -1,6 +1,6 @@
 using System;
 using UnityEngine;
-using _Game._Scripts.Data;
+using _Game._Scripts.Data.Player;
 using _Game._Scripts.Infrastructure.Services.PersistantProgress;
 using _Game._Scripts.Logic;
 

@@ -1,8 +1,8 @@
-using _Game._Scripts.Data;
+using _Game._Scripts.Data.Player;
 using _Game._Scripts.Infrastructure.Services.PersistantProgress;
 using _Game._Scripts.Infrastructure.Services.SaveLoad;
 
-namespace _Game._Scripts.Infrastructure.States
+namespace _Game._Scripts.Infrastructure.States.GameStates
 {
     public class LoadProgressState : IState
     {

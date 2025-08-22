@@ -1,18 +1,21 @@
-using UnityEngine;
-using UnityEditor;
 using _Game._Scripts.Logic;
+using UnityEditor;
+using UnityEngine;
 
-[CustomEditor(typeof(SaveTrigger))]
-public class SaveTriggerEditor : Editor
+namespace _Game._Scripts.Editor
 {
-     [DrawGizmo(GizmoType.Active | GizmoType.NonSelected | GizmoType.Pickable)]
-    public static void RenderCustomGismo(SaveTrigger saveTrigger, GizmoType gismo)
+    [CustomEditor(typeof(SaveTrigger))]
+    public class SaveTriggerEditor : UnityEditor.Editor
     {
-       if (saveTrigger.BoxCollider is null)
+        [DrawGizmo(GizmoType.Active | GizmoType.NonSelected | GizmoType.Pickable)]
+        public static void RenderCustomGismo(SaveTrigger saveTrigger, GizmoType gismo)
+        {
+            if (saveTrigger.BoxCollider is null)
                 return; 
             
-        Gizmos.color = new Color32(15, 161, 49, 130);
-        Gizmos.DrawCube(saveTrigger.transform.position
-            + saveTrigger.BoxCollider.center, saveTrigger.BoxCollider.size);
+            Gizmos.color = new Color32(15, 161, 49, 130);
+            Gizmos.DrawCube(saveTrigger.transform.position
+                            + saveTrigger.BoxCollider.center, saveTrigger.BoxCollider.size);
+        }
     }
 }

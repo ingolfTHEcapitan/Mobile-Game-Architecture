@@ -1,6 +1,4 @@
-using _Game._Scripts.Logic;
-
-namespace _Game._Scripts.Enemy
+namespace _Game._Scripts.Logic.Animation
 {
     public interface IAnimationStateReader
     {
