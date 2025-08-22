@@ -127,7 +127,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _agent: {fileID: -6611553811592613819}
-  _lichAnimator: {fileID: -5489221041893445642}
+  _animator: {fileID: -5489221041893445642}
 --- !u!114 &5088010471716471091
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -156,10 +156,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Damage: 10
-  AttackCooldown: 3
-  AttackRadius: 0.5
-  AttackDistance: 0.5
-  _lichAnimator: {fileID: -5489221041893445642}
+  Cooldown: 3
+  Radius: 0.5
+  Distance: 0.5
+  _animator: {fileID: -5489221041893445642}
   _debugLifeTime: 3
 --- !u!114 &7031066814932692955
 MonoBehaviour:
@@ -187,7 +187,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05ef2fb3941d43e39c58463321bb1a6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _lichAnimator: {fileID: -5489221041893445642}
+  _animator: {fileID: -5489221041893445642}
   _current: 100
   _max: 100
 --- !u!114 &3894904715820929774

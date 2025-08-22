@@ -8,10 +8,10 @@ namespace _Game._Scripts.StaticData
         public EnemyesTypeId EnemyTypeId;
 
         [Range(1f, 200f)]
-        public float Helth = 100f;
+        public float Health = 100f;
 
         [Range(1f, 100f)]
-        public float Damage = 10f;
+        public float AttackDamage = 10f;
 
         [Range(0.5f, 10f)]
         public float AttackCooldown = 3.0f;

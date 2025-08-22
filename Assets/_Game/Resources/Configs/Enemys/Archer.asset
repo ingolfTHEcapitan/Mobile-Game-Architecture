@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: Archer
   m_EditorClassIdentifier: 
   EnemyTypeId: 5
-  Helth: 50
-  Damage: 15
+  Health: 80
+  AttackDamage: 15
   AttackCooldown: 1.5
   AttackRadius: 0.5
   AttackDistance: 0.5
+  MoveSpeed: 2.5
   Model: {fileID: 6647369244572926527, guid: 1004336e9ed494a489fabcaee7b6a672, type: 3}

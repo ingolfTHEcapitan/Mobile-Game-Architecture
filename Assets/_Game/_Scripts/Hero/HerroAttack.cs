@@ -39,7 +39,7 @@ namespace _Game._Scripts.Hero
             for (var index = 0; index < Hit(); ++index)
             {
                 IHealth targetHealth = _hits[index].transform.GetComponentInParent<IHealth>();
-                targetHealth.TakeDamage(heroStats.Damage);
+                targetHealth.TakeDamage(heroStats.AttackDamage);
             }
         }
 
@@ -50,7 +50,7 @@ namespace _Game._Scripts.Hero
         }
 
         public void LoadProgress(PlayerProgress progress) => 
-            heroStats = progress.heroStats;
+            heroStats = progress.HeroStats;
 
         private int Hit() => 
             Physics.OverlapSphereNonAlloc(GetStartPoint(), heroStats.AttackRadius, _hits, _layerMask);

@@ -10,14 +10,14 @@ namespace _Game._Scripts.Enemy
         private const float MinimalVelocity = 0.01f;
         
         [SerializeField] private NavMeshAgent _agent;
-        [SerializeField] private EnemyAnimator _lichAnimator;
+        [SerializeField] private EnemyAnimator _animator;
 
         private void Update()
         {
             if(ShouldMove())
-                _lichAnimator.Move(_agent.velocity.magnitude);
+                _animator.Move(_agent.velocity.magnitude);
             else
-                _lichAnimator.StopMoving();
+                _animator.StopMoving();
         }
 
         private bool ShouldMove()

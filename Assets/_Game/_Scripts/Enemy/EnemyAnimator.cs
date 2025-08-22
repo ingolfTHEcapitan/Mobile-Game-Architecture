@@ -7,13 +7,13 @@ namespace _Game._Scripts.Enemy
     [RequireComponent(typeof(Animator))]
     public class EnemyAnimator : MonoBehaviour, IAnimationStateReader
     {
-        private static readonly int Die = Animator.StringToHash("Die");
-        private static readonly int Win = Animator.StringToHash("Win");
-        private static readonly int Hit = Animator.StringToHash("Hit");
-        private static readonly int Attack_1 = Animator.StringToHash("Attack_1");
-        private static readonly int Attack_2 = Animator.StringToHash("Attack_2");
-        private static readonly int Speed = Animator.StringToHash("Speed");
-        private static readonly int IsMoving = Animator.StringToHash("IsMoving");
+        private static readonly int DieHash = Animator.StringToHash("Die");
+        private static readonly int WinHash = Animator.StringToHash("Win");
+        private static readonly int HitHash = Animator.StringToHash("Hit");
+        private static readonly int Attack01Hash = Animator.StringToHash("Attack_1");
+        private static readonly int Attack02Hash = Animator.StringToHash("Attack_2");
+        private static readonly int SpeedHash = Animator.StringToHash("Speed");
+        private static readonly int IsMovingHash = Animator.StringToHash("IsMoving");
 
         private readonly int _idleStateHash = Animator.StringToHash("Idle");
         private readonly int _dieStateHash = Animator.StringToHash("Die");
@@ -35,23 +35,23 @@ namespace _Game._Scripts.Enemy
             _animator = GetComponent<Animator>();
         }
 
-        public void PlayDeath() => _animator.SetTrigger(Die);
-        public void PlayVictory() => _animator.SetTrigger(Win);
-        public void PlayHit() => _animator.SetTrigger(Hit);
+        public void PlayDeath() => _animator.SetTrigger(DieHash);
+        public void PlayVictory() => _animator.SetTrigger(WinHash);
+        public void PlayHit() => _animator.SetTrigger(HitHash);
 
         public void Move(float speed)
         {
-            _animator.SetBool(IsMoving, true);
-            _animator.SetFloat(Speed, speed);
+            _animator.SetBool(IsMovingHash, true);
+            _animator.SetFloat(SpeedHash, speed);
         }
 
         public void StopMoving()
         {
-            _animator.SetBool(IsMoving, false);
+            _animator.SetBool(IsMovingHash, false);
         }
 
-        public void PlayAttack01() => _animator.SetTrigger(Attack_1);
-        public void PlayAttack02() => _animator.SetTrigger(Attack_2);
+        public void PlayAttack01() => _animator.SetTrigger(Attack01Hash);
+        public void PlayAttack02() => _animator.SetTrigger(Attack02Hash);
 
         public void EnteredState(int stateHash)
         {

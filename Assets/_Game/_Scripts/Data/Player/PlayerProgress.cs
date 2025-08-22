@@ -7,14 +7,14 @@ namespace _Game._Scripts.Data.Player
     {
         public WorldData WorldData;
         public HeroState HeroState;
-        public HeroStats heroStats;
+        public HeroStats HeroStats;
         public KillData KillData;
 
         public PlayerProgress(string initialLevel)
         {
             WorldData = new WorldData(initialLevel);
             HeroState = new HeroState();
-            heroStats = new HeroStats();
+            HeroStats = new HeroStats();
             KillData = new KillData();
         }
     }

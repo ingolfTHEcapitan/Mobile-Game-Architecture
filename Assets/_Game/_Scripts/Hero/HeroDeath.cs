@@ -19,7 +19,7 @@ namespace _Game._Scripts.Hero
 
         private void Start()
         {
-            _heroHealth.HealthChanged += OnHealthChanged;
+            _heroHealth.HealthChanged += OnHealthHealthChanged;
         }
 
         [UsedImplicitly]
@@ -29,7 +29,7 @@ namespace _Game._Scripts.Hero
             deathFX.SetParent(GameObject.FindWithTag(_dynamicTag));
         }
         
-        private void OnHealthChanged()
+        private void OnHealthHealthChanged()
         {
             if (!_isDeath && _heroHealth.Current <= 0) 
                 Die();

@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Golem
   m_EditorClassIdentifier: 
   EnemyTypeId: 10
-  Helth: 150
-  Damage: 35
+  Health: 150
+  AttackDamage: 35
   AttackCooldown: 4
   AttackRadius: 1
   AttackDistance: 1

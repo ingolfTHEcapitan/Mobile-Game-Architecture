@@ -10,11 +10,11 @@ namespace _Game._Scripts.Enemy
     public class EnemyAttack: MonoBehaviour
     {
         public float Damage = 10f;
-        public float AttackCooldown = 3.0f;
-        public float AttackRadius = 0.5f;
-        public float AttackDistance = 0.5f;
+        public float Cooldown = 3.0f;
+        public float Radius = 0.5f;
+        public float Distance = 0.5f;
         
-        [SerializeField] private EnemyAnimator _lichAnimator;
+        [SerializeField] private EnemyAnimator _animator;
         [SerializeField] private float _debugLifeTime = 1.0f;
         
         private IGameFactory _factory;
@@ -41,10 +41,10 @@ namespace _Game._Scripts.Enemy
         [UsedImplicitly]
         private void OnAttack()
         {
-            PhysicsDebug.DrawDebugSphere(GetStartPoint(), AttackRadius, _debugLifeTime, Color.red);
+            PhysicsDebug.DrawDebugSphere(GetStartPoint(), Radius, _debugLifeTime, Color.red);
             if (Hit(out Collider hit))
             {
-                PhysicsDebug.DrawDebugSphere(GetStartPoint(), AttackRadius, _debugLifeTime, Color.green);
+                PhysicsDebug.DrawDebugSphere(GetStartPoint(), Radius, _debugLifeTime, Color.green);
                 
                 IHealth heroHealth = hit.transform.GetComponent<IHealth>();
                 heroHealth.TakeDamage(Damage);
@@ -54,7 +54,7 @@ namespace _Game._Scripts.Enemy
         [UsedImplicitly]
         private void OnAttackEnded()
         { 
-            _currentCooldown = AttackCooldown;
+            _currentCooldown = Cooldown;
             _isAttacking = false;
         }
 
@@ -72,14 +72,14 @@ namespace _Game._Scripts.Enemy
         private void StartAttack()
         {
             transform.LookAt(_heroTransform);
-            _lichAnimator.PlayAttack01();
+            _animator.PlayAttack01();
             
             _isAttacking = true;
         }
 
         private bool Hit(out Collider hit)
         {
-            int hitCount = Physics.OverlapSphereNonAlloc(GetStartPoint(), AttackRadius, _hits, _layerMask);
+            int hitCount = Physics.OverlapSphereNonAlloc(GetStartPoint(), Radius, _hits, _layerMask);
 
             hit = _hits.FirstOrDefault();
             return hitCount > 0;
@@ -92,7 +92,7 @@ namespace _Game._Scripts.Enemy
         }
 
         private Vector3 GetStartPoint() => 
-            new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z) + transform.forward * AttackDistance;
+            new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z) + transform.forward * Distance;
 
         private bool CanAttack() => 
             _attackIsActive && !_isAttacking && CooldownIsUp();

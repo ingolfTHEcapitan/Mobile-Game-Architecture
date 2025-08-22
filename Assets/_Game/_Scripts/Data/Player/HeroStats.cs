@@ -1,11 +1,12 @@
 using System;
+using UnityEngine.Serialization;
 
 namespace _Game._Scripts.Data.Player
 {
     [Serializable]
     public class HeroStats
     {
-        public float Damage;
+        [FormerlySerializedAs("AttackDamage")] public float AttackDamage;
         public float AttackDistance;
         public float AttackRadius;
     }

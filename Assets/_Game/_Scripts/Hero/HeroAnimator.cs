@@ -10,9 +10,9 @@ namespace _Game._Scripts.Hero
         [SerializeField] private CharacterController _characterController;
         
         private static readonly int SpeedHash = Animator.StringToHash("Speed");
-        private static readonly int Die = Animator.StringToHash("Die");
-        private static readonly int Hit = Animator.StringToHash("Hit");
-        private static readonly int Attack_1 = Animator.StringToHash("Attack_1");
+        private static readonly int DieHash = Animator.StringToHash("Die");
+        private static readonly int HitHash = Animator.StringToHash("Hit");
+        private static readonly int Attack01Hash = Animator.StringToHash("Attack_1");
         
         private readonly int _idleStateHash = Animator.StringToHash("Hero_Idle");
         private readonly int _dieStateHash = Animator.StringToHash("Hero_Die");
@@ -31,9 +31,9 @@ namespace _Game._Scripts.Hero
             _animator.SetFloat(SpeedHash, _characterController.velocity.magnitude);
         }
 
-        public void PlayHit() => _animator.SetTrigger(Hit);
-        public void PlayDeath() => _animator.SetTrigger(Die);
-        public void PlayAttack01() => _animator.SetTrigger(Attack_1);
+        public void PlayHit() => _animator.SetTrigger(HitHash);
+        public void PlayDeath() => _animator.SetTrigger(DieHash);
+        public void PlayAttack01() => _animator.SetTrigger(Attack01Hash);
         
         
         public void EnteredState(int stateHash)

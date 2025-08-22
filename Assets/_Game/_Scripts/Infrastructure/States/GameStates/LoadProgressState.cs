@@ -42,9 +42,9 @@ namespace _Game._Scripts.Infrastructure.States.GameStates
             progress.HeroState.MaxHealth = 100;
             progress.HeroState.ResetHealth();
 
-            progress.heroStats.Damage = 25f;
-            progress.heroStats.AttackDistance = 1f;
-            progress.heroStats.AttackRadius = 0.5f;
+            progress.HeroStats.AttackDamage = 25f;
+            progress.HeroStats.AttackDistance = 1f;
+            progress.HeroStats.AttackRadius = 0.5f;
             
             return progress;
         }

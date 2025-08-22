@@ -40,26 +40,26 @@ namespace _Game._Scripts.Infrastructure.Services.Factory
 
         public GameObject CreateEnemy(EnemyesTypeId typeId, Transform parent)
         {
-            EnemyStaticData monsterData = _staticData.GetEnemyStaticData(typeId);
-            GameObject enemy = UnityEngine.Object.Instantiate(monsterData.Model, parent.position, Quaternion.identity, parent);
+            EnemyStaticData data = _staticData.GetEnemyStaticData(typeId);
+            GameObject enemy = Object.Instantiate(data.Model, parent.position, Quaternion.identity, parent);
 
             EnemyHealth health = enemy.GetComponent<EnemyHealth>();
-            health.Max = monsterData.Helth;
-            health.Current = monsterData.Helth;
+            health.Max = data.Health;
+            health.Current = data.Health;
 
             ActorUI actorUI = enemy.GetComponent<ActorUI>();
             actorUI.Initialize(health);
             actorUI.UpdateHealthBar();
             
             enemy.GetComponent<AgentMoveToPlayer>().Initialize(HeroGameObject.transform);
-            enemy.GetComponent<NavMeshAgent>().speed = monsterData.MoveSpeed;
+            enemy.GetComponent<NavMeshAgent>().speed = data.MoveSpeed;
 
             EnemyAttack attack = enemy.GetComponent<EnemyAttack>();
             attack.Initialize(HeroGameObject.transform);
-            attack.Damage = monsterData.Damage;
-            attack.AttackCooldown = monsterData.AttackCooldown;
-            attack.AttackDistance = monsterData.AttackDistance;
-            attack.AttackRadius = monsterData.AttackRadius;
+            attack.Damage = data.AttackDamage;
+            attack.Cooldown = data.AttackCooldown;
+            attack.Distance = data.AttackDistance;
+            attack.Radius = data.AttackRadius;
 
             enemy.GetComponent<AgentRotateToPlayer>()?.Initialize(HeroGameObject.transform);
 

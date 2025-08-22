@@ -6,7 +6,7 @@ namespace _Game._Scripts.Enemy
 {
     public class EnemyHealth : MonoBehaviour, IHealth
     {
-        [SerializeField] private EnemyAnimator _lichAnimator;
+        [SerializeField] private EnemyAnimator _animator;
         [SerializeField] private float _current;
         [SerializeField] private float _max;
 
@@ -31,7 +31,7 @@ namespace _Game._Scripts.Enemy
             
             Current -= damage;
             
-            _lichAnimator.PlayHit();
+            _animator.PlayHit();
             
             HealthChanged?.Invoke();
         }

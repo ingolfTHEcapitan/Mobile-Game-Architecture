@@ -7,9 +7,9 @@ namespace _Game._Scripts.Enemy
     [RequireComponent(typeof(Animator))]
     public class ArcherAnimator : MonoBehaviour, IAnimationStateReader
     {
-        private static readonly int Die = Animator.StringToHash("Die");
-        private static readonly int Load = Animator.StringToHash("Load");
-        private static readonly int NoTarget = Animator.StringToHash("NoTarget");
+        private static readonly int DieHash = Animator.StringToHash("Die");
+        private static readonly int LoadHash = Animator.StringToHash("Load");
+        private static readonly int NoTargetHash = Animator.StringToHash("NoTarget");
         
         private readonly int _combatIdleStateHash = Animator.StringToHash("CombatIdle");
         private readonly int _deathStateHash = Animator.StringToHash("Death");
@@ -28,9 +28,9 @@ namespace _Game._Scripts.Enemy
             _animator = GetComponent<Animator>();
         }
 
-        public void PlayDeath() => _animator.SetTrigger(Die);
-        public void PlayLoadBow() => _animator.SetTrigger(Load);
-        public void PlayNoTarget() => _animator.SetTrigger(NoTarget);
+        public void PlayDeath() => _animator.SetTrigger(DieHash);
+        public void PlayLoadBow() => _animator.SetTrigger(LoadHash);
+        public void PlayNoTarget() => _animator.SetTrigger(NoTargetHash);
         
         public void EnteredState(int stateHash)
         {
