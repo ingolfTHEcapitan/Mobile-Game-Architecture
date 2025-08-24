@@ -7,10 +7,12 @@ namespace _Game._Scripts.Data.Player
     public class LootData
     {
         public int Collected;
-        
+        public event Action Changed;
+
         public void Collect(Loot loot)
         {
             Collected += loot.Value;
+            Changed?.Invoke();
         }
     }
 }

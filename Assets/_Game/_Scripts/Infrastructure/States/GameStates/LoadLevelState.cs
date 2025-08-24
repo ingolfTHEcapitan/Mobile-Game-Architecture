@@ -89,6 +89,9 @@ namespace _Game._Scripts.Infrastructure.States.GameStates
             
             ActorUI actorUI = hud.GetComponentInChildren<ActorUI>();
             actorUI.Initialize(hero.GetComponent<HeroHealth>());
+            
+            LootCounter lootCounter = hud.GetComponentInChildren<LootCounter>();
+            lootCounter.Initialize(_progressService.Progress.WorldData);
         }
 
         private void InformProgressReaders()
