@@ -25,6 +25,9 @@ namespace _Game._Scripts.StaticData
         [Range(1f, 5f)]
         public float MoveSpeed = 2.5f;
 
+        public int MinLoot = 1;
+        public int MaxLoot = 3;
+
         public GameObject Model;
     }
 }

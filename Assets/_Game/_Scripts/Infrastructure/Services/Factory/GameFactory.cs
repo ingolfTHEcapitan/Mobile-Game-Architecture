@@ -15,15 +15,17 @@ namespace _Game._Scripts.Infrastructure.Services.Factory
     {
         private readonly IAssetProvider _assets;
         private readonly IStaticDataService _staticData;
+        private readonly IPersistantProgressService _progressService;
 
         public List<ISavedProgressReader> ProgressReaders { get; } = new List<ISavedProgressReader>();
         public List<ISavedProgress> ProgressWriters { get; } = new List<ISavedProgress>();
         public GameObject HeroGameObject { get; private set; }
 
-        public GameFactory(IAssetProvider assets, IStaticDataService staticData)
+        public GameFactory(IAssetProvider assets, IStaticDataService staticData, IPersistantProgressService progressService)
         {
             _assets = assets;
             _staticData = staticData;
+            _progressService = progressService;
         }
 
         public GameObject CreateHero(GameObject at, GameObject parent)
@@ -42,7 +44,7 @@ namespace _Game._Scripts.Infrastructure.Services.Factory
         {
             EnemyStaticData data = _staticData.GetEnemyStaticData(typeId);
             GameObject enemy = Object.Instantiate(data.Model, parent.position, Quaternion.identity, parent);
-
+            
             EnemyHealth health = enemy.GetComponent<EnemyHealth>();
             health.Max = data.Health;
             health.Current = data.Health;
@@ -50,6 +52,10 @@ namespace _Game._Scripts.Infrastructure.Services.Factory
             ActorUI actorUI = enemy.GetComponent<ActorUI>();
             actorUI.Initialize(health);
             actorUI.UpdateHealthBar();
+
+            LootSpawner lootSpawner = enemy.GetComponentInChildren<LootSpawner>();
+            lootSpawner.Initialize(this);
+            lootSpawner.SetLoot(data.MinLoot, data.MaxLoot);
             
             enemy.GetComponent<AgentMoveToPlayer>().Initialize(HeroGameObject.transform);
             enemy.GetComponent<NavMeshAgent>().speed = data.MoveSpeed;
@@ -65,6 +71,14 @@ namespace _Game._Scripts.Infrastructure.Services.Factory
 
             return enemy;
         }
+
+        public LootPiece CreateLoot()
+        {
+            LootPiece lootPiece = InstantiateRegistered(AssetPath.LootPath).GetComponent<LootPiece>();
+            lootPiece.Initialize(_progressService.Progress.WorldData);
+            return lootPiece;
+        }
+
         public void CleanupProgressReadersWriters()
         {
             ProgressReaders.Clear();

@@ -6,6 +6,7 @@ namespace _Game._Scripts.Data.Player
     public class WorldData
     {
         public PositionOnLevel PositionOnLevel;
+        public LootData LootData;
 
         public WorldData(string initialLevel)
         {

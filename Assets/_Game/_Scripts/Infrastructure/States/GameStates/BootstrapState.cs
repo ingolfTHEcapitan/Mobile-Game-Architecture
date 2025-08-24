@@ -51,7 +51,8 @@ namespace _Game._Scripts.Infrastructure.States.GameStates
             _services.RegisterSingle<IPersistantProgressService>(new PersistantProgressService());
             _services.RegisterSingle<IGameFactory>(new GameFactory(
                 _services.Single<IAssetProvider>(),
-                _services.Single<IStaticDataService>()));
+                _services.Single<IStaticDataService>(),
+                _services.Single<IPersistantProgressService>()));
             _services.RegisterSingle<ISaveLoadService>(new SaveLoadService(
                 _services.Single<IPersistantProgressService>(),
                 _services.Single<IGameFactory>()));
