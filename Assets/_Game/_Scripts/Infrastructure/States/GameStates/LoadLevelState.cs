@@ -1,3 +1,4 @@
+using _Game._Scripts.Enemy;
 using _Game._Scripts.Hero;
 using _Game._Scripts.Infrastructure.Services.Factory;
 using _Game._Scripts.Infrastructure.Services.Input;
@@ -15,6 +16,7 @@ namespace _Game._Scripts.Infrastructure.States.GameStates
         private const string GameTag = "Game";
         private const string UITag = "UI";
         private const string EnemySpawnerTag = "EnemySpawner";
+        private const string LootLoaderTag = "LootLoader";
 
         private readonly GameStateMachine _stateMachine;
         private readonly SceneLoader _sceneLoader;
@@ -57,6 +59,7 @@ namespace _Game._Scripts.Infrastructure.States.GameStates
         private void InitGameWorld()
         {
             InitSpawners();
+            InitLootLoader();
 
             GameObject hero = InitHero();
 
@@ -73,6 +76,15 @@ namespace _Game._Scripts.Infrastructure.States.GameStates
             }
         }
 
+        private void InitLootLoader()
+        {
+            GameObject lootLoaderObject = GameObject.FindGameObjectWithTag(LootLoaderTag);
+            _gameFactory.RegisterProgressReaders(lootLoaderObject);
+
+            LootLoader lootLoader = lootLoaderObject.GetComponent<LootLoader>();
+            lootLoader.Initialize(_gameFactory);
+        }
+        
         private GameObject InitHero()
         {
             GameObject hero =  _gameFactory.CreateHero(
@@ -92,8 +104,11 @@ namespace _Game._Scripts.Infrastructure.States.GameStates
             
             LootCounter lootCounter = hud.GetComponentInChildren<LootCounter>();
             lootCounter.Initialize(_progressService.Progress.WorldData);
+            _gameFactory.RegisterProgressWriters(lootCounter);
         }
 
+        
+        
         private void InformProgressReaders()
         {
             foreach (ISavedProgressReader progressReader in _gameFactory.ProgressReaders)

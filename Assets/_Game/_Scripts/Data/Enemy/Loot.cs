@@ -1,4 +1,5 @@
 using System;
+using _Game._Scripts.Data.Player;
 using UnityEngine.Rendering;
 
 namespace _Game._Scripts.Data.Enemy
@@ -7,5 +8,6 @@ namespace _Game._Scripts.Data.Enemy
     public class Loot
     {
         public int Value;
+        public PositionOnLevel PositionOnLevel;
     }
 }

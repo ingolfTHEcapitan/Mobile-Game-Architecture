@@ -1,4 +1,4 @@
-using System;
+using System.Linq;
 using _Game._Scripts.Logic;
 using UnityEditor;
 using UnityEditor.SceneManagement;
@@ -11,37 +11,39 @@ namespace _Game._Scripts.Editor
     {
         private void OnEnable()
         {
-            var uniqueId = (UniqueId)target;
-
+            UniqueId uniqueId = (UniqueId)target;
+            
+            if(IsPrefab(uniqueId))
+                return;
+            
             if (string.IsNullOrEmpty(uniqueId.Id))
                 Generate(uniqueId);
             else
                 ReGenerate(uniqueId);
         }
 
+        private bool IsPrefab(UniqueId uniqueId) => 
+            uniqueId.gameObject.scene.rootCount == 0;
+
         private void Generate(UniqueId uniqueId)
         {
-            uniqueId.Id = GetSceneName(uniqueId) + Guid.NewGuid().ToString();
+            uniqueId.GenerateId();
 
-            if (Application.isPlaying)
-                return;
-
-            // Говорим Юнити что мы изменили один из её компонентов к коде
-            // Теперь она должна его пересохранить, так же пересохраняем сцену.
-            EditorUtility.SetDirty(uniqueId);
-            EditorSceneManager.MarkSceneDirty(uniqueId.gameObject.scene);
-
+            if (!Application.isPlaying)
+            {
+                // Говорим Юнити что мы изменили один из её компонентов к коде
+                // Теперь она должна его пересохранить, так же пересохраняем сцену.
+                EditorUtility.SetDirty(uniqueId);
+                EditorSceneManager.MarkSceneDirty(uniqueId.gameObject.scene);
+            }
         }
 
         private void ReGenerate(UniqueId uniqueId)
         {
             UniqueId[] uniqueIds = FindObjectsOfType<UniqueId>();
 
-            foreach (var otherUniqueId in uniqueIds)
-            {
-                if (otherUniqueId != uniqueId && otherUniqueId.Id == uniqueId.Id)
-                    Generate(uniqueId);
-            }
+            if(uniqueIds.Any(other => other != uniqueId && other.Id == uniqueId.Id))
+                Generate(uniqueId);
         }
     
         private string GetSceneName(UniqueId uniqueId)

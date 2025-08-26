@@ -110,6 +110,7 @@ GameObject:
   - component: {fileID: 8271914485439355473}
   - component: {fileID: 8271914485439355478}
   - component: {fileID: 7983513833799467900}
+  - component: {fileID: 4585799172234536677}
   m_Layer: 16
   m_Name: Loot
   m_TagString: Untagged
@@ -164,6 +165,19 @@ MonoBehaviour:
     type: 3}
   _lootText: {fileID: 8513631584146709482}
   _pickupPopup: {fileID: 5437168042153426485}
+--- !u!114 &4585799172234536677
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8271914485439355472}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 931ec7e8f197c0946bd58a30b57635eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Id: 
 --- !u!1001 &7774943366687400306
 PrefabInstance:
   m_ObjectHideFlags: 0

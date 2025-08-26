@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using _Game._Scripts.Data.Enemy;
 
 namespace _Game._Scripts.Data.Player
@@ -7,8 +8,10 @@ namespace _Game._Scripts.Data.Player
     public class LootData
     {
         public int Collected;
-        public event Action Changed;
+        public List<LootDictionaryPiece> LootPieces = new List<LootDictionaryPiece>();
 
+        public event Action Changed;
+        
         public void Collect(Loot loot)
         {
             Collected += loot.Value;

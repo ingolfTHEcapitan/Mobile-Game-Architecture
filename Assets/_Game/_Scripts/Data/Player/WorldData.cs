@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace _Game._Scripts.Data.Player
 {
@@ -7,7 +8,7 @@ namespace _Game._Scripts.Data.Player
     {
         public PositionOnLevel PositionOnLevel;
         public LootData LootData;
-
+        
         public WorldData(string initialLevel)
         {
             PositionOnLevel = new PositionOnLevel(initialLevel);

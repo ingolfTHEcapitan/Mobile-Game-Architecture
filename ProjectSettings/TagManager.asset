@@ -9,6 +9,7 @@ TagManager:
   - Dynamic
   - UI
   - EnemySpawner
+  - LootLoader
   layers:
   - Default
   - TransparentFX

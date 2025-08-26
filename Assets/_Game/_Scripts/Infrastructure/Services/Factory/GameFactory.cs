@@ -72,9 +72,16 @@ namespace _Game._Scripts.Infrastructure.Services.Factory
             return enemy;
         }
 
-        public LootPiece CreateLoot()
+        public LootPiece CreateRegisteredLoot()
         {
             LootPiece lootPiece = InstantiateRegistered(AssetPath.LootPath).GetComponent<LootPiece>();
+            lootPiece.Initialize(_progressService.Progress.WorldData);
+            return lootPiece;
+        }
+        
+        public LootPiece CreateLoot()
+        {
+            LootPiece lootPiece = _assets.Instantiate(AssetPath.LootPath).GetComponent<LootPiece>();
             lootPiece.Initialize(_progressService.Progress.WorldData);
             return lootPiece;
         }
