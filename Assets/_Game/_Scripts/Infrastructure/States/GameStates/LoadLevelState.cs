@@ -59,7 +59,7 @@ namespace _Game._Scripts.Infrastructure.States.GameStates
         private void InitGameWorld()
         {
             InitSpawners();
-            InitLootLoader();
+            InitLootPieces();
 
             GameObject hero = InitHero();
 
@@ -76,13 +76,14 @@ namespace _Game._Scripts.Infrastructure.States.GameStates
             }
         }
 
-        private void InitLootLoader()
+        private void InitLootPieces()
         {
-            GameObject lootLoaderObject = GameObject.FindGameObjectWithTag(LootLoaderTag);
-            _gameFactory.RegisterProgressReaders(lootLoaderObject);
-
-            LootLoader lootLoader = lootLoaderObject.GetComponent<LootLoader>();
-            lootLoader.Initialize(_gameFactory);
+            foreach (string key in _progressService.Progress.WorldData.LootData.LootPiecesOnScene.Dictionary.Keys)
+            {
+                LootPiece lootPiece = _gameFactory.Createoot();
+                lootPiece.GetComponent<UniqueId>().Id = key;
+            }
+            
         }
         
         private GameObject InitHero()

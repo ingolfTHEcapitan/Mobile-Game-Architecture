@@ -1,14 +1,12 @@
 using System;
-using System.Collections.Generic;
-using _Game._Scripts.Data.Enemy;
 
-namespace _Game._Scripts.Data.Player
+namespace _Game._Scripts.Data.Loot
 {
     [Serializable]
     public class LootData
     {
         public int Collected;
-        public List<LootDictionaryPiece> LootPieces = new List<LootDictionaryPiece>();
+        public LootPieceDataDictionary LootPiecesOnScene = new LootPieceDataDictionary();
 
         public event Action Changed;
         

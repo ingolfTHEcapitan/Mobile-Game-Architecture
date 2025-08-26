@@ -1,12 +1,10 @@
-using System;
-using _Game._Scripts.Data;
 using UnityEngine;
+using TMPro;
+using _Game._Scripts.Data;
+using _Game._Scripts.Data.Loot;
 using _Game._Scripts.Data.Player;
-using _Game._Scripts.Data.Enemy;
 using _Game._Scripts.Infrastructure.Services.PersistantProgress;
 using _Game._Scripts.Logic;
-using TMPro;
-using UnityEngine.SceneManagement;
 
 namespace _Game._Scripts.Enemy
 {
@@ -16,25 +14,32 @@ namespace _Game._Scripts.Enemy
         [SerializeField] private GameObject _pickupFxPrefab;
         [SerializeField] private TextMeshProUGUI _lootText;
         [SerializeField] private GameObject _pickupPopup;
-        private string _id;
-
-        private void Awake()
-        {
-            var uniqueId =  GetComponent<UniqueId>();
-            uniqueId.GenerateId();
-            _id = uniqueId.Id;
-            Debug.Log(_id);
-        }
-
+        
         private Loot _loot;
         private WorldData _worldData;
-        private bool picked;
+        private bool _pickedUp;
         private readonly float _destroyDelay = 1.5f;
-        
-        
+        private string _id;
+        private bool _loadedFromProgress;
+
+        private void Start()
+        {
+            if (!_loadedFromProgress)
+            {
+                UniqueId uniqueId = GetComponent<UniqueId>();
+                uniqueId.GenerateId();
+                _id = uniqueId.Id;
+                Debug.Log(_id);
+            }
+        }
+
         private void OnTriggerEnter(Collider other)
         {
-            Pickup();
+            if (!_pickedUp)
+            {
+                _pickedUp = true;
+                Pickup();
+            }
         }
 
         public void Initialize(WorldData worldData)
@@ -46,41 +51,49 @@ namespace _Game._Scripts.Enemy
         {
             _loot = loot;
         }
-
-        public void SetupLoot(Loot loot)
-        {
-            SetLoot(loot);
-            _loot.Value = loot.Value;
-            transform.position = loot.PositionOnLevel.Position.AsUnityVector();
-        }
-
+        
         public void LoadProgress(PlayerProgress progress)
         {
+            _loadedFromProgress = true;
             
+            _id =  GetComponent<UniqueId>().Id;
+            Debug.Log(_id);
+
+            LootPieceData lootPieceData = progress.WorldData.LootData.LootPiecesOnScene.Dictionary[_id];
+            SetLoot(lootPieceData.Loot);
+            transform.position = lootPieceData.Position.AsUnityVector();
             
         }
         
         public void UpdateProgress(PlayerProgress progress)
         {
-            if (picked)
+            if (_pickedUp)
                 return;
 
-            _loot.PositionOnLevel = new PositionOnLevel(GetCurrentLevel(), transform.position.AsVectorData());
-            progress.WorldData.LootData.LootPieces.Add(new LootDictionaryPiece(_loot, _id));
+            LootPieceDataDictionary lootPieceOnScene = progress.WorldData.LootData.LootPiecesOnScene;
+            
+            if (!lootPieceOnScene.Dictionary.ContainsKey(_id))
+            {
+                lootPieceOnScene.Dictionary.Add(_id, new LootPieceData(_loot, transform.position.AsVectorData()));
+            }
         }
 
         private void Pickup()
         {
-            if(picked)
-                return;
-            
-            picked = true;
             _worldData.LootData.Collect(_loot);
+            RemoveLootPieceFromSavedPieces();
 
             _skull.SetActive(false);
             PlayPickupFx();
             ShowText();
             Destroy(gameObject, _destroyDelay);
+        }
+
+        private void RemoveLootPieceFromSavedPieces()
+        {
+            LootPieceDataDictionary lootPieceOnScene = _worldData.LootData.LootPiecesOnScene;
+            if (lootPieceOnScene.Dictionary.ContainsKey(_id))
+                lootPieceOnScene.Dictionary.Remove(_id);
         }
 
         private void PlayPickupFx() => 
@@ -91,8 +104,5 @@ namespace _Game._Scripts.Enemy
             _lootText.text = _loot.Value.ToString();
             _pickupPopup.SetActive(true);
         }
-
-        private string GetCurrentLevel() => 
-            SceneManager.GetActiveScene().name;
     }
 }

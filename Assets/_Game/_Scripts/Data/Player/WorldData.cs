@@ -1,5 +1,5 @@
 using System;
-using System.Collections.Generic;
+using _Game._Scripts.Data.Loot;
 
 namespace _Game._Scripts.Data.Player
 {

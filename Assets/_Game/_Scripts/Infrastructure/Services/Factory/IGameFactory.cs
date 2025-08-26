@@ -14,10 +14,9 @@ namespace _Game._Scripts.Infrastructure.Services.Factory
         GameObject CreateHero(GameObject at, GameObject parent);
         GameObject CreateHud(GameObject parent);
         GameObject CreateEnemy(EnemyesTypeId enemyeTypeId, Transform transform);
-        LootPiece CreateRegisteredLoot();
+        LootPiece Createoot();
         void CleanupProgressReadersWriters();
         void RegisterProgressWriters(ISavedProgressReader progressReader);
         void RegisterProgressReaders(GameObject gameObject);
-        LootPiece CreateLoot();
     }
 }

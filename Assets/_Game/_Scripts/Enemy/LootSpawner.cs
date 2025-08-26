@@ -1,4 +1,4 @@
-using _Game._Scripts.Data.Enemy;
+using _Game._Scripts.Data.Loot;
 using _Game._Scripts.Infrastructure.Services.Factory;
 using UnityEngine;
 
@@ -30,7 +30,7 @@ namespace _Game._Scripts.Enemy
 
         private void SpawnLoot()
         {
-            LootPiece lootPiece =  _factory.CreateRegisteredLoot();
+            LootPiece lootPiece =  _factory.Createoot();
             lootPiece.transform.position = transform.position;
 
             Loot loot = GenerateLoot();
