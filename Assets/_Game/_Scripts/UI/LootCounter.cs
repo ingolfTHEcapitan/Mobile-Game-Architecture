@@ -1,11 +1,10 @@
 using _Game._Scripts.Data.Player;
-using _Game._Scripts.Infrastructure.Services.PersistantProgress;
 using TMPro;
 using UnityEngine;
 
 namespace _Game._Scripts.UI
 {
-    public class LootCounter: MonoBehaviour, ISavedProgress
+    public class LootCounter: MonoBehaviour
     {
         [SerializeField] private TextMeshProUGUI _counterText;
         private WorldData _worldData;
@@ -16,15 +15,9 @@ namespace _Game._Scripts.UI
             _worldData.LootData.Changed += UpdateCounter;
         }
 
-        public void LoadProgress(PlayerProgress progress)
+        private void Start()
         {
-            _worldData.LootData.Collected = progress.WorldData.LootData.Collected;
             UpdateCounter();
-        }
-
-        public void UpdateProgress(PlayerProgress progress)
-        {
-            progress.WorldData.LootData.Collected = _worldData.LootData.Collected;
         }
 
         private void UpdateCounter()

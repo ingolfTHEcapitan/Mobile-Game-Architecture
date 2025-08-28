@@ -80,7 +80,7 @@ namespace _Game._Scripts.Infrastructure.States.GameStates
         {
             foreach (string key in _progressService.Progress.WorldData.LootData.LootPiecesOnScene.Dictionary.Keys)
             {
-                LootPiece lootPiece = _gameFactory.Createoot();
+                LootPiece lootPiece = _gameFactory.CreateLoot();
                 lootPiece.GetComponent<UniqueId>().Id = key;
             }
             
@@ -105,10 +105,7 @@ namespace _Game._Scripts.Infrastructure.States.GameStates
             
             LootCounter lootCounter = hud.GetComponentInChildren<LootCounter>();
             lootCounter.Initialize(_progressService.Progress.WorldData);
-            _gameFactory.RegisterProgressWriters(lootCounter);
         }
-
-        
         
         private void InformProgressReaders()
         {

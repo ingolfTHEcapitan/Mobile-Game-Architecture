@@ -8,7 +8,7 @@ namespace _Game._Scripts.Editor
     public class SaveTriggerEditor : UnityEditor.Editor
     {
         [DrawGizmo(GizmoType.Active | GizmoType.NonSelected | GizmoType.Pickable)]
-        public static void RenderCustomGismo(SaveTrigger saveTrigger, GizmoType gismo)
+        public static void RenderCustomGizmo(SaveTrigger saveTrigger, GizmoType gizmo)
         {
             if (saveTrigger.BoxCollider is null)
                 return; 

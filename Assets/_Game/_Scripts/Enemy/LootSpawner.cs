@@ -30,7 +30,7 @@ namespace _Game._Scripts.Enemy
 
         private void SpawnLoot()
         {
-            LootPiece lootPiece =  _factory.Createoot();
+            LootPiece lootPiece =  _factory.CreateLoot();
             lootPiece.transform.position = transform.position;
 
             Loot loot = GenerateLoot();

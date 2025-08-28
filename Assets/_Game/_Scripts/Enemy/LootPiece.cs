@@ -29,7 +29,6 @@ namespace _Game._Scripts.Enemy
                 UniqueId uniqueId = GetComponent<UniqueId>();
                 uniqueId.GenerateId();
                 _id = uniqueId.Id;
-                Debug.Log(_id);
             }
         }
 
@@ -57,7 +56,6 @@ namespace _Game._Scripts.Enemy
             _loadedFromProgress = true;
             
             _id =  GetComponent<UniqueId>().Id;
-            Debug.Log(_id);
 
             LootPieceData lootPieceData = progress.WorldData.LootData.LootPiecesOnScene.Dictionary[_id];
             SetLoot(lootPieceData.Loot);
