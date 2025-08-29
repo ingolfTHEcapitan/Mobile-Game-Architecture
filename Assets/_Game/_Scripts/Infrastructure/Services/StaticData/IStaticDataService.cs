@@ -4,7 +4,9 @@ namespace _Game._Scripts.Infrastructure.Services.StaticData
 {
     public interface IStaticDataService: IService
     {
-        EnemyStaticData GetEnemyStaticData(EnemyesTypeId typeId);
-        void LoadEnemys();
+        void LoadEnemies();
+        void LoadLevels();
+        EnemyStaticData ForEnemy(EnemyTypeId typeId);
+        LevelStaticData ForLevel(string sceneKey);
     }
 }

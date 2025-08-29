@@ -1,32 +1,30 @@
 using _Game._Scripts.Data.Player;
 using _Game._Scripts.Enemy;
-using _Game._Scripts.Infrastructure.Services;
 using _Game._Scripts.Infrastructure.Services.Factory;
 using _Game._Scripts.Infrastructure.Services.PersistantProgress;
 using _Game._Scripts.StaticData;
 using UnityEngine;
 
-namespace _Game._Scripts.Logic
+namespace _Game._Scripts.Logic.EnemySpawner
 {
-    [RequireComponent(typeof(UniqueId))]
     public class EnemySpawner : MonoBehaviour, ISavedProgress
     {
-        public EnemyesTypeId EnemyeTypeId;
+        public EnemyTypeId EnemyTypeId;
+        public string Id;
 
-        private bool _slain;
-        private string _id;
         private IGameFactory _factory;
         private EnemyDeath _enemyDeath;
+        private bool _slain;
 
-        private void Awake()
+
+        public void Initialize(IGameFactory factory)
         {
-            _id = GetComponent<UniqueId>().Id;
-            _factory = AllServices.Container.Single<IGameFactory>();
+            _factory = factory;
         }
 
         public void LoadProgress(PlayerProgress progress)
         {
-            if (progress.KillData.SlainSpawners.Contains(_id))
+            if (progress.KillData.SlainSpawners.Contains(Id))
                 _slain = true;
             else
                 Spawn();
@@ -35,12 +33,12 @@ namespace _Game._Scripts.Logic
         public void UpdateProgress(PlayerProgress progress)
         {
             if (_slain)
-                progress.KillData.SlainSpawners.Add(_id);
+                progress.KillData.SlainSpawners.Add(Id);
         }
 
         private void Spawn()
         {
-            GameObject enemy = _factory.CreateEnemy(EnemyeTypeId, transform);
+            GameObject enemy = _factory.CreateEnemy(EnemyTypeId, transform);
             _enemyDeath = enemy.GetComponent<EnemyDeath>();
             _enemyDeath.Died += Slay;
         }

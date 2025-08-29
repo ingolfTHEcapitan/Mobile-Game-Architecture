@@ -5,7 +5,7 @@ namespace _Game._Scripts.StaticData
     [CreateAssetMenu(fileName = "EnemyStaticData", menuName = "StaticData/Enemy")]
     public class EnemyStaticData : ScriptableObject
     {
-        public EnemyesTypeId EnemyTypeId;
+        public EnemyTypeId EnemyTypeId;
 
         [Range(1f, 200f)]
         public float Health = 100f;

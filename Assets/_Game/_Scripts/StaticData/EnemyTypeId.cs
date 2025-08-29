@@ -1,6 +1,6 @@
 namespace _Game._Scripts.StaticData
 {
-    public enum EnemyesTypeId
+    public enum EnemyTypeId
     {
         Lich = 0,
         Golem = 10,

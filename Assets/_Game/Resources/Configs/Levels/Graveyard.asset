@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89ad177752984d5e8d0f79178618119a, type: 3}
+  m_Name: Graveyard
+  m_EditorClassIdentifier: 
+  SceneKey: LevelOne
+  EnemySpawners:
+  - SpawnerId: LevelOne4f3fddd0-e098-41b6-bdb4-7c804b562972
+    EnemyTypeId: 0
+    Position: {x: 4.67, y: 0.32, z: -15.34}
+  - SpawnerId: LevelOne44034cf7-ebfc-4ea5-94ef-1ca0947f022f
+    EnemyTypeId: 0
+    Position: {x: 7.38, y: 0, z: 15.34}
+  - SpawnerId: LevelOne704b03af-b09c-4ad9-b4e4-e998d95a6a52
+    EnemyTypeId: 0
+    Position: {x: 2.33, y: 0.22, z: -14.14}
+  - SpawnerId: LevelOnea2387872-e1de-42d4-836c-398023cebe84
+    EnemyTypeId: 10
+    Position: {x: 8.62, y: 0, z: -7.75}
+  - SpawnerId: LevelOnec851e2fb-9344-47e8-9aba-11e97e0ca455
+    EnemyTypeId: 10
+    Position: {x: -5.11, y: 0, z: -7.01}
+  - SpawnerId: LevelOne0c8fd73b-1821-4fe9-99a8-8af4b0acfcd2
+    EnemyTypeId: 0
+    Position: {x: 11.59, y: 0, z: 13.11}
+  - SpawnerId: LevelOne481d24ad-b9d7-4c7f-9b05-5d9a6a8d470f
+    EnemyTypeId: 0
+    Position: {x: -10.38, y: 0, z: 14.68}
+  - SpawnerId: LevelOne41a1f884-ffd4-484e-878b-80c26c97cb3e
+    EnemyTypeId: 0
+    Position: {x: -10.17, y: 0, z: 0.65}
+  - SpawnerId: LevelOneb52ef2b8-09a1-4c4f-a899-48ea99699273
+    EnemyTypeId: 0
+    Position: {x: 3.2, y: 0.68, z: -17.04}
+  - SpawnerId: LevelOnec9bb3716-f0e3-4602-9f2b-51ecf739e29b
+    EnemyTypeId: 0
+    Position: {x: -12.33, y: 0, z: 11.6}
+  - SpawnerId: LevelOnea1af38c9-c34d-4b84-9116-1a070555ec54
+    EnemyTypeId: 10
+    Position: {x: 0.42, y: 0.63, z: 18.72}
+  - SpawnerId: LevelOned19c863f-ff40-4ff3-baad-c7f40e814674
+    EnemyTypeId: 0
+    Position: {x: -11.65, y: 0, z: 1.23}
+  - SpawnerId: LevelOne764770fb-9b2f-4e31-b6d3-bf3a5e5c5936
+    EnemyTypeId: 0
+    Position: {x: 11.04, y: 0, z: 9.79}

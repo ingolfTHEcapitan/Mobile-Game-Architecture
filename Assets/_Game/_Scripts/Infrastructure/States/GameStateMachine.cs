@@ -5,6 +5,7 @@ using _Game._Scripts.Infrastructure.Services.Factory;
 using _Game._Scripts.Infrastructure.Services.Input;
 using _Game._Scripts.Infrastructure.Services.PersistantProgress;
 using _Game._Scripts.Infrastructure.Services.SaveLoad;
+using _Game._Scripts.Infrastructure.Services.StaticData;
 using _Game._Scripts.Infrastructure.States.GameStates;
 using _Game._Scripts.Logic;
 
@@ -23,7 +24,8 @@ namespace _Game._Scripts.Infrastructure.States
                 [typeof(LoadProgressState)] = new LoadProgressState(this, 
                     services.Single<IPersistantProgressService>(), services.Single<ISaveLoadService>()),
                 [typeof(LoadLevelState)] = new LoadLevelState(this, sceneLoader, curtain, 
-                    services.Single<IGameFactory>(), services.Single<IPersistantProgressService>(), services.Single<IInputService>()), 
+                    services.Single<IGameFactory>(), services.Single<IPersistantProgressService>(), 
+                    services.Single<IInputService>(), services.Single<IStaticDataService>()), 
                 [typeof(GameLoopState)] =   new GameLoopState(this)
             };
         }

@@ -4,6 +4,7 @@ using _Game._Scripts.Enemy;
 using _Game._Scripts.Infrastructure.Services.AssetManagement;
 using _Game._Scripts.Infrastructure.Services.PersistantProgress;
 using _Game._Scripts.Infrastructure.Services.StaticData;
+using _Game._Scripts.Logic.EnemySpawner;
 using _Game._Scripts.StaticData;
 using _Game._Scripts.UI;
 using UnityEngine;
@@ -30,19 +31,19 @@ namespace _Game._Scripts.Infrastructure.Services.Factory
 
         public GameObject CreateHero(GameObject at, GameObject parent)
         {
-            HeroGameObject = InstantiateRegistered(AssetPath.HeroPath, at.transform.position);
+            HeroGameObject = InstantiateRegistered(AssetPath.Hero, at.transform.position);
             HeroGameObject.SetParent(parent);
             return HeroGameObject;
         }
 
         public GameObject CreateHud(GameObject parent)
         {
-            return InstantiateRegistered(AssetPath.HudPath).SetParent(parent);
+            return InstantiateRegistered(AssetPath.Hud).SetParent(parent);
         }
 
-        public GameObject CreateEnemy(EnemyesTypeId typeId, Transform parent)
+        public GameObject CreateEnemy(EnemyTypeId typeId, Transform parent)
         {
-            EnemyStaticData data = _staticData.GetEnemyStaticData(typeId);
+            EnemyStaticData data = _staticData.ForEnemy(typeId);
             GameObject enemy = Object.Instantiate(data.Model, parent.position, Quaternion.identity, parent);
             
             EnemyHealth health = enemy.GetComponent<EnemyHealth>();
@@ -74,11 +75,20 @@ namespace _Game._Scripts.Infrastructure.Services.Factory
 
         public LootPiece CreateLoot()
         {
-            LootPiece lootPiece = InstantiateRegistered(AssetPath.LootPath).GetComponent<LootPiece>();
+            LootPiece lootPiece = InstantiateRegistered(AssetPath.Loot).GetComponent<LootPiece>();
             lootPiece.Initialize(_progressService.Progress.WorldData);
             return lootPiece;
         }
-        
+
+        public void CreateEnemySpawner(string spawnerId, EnemyTypeId enemyTypeId, Vector3 position)
+        {
+            EnemySpawner spawner = InstantiateRegistered(AssetPath.EnemySpawner, position).GetComponent<EnemySpawner>();
+            
+            spawner.Initialize(this);
+            spawner.Id = spawnerId;
+            spawner.EnemyTypeId = enemyTypeId;
+        }
+
         public void CleanupProgressReadersWriters()
         {
             ProgressReaders.Clear();

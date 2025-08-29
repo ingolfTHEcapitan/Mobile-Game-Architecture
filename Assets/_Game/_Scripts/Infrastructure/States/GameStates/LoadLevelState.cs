@@ -3,10 +3,12 @@ using _Game._Scripts.Hero;
 using _Game._Scripts.Infrastructure.Services.Factory;
 using _Game._Scripts.Infrastructure.Services.Input;
 using _Game._Scripts.Infrastructure.Services.PersistantProgress;
+using _Game._Scripts.Infrastructure.Services.StaticData;
 using _Game._Scripts.Logic;
 using _Game._Scripts.Logic.Camera;
 using _Game._Scripts.UI;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace _Game._Scripts.Infrastructure.States.GameStates
 {
@@ -15,8 +17,6 @@ namespace _Game._Scripts.Infrastructure.States.GameStates
         private const string InitialPointTag = "InitialPoint";
         private const string GameTag = "Game";
         private const string UITag = "UI";
-        private const string EnemySpawnerTag = "EnemySpawner";
-        private const string LootLoaderTag = "LootLoader";
 
         private readonly GameStateMachine _stateMachine;
         private readonly SceneLoader _sceneLoader;
@@ -24,9 +24,10 @@ namespace _Game._Scripts.Infrastructure.States.GameStates
         private readonly IGameFactory _gameFactory;
         private readonly IPersistantProgressService _progressService;
         private readonly IInputService _inputService;
+        private readonly IStaticDataService _staticData;
 
         public LoadLevelState(GameStateMachine stateMachine, SceneLoader sceneLoader, LoadingCurtain curtain,
-            IGameFactory gameFactory, IPersistantProgressService progressService, IInputService inputService)
+            IGameFactory gameFactory, IPersistantProgressService progressService, IInputService inputService, IStaticDataService staticData)
         {
             _stateMachine = stateMachine;
             _sceneLoader = sceneLoader;
@@ -34,6 +35,7 @@ namespace _Game._Scripts.Infrastructure.States.GameStates
             _gameFactory = gameFactory;
             _progressService = progressService;
             _inputService = inputService;
+            _staticData = staticData;
         }
 
         public void Enter(string sceneName)
@@ -58,7 +60,7 @@ namespace _Game._Scripts.Infrastructure.States.GameStates
 
         private void InitGameWorld()
         {
-            InitSpawners();
+            InitEnemySpawners();
             InitLootPieces();
 
             GameObject hero = InitHero();
@@ -67,12 +69,13 @@ namespace _Game._Scripts.Infrastructure.States.GameStates
             CameraFollow(hero);
         }
 
-        private void InitSpawners()
+        private void InitEnemySpawners()
         {
-            foreach (GameObject spawnerObject in GameObject.FindGameObjectsWithTag(EnemySpawnerTag))
+            string sceneKey = SceneManager.GetActiveScene().name;
+            LevelStaticData levelData = _staticData.ForLevel(sceneKey);
+            foreach (EnemySpawnerStaticData spawnerData in levelData.EnemySpawners)
             {
-                EnemySpawner spawner = spawnerObject.GetComponent<EnemySpawner>();
-                _gameFactory.RegisterProgressWriters(spawner);
+                _gameFactory.CreateEnemySpawner(spawnerData.SpawnerId, spawnerData.EnemyTypeId, spawnerData.Position);
             }
         }
 
@@ -83,7 +86,6 @@ namespace _Game._Scripts.Infrastructure.States.GameStates
                 LootPiece lootPiece = _gameFactory.CreateLoot();
                 lootPiece.GetComponent<UniqueId>().Id = key;
             }
-            
         }
         
         private GameObject InitHero()

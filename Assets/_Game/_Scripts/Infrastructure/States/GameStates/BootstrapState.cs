@@ -69,7 +69,8 @@ namespace _Game._Scripts.Infrastructure.States.GameStates
         private StaticDataService GetStaticDataService()
         {
             var staticData = new StaticDataService();
-            staticData.LoadEnemys();
+            staticData.LoadEnemies();
+            staticData.LoadLevels();
             return staticData;
         }
     }

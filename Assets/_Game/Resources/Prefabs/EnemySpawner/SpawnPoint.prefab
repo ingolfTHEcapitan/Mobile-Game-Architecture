@@ -9,11 +9,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5243727612617043534}
-  - component: {fileID: 5243727612617043505}
+  - component: {fileID: 5705663344519923879}
   - component: {fileID: 4562968393310944719}
   m_Layer: 0
-  m_Name: EnemySpawner
-  m_TagString: EnemySpawner
+  m_Name: SpawnPoint
+  m_TagString: Untagged
   m_Icon: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -33,7 +33,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5243727612617043505
+--- !u!114 &5705663344519923879
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -42,10 +42,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 5243727612617043535}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d93ba443b988531419031931c9f92463, type: 3}
+  m_Script: {fileID: 11500000, guid: 06ec0b18dfd84be58ef474541d59a9bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnemyesTypeId: 0
+  EnemyTypeId: 0
 --- !u!114 &4562968393310944719
 MonoBehaviour:
   m_ObjectHideFlags: 0
