@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace _Game._Scripts.UI
+namespace _Game._Scripts.UI.Elements
 {
     public class LookAtCamera : MonoBehaviour
     {

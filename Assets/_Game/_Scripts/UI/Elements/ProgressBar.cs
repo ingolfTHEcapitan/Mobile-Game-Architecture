@@ -2,7 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace _Game._Scripts.UI
+namespace _Game._Scripts.UI.Elements
 {
     public class ProgressBar : MonoBehaviour
     {

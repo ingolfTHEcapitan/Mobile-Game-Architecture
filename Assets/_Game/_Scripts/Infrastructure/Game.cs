@@ -1,6 +1,6 @@
 using _Game._Scripts.Infrastructure.Services;
 using _Game._Scripts.Infrastructure.States;
-using _Game._Scripts.Logic;
+using _Game._Scripts.UI.Elements;
 
 namespace _Game._Scripts.Infrastructure
 {

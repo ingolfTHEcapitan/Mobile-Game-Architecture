@@ -4627,6 +4627,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Shop
       objectReference: {fileID: 0}
+    - target: {fileID: 5556654402734190986, guid: e6722c60c30b5574597eac70749cd42c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6224741021297007426, guid: e6722c60c30b5574597eac70749cd42c,
         type: 3}
       propertyPath: m_AnchorMax.y

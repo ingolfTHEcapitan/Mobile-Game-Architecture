@@ -1,8 +1,7 @@
 using System;
-using _Game._Scripts.StaticData;
 using UnityEngine;
 
-namespace _Game._Scripts.Infrastructure.Services.StaticData
+namespace _Game._Scripts.StaticData
 {
     [Serializable]
     public class EnemySpawnerStaticData

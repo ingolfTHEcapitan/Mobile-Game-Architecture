@@ -1,5 +1,5 @@
 using _Game._Scripts.Infrastructure.States.GameStates;
-using _Game._Scripts.Logic;
+using _Game._Scripts.UI.Elements;
 using UnityEngine;
 
 namespace _Game._Scripts.Infrastructure

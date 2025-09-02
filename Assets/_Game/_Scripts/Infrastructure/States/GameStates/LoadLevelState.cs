@@ -5,8 +5,8 @@ using _Game._Scripts.Infrastructure.Services.Input;
 using _Game._Scripts.Infrastructure.Services.PersistantProgress;
 using _Game._Scripts.Infrastructure.Services.StaticData;
 using _Game._Scripts.Logic;
-using _Game._Scripts.Logic.Camera;
-using _Game._Scripts.UI;
+using _Game._Scripts.StaticData;
+using _Game._Scripts.UI.Elements;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 

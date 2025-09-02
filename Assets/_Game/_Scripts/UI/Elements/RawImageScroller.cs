@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-namespace _Game._Scripts.Logic
+namespace _Game._Scripts.UI.Elements
 {
-    public class ScrollingRawImage : MonoBehaviour
+    public class RawImageScroller : MonoBehaviour
     {
         public float horizontalSpeed;
         public float verticalSpeed;

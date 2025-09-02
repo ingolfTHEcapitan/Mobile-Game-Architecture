@@ -7,7 +7,7 @@ using _Game._Scripts.Infrastructure.Services.PersistantProgress;
 using _Game._Scripts.Infrastructure.Services.SaveLoad;
 using _Game._Scripts.Infrastructure.Services.StaticData;
 using _Game._Scripts.Infrastructure.States.GameStates;
-using _Game._Scripts.Logic;
+using _Game._Scripts.UI.Elements;
 
 namespace _Game._Scripts.Infrastructure.States
 {

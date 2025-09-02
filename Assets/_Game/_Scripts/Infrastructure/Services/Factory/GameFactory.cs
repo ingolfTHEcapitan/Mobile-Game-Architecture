@@ -6,7 +6,7 @@ using _Game._Scripts.Infrastructure.Services.PersistantProgress;
 using _Game._Scripts.Infrastructure.Services.StaticData;
 using _Game._Scripts.Logic.EnemySpawner;
 using _Game._Scripts.StaticData;
-using _Game._Scripts.UI;
+using _Game._Scripts.UI.Elements;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -95,13 +95,13 @@ namespace _Game._Scripts.Infrastructure.Services.Factory
             ProgressWriters.Clear();
         }
 
-        public void RegisterProgressReaders(GameObject gameObject)
+        private void RegisterProgressReaders(GameObject gameObject)
         {
             foreach (ISavedProgressReader progressReader in gameObject.GetComponentsInChildren<ISavedProgressReader>())
                 RegisterProgressWriters(progressReader);
         }
 
-        public void RegisterProgressWriters(ISavedProgressReader progressReader)
+        private void RegisterProgressWriters(ISavedProgressReader progressReader)
         {
             if (progressReader is ISavedProgress progressWriters)
                 ProgressWriters.Add(progressWriters);

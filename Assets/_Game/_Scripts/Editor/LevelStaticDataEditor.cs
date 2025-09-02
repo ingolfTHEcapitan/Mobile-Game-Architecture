@@ -3,6 +3,7 @@ using System.Linq;
 using _Game._Scripts.Infrastructure.Services.StaticData;
 using _Game._Scripts.Logic;
 using _Game._Scripts.Logic.EnemySpawner;
+using _Game._Scripts.StaticData;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
