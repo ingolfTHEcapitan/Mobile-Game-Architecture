@@ -1,6 +1,5 @@
-using System;
+using _Game._Scripts.Data.Player;
 using _Game._Scripts.Infrastructure.Services.PersistantProgress;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,8 +8,9 @@ namespace _Game._Scripts.UI.Windows
     public abstract class WindowBase : MonoBehaviour
     {
         [SerializeField] private Button _closeButton;
-        
+
         private IPersistantProgressService _progressService;
+        protected PlayerProgress Progress => _progressService.Progress;
 
         private void Awake() => 
             OnAwake();

@@ -763,7 +763,7 @@ GameObject:
   - component: {fileID: 2511930376245315149}
   - component: {fileID: 2935807396555561180}
   m_Layer: 5
-  m_Name: Shop
+  m_Name: ShopWindow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -842,6 +842,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _closeButton: {fileID: 3050165197667088922}
+  _CurrencyText: {fileID: 5228517968995189430}
 --- !u!1 &6392327512046911005
 GameObject:
   m_ObjectHideFlags: 0
@@ -2118,10 +2119,20 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4503686559696907707, guid: bddae74448996aa4b844e13990c487c4,
+        type: 3}
+      propertyPath: m_Name
+      value: Currency_text
+      objectReference: {fileID: 0}
     - target: {fileID: 4538877272795779062, guid: bddae74448996aa4b844e13990c487c4,
         type: 3}
       propertyPath: m_Name
       value: Currency_counter
+      objectReference: {fileID: 0}
+    - target: {fileID: 5487762118617000544, guid: bddae74448996aa4b844e13990c487c4,
+        type: 3}
+      propertyPath: m_Name
+      value: Currency_ico
       objectReference: {fileID: 0}
     - target: {fileID: 8653669753242540988, guid: bddae74448996aa4b844e13990c487c4,
         type: 3}
@@ -2136,6 +2147,18 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 3501390030803622154}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &5228517968995189430 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8653669753242540988, guid: bddae74448996aa4b844e13990c487c4,
+    type: 3}
+  m_PrefabInstance: {fileID: 3501390030803622154}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &6175855334289623620
 PrefabInstance:
   m_ObjectHideFlags: 0
