@@ -1,4 +1,6 @@
 using _Game._Scripts.StaticData;
+using _Game._Scripts.StaticData.Windows;
+using _Game._Scripts.UI.Services.Windows;
 
 namespace _Game._Scripts.Infrastructure.Services.StaticData
 {
@@ -6,7 +8,9 @@ namespace _Game._Scripts.Infrastructure.Services.StaticData
     {
         void LoadEnemies();
         void LoadLevels();
+        void LoadWindows();
         EnemyStaticData ForEnemy(EnemyTypeId typeId);
         LevelStaticData ForLevel(string sceneKey);
+        WindowConfig ForWindow(WindowId shop);
     }
 }

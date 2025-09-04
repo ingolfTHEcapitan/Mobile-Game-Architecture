@@ -1,12 +1,15 @@
 using System.Collections.Generic;
 using _Game._Scripts.Data;
 using _Game._Scripts.Enemy;
+using _Game._Scripts.Hero;
 using _Game._Scripts.Infrastructure.Services.AssetManagement;
+using _Game._Scripts.Infrastructure.Services.Input;
 using _Game._Scripts.Infrastructure.Services.PersistantProgress;
 using _Game._Scripts.Infrastructure.Services.StaticData;
 using _Game._Scripts.Logic.EnemySpawner;
 using _Game._Scripts.StaticData;
 using _Game._Scripts.UI.Elements;
+using _Game._Scripts.UI.Services.Windows;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -17,28 +20,42 @@ namespace _Game._Scripts.Infrastructure.Services.Factory
         private readonly IAssetProvider _assets;
         private readonly IStaticDataService _staticData;
         private readonly IPersistantProgressService _progressService;
+        private readonly IInputService _inputService;
+        private readonly IWindowService _windowService;
 
         public List<ISavedProgressReader> ProgressReaders { get; } = new List<ISavedProgressReader>();
         public List<ISavedProgress> ProgressWriters { get; } = new List<ISavedProgress>();
         public GameObject HeroGameObject { get; private set; }
 
-        public GameFactory(IAssetProvider assets, IStaticDataService staticData, IPersistantProgressService progressService)
+        public GameFactory(IAssetProvider assets, IStaticDataService staticData, 
+            IPersistantProgressService progressService, IInputService inputService, IWindowService windowService)
         {
             _assets = assets;
             _staticData = staticData;
             _progressService = progressService;
+            _inputService = inputService;
+            _windowService = windowService;
         }
 
         public GameObject CreateHero(GameObject at, GameObject parent)
         {
             HeroGameObject = InstantiateRegistered(AssetPath.Hero, at.transform.position);
             HeroGameObject.SetParent(parent);
+            HeroGameObject.GetComponent<HerroAttack>().Initialize(_inputService);
             return HeroGameObject;
         }
 
         public GameObject CreateHud(GameObject parent)
         {
-            return InstantiateRegistered(AssetPath.Hud).SetParent(parent);
+            GameObject hud = InstantiateRegistered(AssetPath.Hud).SetParent(parent);
+            
+            LootCounter lootCounter = hud.GetComponentInChildren<LootCounter>();
+            lootCounter.Initialize(_progressService.Progress.WorldData);
+            
+            foreach (OpenWindowButton openWindowButton in hud.GetComponentsInChildren<OpenWindowButton>())
+                openWindowButton.Initialize(_windowService);
+            
+            return hud;
         }
 
         public GameObject CreateEnemy(EnemyTypeId typeId, Transform parent)

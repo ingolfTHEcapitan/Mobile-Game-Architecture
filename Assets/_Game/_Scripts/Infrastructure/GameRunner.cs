@@ -1,11 +1,10 @@
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace _Game._Scripts.Infrastructure
 {
     public class GameRunner: MonoBehaviour
     {
-        [FormerlySerializedAs("_bootstrapper")] [SerializeField] private GameBootstrapper _bootstrapperPrefab;
+        [SerializeField] private GameBootstrapper _bootstrapperPrefab;
 
         private void Awake()
         {
@@ -13,7 +12,6 @@ namespace _Game._Scripts.Infrastructure
             
             if (_bootstrapper is null)
                 Instantiate(_bootstrapperPrefab);
-            
         }
     }
 }

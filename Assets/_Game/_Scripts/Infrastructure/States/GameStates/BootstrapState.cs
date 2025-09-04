@@ -5,6 +5,8 @@ using _Game._Scripts.Infrastructure.Services.Input;
 using _Game._Scripts.Infrastructure.Services.PersistantProgress;
 using _Game._Scripts.Infrastructure.Services.SaveLoad;
 using _Game._Scripts.Infrastructure.Services.StaticData;
+using _Game._Scripts.UI.Services.Factory;
+using _Game._Scripts.UI.Services.Windows;
 using UnityEngine;
 
 namespace _Game._Scripts.Infrastructure.States.GameStates
@@ -46,16 +48,30 @@ namespace _Game._Scripts.Infrastructure.States.GameStates
         private void RegisterServices()
         {
             _services.RegisterSingle<IInputService>(GetInputService());
-            _services.RegisterSingle<IStaticDataService>(GetStaticDataService());
+            _services.RegisterSingle<IStaticDataService>(InitializeStaticDataService());
             _services.RegisterSingle<IAssetProvider>(new AssetProvider());
             _services.RegisterSingle<IPersistantProgressService>(new PersistantProgressService());
+
+            _services.RegisterSingle<IUIFactory>(new UIFactory(
+                _services.Single<IAssetProvider>(), 
+                _services.Single<IStaticDataService>(),
+                _services.Single<IPersistantProgressService>()
+            ));
+            
+            _services.RegisterSingle<IWindowService>(new WindowService(_services.Single<IUIFactory>()));
+            
             _services.RegisterSingle<IGameFactory>(new GameFactory(
                 _services.Single<IAssetProvider>(),
                 _services.Single<IStaticDataService>(),
-                _services.Single<IPersistantProgressService>()));
+                _services.Single<IPersistantProgressService>(),
+                _services.Single<IInputService>(),
+                _services.Single<IWindowService>()
+            ));
+
             _services.RegisterSingle<ISaveLoadService>(new SaveLoadService(
                 _services.Single<IPersistantProgressService>(),
-                _services.Single<IGameFactory>()));
+                _services.Single<IGameFactory>()
+            ));
         }
 
         private static IInputService GetInputService()
@@ -66,11 +82,12 @@ namespace _Game._Scripts.Infrastructure.States.GameStates
                 return new MobileInputService();
         }
 
-        private StaticDataService GetStaticDataService()
+        private StaticDataService InitializeStaticDataService()
         {
             var staticData = new StaticDataService();
             staticData.LoadEnemies();
             staticData.LoadLevels();
+            staticData.LoadWindows();
             return staticData;
         }
     }

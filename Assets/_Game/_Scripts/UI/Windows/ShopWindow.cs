@@ -1,5 +1,4 @@
-
-namespace _Game._Scripts.UI
+namespace _Game._Scripts.UI.Windows
 {
     public class ShopWindow: WindowBase
     {
