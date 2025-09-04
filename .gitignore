@@ -9,6 +9,7 @@
 /[Bb]uilds/
 /[Ll]ogs/
 /[Uu]ser[Ss]ettings/
+/UIReferences/
 
 # RPG Craft Resources can get excessive in size
 /[Aa]ssets/RPG_Craft_Resources*

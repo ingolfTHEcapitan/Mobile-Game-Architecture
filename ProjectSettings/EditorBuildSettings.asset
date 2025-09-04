@@ -5,10 +5,13 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/_Game/Scenes/Initial.unity
     guid: 1d3b3a61abe27764194f6457f40a6c0f
-  - enabled: 1
+  - enabled: 0
     path: Assets/_Game/Scenes/LevelOne.unity
     guid: 99c9720ab356a0642a771bea13969a05
+  - enabled: 1
+    path: Assets/Samples/Advertisement Legacy/4.12.0/UnityAds Example App/Scenes/UnityAdsExample.unity
+    guid: 0b05e71623db14446af6380781088410
   m_configObjects: {}

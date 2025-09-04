@@ -886,11 +886,11 @@ PlayerSettings:
   apiCompatibilityLevel: 6
   activeInputHandler: 0
   windowsGamepadBackendHint: 0
-  cloudProjectId: 
+  cloudProjectId: 2dc8afe7-a736-4822-a31d-97f0bf7c124d
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: 
-  organizationId: 
+  projectName: Mobile-Game-Architecture
+  organizationId: unity_8c520057a6e0dc4779dc
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   playerDataPath: 
