@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace _Game._Scripts.UI.Elements
 {
-    public class ActorUI: MonoBehaviour
+    public class HealthBarView: MonoBehaviour
     {
         [SerializeField] private ProgressBar _progressBar;
 

@@ -106,8 +106,8 @@ namespace _Game._Scripts.Infrastructure.States.GameStates
         {
             GameObject hud = _gameFactory.CreateHud(parent: GameObject.FindWithTag(SceneTag.UI));
             
-            ActorUI actorUI = hud.GetComponentInChildren<ActorUI>();
-            actorUI.Initialize(hero.GetComponent<HeroHealth>());
+            HealthBarView healthBarView = hud.GetComponentInChildren<HealthBarView>();
+            healthBarView.Initialize(hero.GetComponent<HeroHealth>());
         }
         
         private void InformProgressReaders()

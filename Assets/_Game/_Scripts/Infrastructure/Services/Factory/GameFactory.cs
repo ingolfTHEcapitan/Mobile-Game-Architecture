@@ -67,9 +67,9 @@ namespace _Game._Scripts.Infrastructure.Services.Factory
             health.Max = data.Health;
             health.Current = data.Health;
 
-            ActorUI actorUI = enemy.GetComponent<ActorUI>();
-            actorUI.Initialize(health);
-            actorUI.UpdateHealthBar();
+            HealthBarView healthBarView = enemy.GetComponent<HealthBarView>();
+            healthBarView.Initialize(health);
+            healthBarView.UpdateHealthBar();
 
             LootSpawner lootSpawner = enemy.GetComponentInChildren<LootSpawner>();
             lootSpawner.Initialize(this);
