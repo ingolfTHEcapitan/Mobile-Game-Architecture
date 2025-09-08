@@ -1,4 +1,5 @@
 using _Game._Scripts.Infrastructure.Services;
+using _Game._Scripts.Infrastructure.Services.Ads;
 using _Game._Scripts.Infrastructure.Services.AssetManagement;
 using _Game._Scripts.Infrastructure.Services.Factory;
 using _Game._Scripts.Infrastructure.Services.Input;
@@ -47,6 +48,7 @@ namespace _Game._Scripts.Infrastructure.States.GameStates
 
         private void RegisterServices()
         {
+            _services.RegisterSingle<IAdsService>(InitializeAdsService());
             _services.RegisterSingle<IInputService>(GetInputService());
             _services.RegisterSingle<IStaticDataService>(InitializeStaticDataService());
             _services.RegisterSingle<IAssetProvider>(new AssetProvider());
@@ -55,7 +57,8 @@ namespace _Game._Scripts.Infrastructure.States.GameStates
             _services.RegisterSingle<IUIFactory>(new UIFactory(
                 _services.Single<IAssetProvider>(), 
                 _services.Single<IStaticDataService>(),
-                _services.Single<IPersistantProgressService>()
+                _services.Single<IPersistantProgressService>(), 
+                _services.Single<IAdsService>()
             ));
             
             _services.RegisterSingle<IWindowService>(new WindowService(_services.Single<IUIFactory>()));
@@ -89,6 +92,13 @@ namespace _Game._Scripts.Infrastructure.States.GameStates
             staticData.LoadLevels();
             staticData.LoadWindows();
             return staticData;
+        }
+
+        private AdsService InitializeAdsService()
+        {
+            var adsService = new AdsService();
+            adsService.Initialize();
+            return adsService;
         }
     }
 }
