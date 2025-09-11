@@ -9,8 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8750719036747462297}
-  - component: {fileID: 8750719036747462279}
   - component: {fileID: 8750719036747462296}
+  - component: {fileID: 8750719036747462279}
   m_Layer: 0
   m_Name: SaveTrigger
   m_TagString: Untagged
@@ -33,19 +33,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8750719036747462279
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8750719036747462298}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2180652e79fa48a0af26321bb25f1c22, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _boxCollider: {fileID: 8750719036747462296}
 --- !u!65 &8750719036747462296
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -59,3 +46,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.45171487, y: 0.8809529, z: 5.48975}
   m_Center: {x: 0.27414256, y: -0.059523553, z: 1.789196}
+--- !u!114 &8750719036747462279
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8750719036747462298}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2180652e79fa48a0af26321bb25f1c22, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _boxCollider: {fileID: 8750719036747462296}
+  _boxColor:
+    serializedVersion: 2
+    rgba: 2184290575

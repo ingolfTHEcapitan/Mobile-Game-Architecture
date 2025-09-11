@@ -48,6 +48,7 @@ namespace _Game._Scripts.Infrastructure.States.GameStates
 
         private void RegisterServices()
         {
+            _services.RegisterSingle<IStateMachine>(_stateMachine);
             _services.RegisterSingle<IAdsService>(InitializeAdsService());
             _services.RegisterSingle<IInputService>(GetInputService());
             _services.RegisterSingle<IStaticDataService>(InitializeStaticDataService());

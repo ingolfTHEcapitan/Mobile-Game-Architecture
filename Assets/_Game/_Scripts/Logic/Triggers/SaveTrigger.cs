@@ -2,19 +2,11 @@ using _Game._Scripts.Infrastructure.Services;
 using _Game._Scripts.Infrastructure.Services.SaveLoad;
 using UnityEngine;
 
-namespace _Game._Scripts.Logic
+namespace _Game._Scripts.Logic.Triggers
 {
-    public class SaveTrigger: MonoBehaviour
+    public class SaveTrigger: TriggerBase
     {
-        [SerializeField] private BoxCollider _boxCollider;
-
         private ISaveLoadService saveLoadService;
-
-        public BoxCollider BoxCollider
-        {
-            get => _boxCollider;
-            private set => _boxCollider = value; 
-        }
 
         private void Awake()
         {

@@ -17,7 +17,6 @@ namespace _Game._Scripts.Editor
             base.OnInspectorGUI();
 
             LevelStaticData levelData = (LevelStaticData)target;
-
             if (GUILayout.Button("Collect All"))
             {
                 levelData.EnemySpawners = CollectEnemySpawnersData();;

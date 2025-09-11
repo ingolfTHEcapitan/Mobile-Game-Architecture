@@ -23,9 +23,10 @@ namespace _Game._Scripts.Infrastructure.Services.Factory
         private readonly IInputService _inputService;
         private readonly IWindowService _windowService;
 
+        private GameObject _heroGameObject { get; set; }
+        
         public List<ISavedProgressReader> ProgressReaders { get; } = new List<ISavedProgressReader>();
         public List<ISavedProgress> ProgressWriters { get; } = new List<ISavedProgress>();
-        public GameObject HeroGameObject { get; private set; }
 
         public GameFactory(IAssetProvider assets, IStaticDataService staticData, 
             IPersistantProgressService progressService, IInputService inputService, IWindowService windowService)
@@ -39,10 +40,10 @@ namespace _Game._Scripts.Infrastructure.Services.Factory
 
         public GameObject CreateHero(Vector3 position, GameObject parent)
         {
-            HeroGameObject = InstantiateRegistered(AssetPath.Hero, position);
-            HeroGameObject.SetParent(parent);
-            HeroGameObject.GetComponent<HerroAttack>().Initialize(_inputService);
-            return HeroGameObject;
+            _heroGameObject = InstantiateRegistered(AssetPath.Hero, position);
+            _heroGameObject.SetParent(parent);
+            _heroGameObject.GetComponent<HerroAttack>().Initialize(_inputService);
+            return _heroGameObject;
         }
 
         public GameObject CreateHud(GameObject parent)
@@ -75,17 +76,17 @@ namespace _Game._Scripts.Infrastructure.Services.Factory
             lootSpawner.Initialize(this);
             lootSpawner.SetLoot(data.MinLoot, data.MaxLoot);
             
-            enemy.GetComponent<AgentMoveToPlayer>().Initialize(HeroGameObject.transform);
+            enemy.GetComponent<AgentMoveToPlayer>().Initialize(_heroGameObject.transform);
             enemy.GetComponent<NavMeshAgent>().speed = data.MoveSpeed;
 
             EnemyAttack attack = enemy.GetComponent<EnemyAttack>();
-            attack.Initialize(HeroGameObject.transform);
+            attack.Initialize(_heroGameObject.transform);
             attack.Damage = data.AttackDamage;
             attack.Cooldown = data.AttackCooldown;
             attack.Distance = data.AttackDistance;
             attack.Radius = data.AttackRadius;
 
-            enemy.GetComponent<AgentRotateToPlayer>()?.Initialize(HeroGameObject.transform);
+            enemy.GetComponent<AgentRotateToPlayer>()?.Initialize(_heroGameObject.transform);
 
             return enemy;
         }
