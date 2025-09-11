@@ -10,8 +10,7 @@ namespace _Game._Scripts.Infrastructure.Services.Factory
     {
         List<ISavedProgressReader> ProgressReaders { get; }
         List<ISavedProgress> ProgressWriters { get; }
-        GameObject HeroGameObject { get; }
-        GameObject CreateHero(GameObject at, GameObject parent);
+        GameObject CreateHero(Vector3 position, GameObject parent);
         GameObject CreateHud(GameObject parent);
         GameObject CreateEnemy(EnemyTypeId enemyTypeId, Transform transform);
         LootPiece CreateLoot();

@@ -64,24 +64,30 @@ namespace _Game._Scripts.Infrastructure.States.GameStates
 
         private void InitGameWorld()
         {
-            InitEnemySpawners();
+            LevelStaticData levelData = GetLevelData();
+            
+            InitEnemySpawners(levelData);
             InitLootPieces();
 
-            GameObject hero = InitHero();
+            GameObject hero = InitHero(levelData);
 
             InitHud(hero);
             CameraFollow(hero);
         }
 
-        private void InitEnemySpawners()
+        private void InitEnemySpawners(LevelStaticData levelData)
         {
-            string sceneKey = SceneManager.GetActiveScene().name;
-            LevelStaticData levelData = _staticData.ForLevel(sceneKey);
-            
             foreach (EnemySpawnerStaticData spawnerData in levelData.EnemySpawners)
             {
                 _gameFactory.CreateEnemySpawner(spawnerData.SpawnerId, spawnerData.EnemyTypeId, spawnerData.Position);
             }
+        }
+
+        private LevelStaticData GetLevelData()
+        {
+            string sceneKey = SceneManager.GetActiveScene().name;
+            LevelStaticData levelData = _staticData.ForLevel(sceneKey);
+            return levelData;
         }
 
         private void InitLootPieces()
@@ -93,18 +99,17 @@ namespace _Game._Scripts.Infrastructure.States.GameStates
             }
         }
         
-        private GameObject InitHero()
+        private GameObject InitHero(LevelStaticData levelData)
         {
             GameObject hero =  _gameFactory.CreateHero(
-                at: GameObject.FindWithTag(SceneTag.InitialPoint),
-                parent: GameObject.FindWithTag(SceneTag.Game));
-            
+                position: levelData.PlayerInitialPoint,
+                parent: GameObject.FindWithTag(Tags.Game));
             return hero;
         }
 
         private void InitHud(GameObject hero)
         {
-            GameObject hud = _gameFactory.CreateHud(parent: GameObject.FindWithTag(SceneTag.UI));
+            GameObject hud = _gameFactory.CreateHud(parent: GameObject.FindWithTag(Tags.UI));
             
             HealthBarView healthBarView = hud.GetComponentInChildren<HealthBarView>();
             healthBarView.Initialize(hero.GetComponent<HeroHealth>());

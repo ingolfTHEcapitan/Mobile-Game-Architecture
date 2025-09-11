@@ -9,5 +9,7 @@ namespace _Game._Scripts.StaticData
         public string SceneKey;
         
         public List<EnemySpawnerStaticData> EnemySpawners;
+
+        public Vector3 PlayerInitialPoint;
     }
 }

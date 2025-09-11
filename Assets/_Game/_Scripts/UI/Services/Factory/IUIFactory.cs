@@ -6,7 +6,6 @@ using _Game._Scripts.Infrastructure.Services.PersistantProgress;
 using _Game._Scripts.Infrastructure.Services.StaticData;
 using _Game._Scripts.StaticData.Windows;
 using _Game._Scripts.UI.Services.Windows;
-using _Game._Scripts.UI.Windows;
 using _Game._Scripts.UI.Windows.Shop;
 using UnityEngine;
 
@@ -46,7 +45,7 @@ namespace _Game._Scripts.UI.Services.Factory
 
         public void CreatePopUpLayer()
         {
-            _ui = GameObject.FindWithTag(SceneTag.UI);
+            _ui = GameObject.FindWithTag(Tags.UI);
             _popUpLayer = _asset.Instantiate(AssetPath.PopUpLayer).SetParent(_ui).transform;
         }
     }

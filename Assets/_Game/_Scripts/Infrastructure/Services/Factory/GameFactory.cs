@@ -37,9 +37,9 @@ namespace _Game._Scripts.Infrastructure.Services.Factory
             _windowService = windowService;
         }
 
-        public GameObject CreateHero(GameObject at, GameObject parent)
+        public GameObject CreateHero(Vector3 position, GameObject parent)
         {
-            HeroGameObject = InstantiateRegistered(AssetPath.Hero, at.transform.position);
+            HeroGameObject = InstantiateRegistered(AssetPath.Hero, position);
             HeroGameObject.SetParent(parent);
             HeroGameObject.GetComponent<HerroAttack>().Initialize(_inputService);
             return HeroGameObject;
