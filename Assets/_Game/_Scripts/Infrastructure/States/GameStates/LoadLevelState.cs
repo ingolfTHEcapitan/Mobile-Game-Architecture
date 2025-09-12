@@ -3,8 +3,10 @@ using _Game._Scripts.Hero;
 using _Game._Scripts.Infrastructure.Services.AssetManagement;
 using _Game._Scripts.Infrastructure.Services.Factory;
 using _Game._Scripts.Infrastructure.Services.PersistantProgress;
+using _Game._Scripts.Infrastructure.Services.SaveLoad;
 using _Game._Scripts.Infrastructure.Services.StaticData;
 using _Game._Scripts.Logic;
+using _Game._Scripts.Logic.Triggers;
 using _Game._Scripts.StaticData;
 using _Game._Scripts.UI.Elements;
 using _Game._Scripts.UI.Services.Factory;
@@ -22,10 +24,11 @@ namespace _Game._Scripts.Infrastructure.States.GameStates
         private readonly IPersistantProgressService _progressService;
         private readonly IStaticDataService _staticData;
         private readonly IUIFactory _uiFactory;
-
+        private readonly ISaveLoadService _saveLoadService;
+        
         public LoadLevelState(GameStateMachine stateMachine, SceneLoader sceneLoader, LoadingCurtain curtain,
             IGameFactory gameFactory, IPersistantProgressService progressService,
-            IStaticDataService staticData, IUIFactory uiFactory)
+            IStaticDataService staticData, IUIFactory uiFactory, ISaveLoadService saveLoadService)
         {
             _stateMachine = stateMachine;
             _sceneLoader = sceneLoader;
@@ -34,6 +37,7 @@ namespace _Game._Scripts.Infrastructure.States.GameStates
             _progressService = progressService;
             _staticData = staticData;
             _uiFactory = uiFactory;
+            _saveLoadService = saveLoadService;
         }
 
         public void Enter(string sceneName)
@@ -61,11 +65,12 @@ namespace _Game._Scripts.Infrastructure.States.GameStates
         {
             _uiFactory.CreatePopUpLayer();
         }
-
+        
         private void InitGameWorld()
         {
             LevelStaticData levelData = GetLevelData();
-            
+            InitSaveTriggers();
+            InitLevelTransferTriggers();
             InitEnemySpawners(levelData);
             InitLootPieces();
 
@@ -73,6 +78,18 @@ namespace _Game._Scripts.Infrastructure.States.GameStates
 
             InitHud(hero);
             CameraFollow(hero);
+        }
+
+        private void InitSaveTriggers()
+        {
+            foreach (var saveTriggerObject in GameObject.FindGameObjectsWithTag(Tags.SaveTrigger)) 
+                saveTriggerObject.GetComponent<SaveTrigger>().Initialize(_saveLoadService);
+        }
+
+        private void InitLevelTransferTriggers()
+        {
+            foreach (var saveTriggerObject in GameObject.FindGameObjectsWithTag(Tags.LevelTransferTrigger)) 
+                saveTriggerObject.GetComponent<LevelTransferTrigger>().Initialize(_stateMachine);
         }
 
         private void InitEnemySpawners(LevelStaticData levelData)

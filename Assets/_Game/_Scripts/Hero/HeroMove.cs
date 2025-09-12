@@ -1,6 +1,5 @@
 using _Game._Scripts.Data;
 using _Game._Scripts.Data.Player;
-using _Game._Scripts.Infrastructure.Services;
 using _Game._Scripts.Infrastructure.Services.Input;
 using _Game._Scripts.Infrastructure.Services.PersistantProgress;
 using UnityEngine;
@@ -18,16 +17,12 @@ namespace _Game._Scripts.Hero
         private Vector3 _movementVector;
         private Vector3Data position;
 
-        private void Awake()
-        {
-            _inputService = AllServices.Container.Single<IInputService>();
-        }
+        public void Initialize(IInputService inputService) => 
+            _inputService = inputService;
 
-        private void Start()
-        {
+        private void Start() => 
             _camera = Camera.main;
-        }
-        
+
         private void Update()
         {
             _movementVector = Vector3.zero;

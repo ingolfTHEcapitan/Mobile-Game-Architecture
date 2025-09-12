@@ -43,6 +43,7 @@ namespace _Game._Scripts.Infrastructure.Services.Factory
             _heroGameObject = InstantiateRegistered(AssetPath.Hero, position);
             _heroGameObject.SetParent(parent);
             _heroGameObject.GetComponent<HerroAttack>().Initialize(_inputService);
+            _heroGameObject.GetComponent<HeroMove>().Initialize(_inputService);
             return _heroGameObject;
         }
 

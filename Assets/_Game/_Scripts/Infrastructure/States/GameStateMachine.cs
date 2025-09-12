@@ -31,8 +31,8 @@ namespace _Game._Scripts.Infrastructure.States
                     services.Single<IGameFactory>(), 
                     services.Single<IPersistantProgressService>(), 
                     services.Single<IStaticDataService>(),
-                    services.Single<IUIFactory>()
-                ), 
+                    services.Single<IUIFactory>(), 
+                    services.Single<ISaveLoadService>()), 
                 
                 [typeof(GameLoopState)] = new GameLoopState(this)
             };

@@ -6,5 +6,7 @@ namespace _Game._Scripts.Infrastructure.Services.AssetManagement
         public const string PlayerInitialPoint = "InitialPoint";
         public const string Game = "Game";
         public const string UI = "UI";
+        public const string SaveTrigger = "SaveTrigger";
+        public const string LevelTransferTrigger = "LevelTransferTrigger";
     }
 }

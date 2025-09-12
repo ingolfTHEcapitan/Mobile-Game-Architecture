@@ -13,8 +13,8 @@ namespace _Game._Scripts.Logic.Triggers
         private IStateMachine _gameStateMachine;
         private bool _triggered;
         
-        private void Start() => 
-            _gameStateMachine = AllServices.Container.Single<IStateMachine>();
+        public void Initialize(IStateMachine gameStateMachine) => 
+            _gameStateMachine = gameStateMachine;
 
         private void OnTriggerEnter(Collider other)
         {
