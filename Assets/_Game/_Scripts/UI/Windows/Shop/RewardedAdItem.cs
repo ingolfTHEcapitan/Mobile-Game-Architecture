@@ -1,8 +1,7 @@
-using System;
 using _Game._Scripts.Infrastructure.Services.Ads;
 using _Game._Scripts.Infrastructure.Services.PersistantProgress;
+using TMPro;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace _Game._Scripts.UI.Windows.Shop
@@ -10,8 +9,9 @@ namespace _Game._Scripts.UI.Windows.Shop
     public class RewardedAdItem: MonoBehaviour
     {
         [SerializeField] private Button _showAdButton;
-        [SerializeField] private GameObject[] AdAvailableObjects;
-        [SerializeField] private GameObject[] AdUnavailableObjects;
+        [SerializeField] private TextMeshProUGUI _quantityText;
+        [SerializeField] private GameObject[] _adAvailableObjects;
+        [SerializeField] private GameObject[] _adUnavailableObjects;
         
         private IAdsService _adsService;
         private IPersistantProgressService _progressService;
@@ -26,6 +26,7 @@ namespace _Game._Scripts.UI.Windows.Shop
         {
             _showAdButton.onClick.AddListener(OnShowAdClicked);
 
+            UpdateQuantityText();
             RefreshAvailableAd();
         }
 
@@ -45,11 +46,14 @@ namespace _Game._Scripts.UI.Windows.Shop
         {
             bool videoReady = _adsService.IsRewardedVideoReady;
 
-            foreach (GameObject adAvailableObject in AdAvailableObjects) 
+            foreach (GameObject adAvailableObject in _adAvailableObjects) 
                 adAvailableObject.SetActive(videoReady);
             
-            foreach (GameObject adUnavailableObject in AdUnavailableObjects) 
+            foreach (GameObject adUnavailableObject in _adUnavailableObjects) 
                 adUnavailableObject.SetActive(!videoReady);
         }
+
+        private void UpdateQuantityText() => 
+            _quantityText.text = _adsService.Reward.ToString();
     }
 }

@@ -17,7 +17,7 @@ namespace _Game._Scripts.Infrastructure.Services.Ads
         public bool IsRewardedVideoReady =>
             Advertisement.IsReady(AndroidRewardedVideoId);
         
-        public int Reward => 50;
+        public int Reward => 30;
 
         public void Initialize()
         {
