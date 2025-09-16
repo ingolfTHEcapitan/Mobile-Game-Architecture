@@ -65,7 +65,8 @@ namespace _Game._Scripts.Infrastructure.States.GameStates
                 _services.Single<IAssetProvider>(), 
                 _services.Single<IStaticDataService>(),
                 _services.Single<IPersistantProgressService>(), 
-                _services.Single<IAdsService>()
+                _services.Single<IAdsService>(), 
+                _services.Single<IIAPService>()
             ));
             
             _services.RegisterSingle<IWindowService>(new WindowService(_services.Single<IUIFactory>()));

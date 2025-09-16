@@ -7,5 +7,6 @@ namespace _Game._Scripts.Infrastructure.Services.AssetManagement
         public const string Loot = "Prefabs/Loot";
         public const string EnemySpawner = "Prefabs/EnemySpawner/EnemySpawner";
         public const string PopUpLayer = "Prefabs/UI/Popups/PopUpLayer";
+        public const string ShopItem = "Prefabs/UI/Popups/Shop/ShopItem";
     }
 }

@@ -10,8 +10,8 @@ namespace _Game._Scripts.UI.Windows.Shop
     public class RewardedAdItem: MonoBehaviour
     {
         [SerializeField] private Button _showAdButton;
-        [SerializeField] private GameObject[] AdActiveObjects;
-        [SerializeField] private GameObject[] AdInactiveObjects;
+        [SerializeField] private GameObject[] AdAvailableObjects;
+        [SerializeField] private GameObject[] AdUnavailableObjects;
         
         private IAdsService _adsService;
         private IPersistantProgressService _progressService;
@@ -45,11 +45,11 @@ namespace _Game._Scripts.UI.Windows.Shop
         {
             bool videoReady = _adsService.IsRewardedVideoReady;
 
-            foreach (GameObject adActiveObject in AdActiveObjects) 
-                adActiveObject.SetActive(videoReady);
+            foreach (GameObject adAvailableObject in AdAvailableObjects) 
+                adAvailableObject.SetActive(videoReady);
             
-            foreach (GameObject adInactiveObject in AdInactiveObjects) 
-                adInactiveObject.SetActive(!videoReady);
+            foreach (GameObject adUnavailableObject in AdUnavailableObjects) 
+                adUnavailableObject.SetActive(!videoReady);
         }
     }
 }

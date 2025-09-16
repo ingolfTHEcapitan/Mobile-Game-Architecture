@@ -11,5 +11,7 @@ namespace _Game._Scripts.Infrastructure.Services.IAP.Confings
         public int MaxPurchaseCount;
         public ItemType ItemType;
         public int Quantity;
+        public string Price;
+        public string IconPath;
     }
 }

@@ -1,31 +1,31 @@
 {
   "Configs": [
     {
-      "Id": "skulls10",
+      "Id": "skulls69",
       "ProductType": 0,
-      "MaxPurchaseCount": "20",
+      "MaxPurchaseCount": "10",
       "ItemType": 1,
-      "Quantity": 10,
-      "Price": "70 руб.",
-      "Icon": "iap_icon_1"
-    },
-    {
-      "Id": "skulls100",
-      "ProductType": 0,
-      "MaxPurchaseCount": "3",
-      "ItemType": 1,
-      "Quantity": 100,
-      "Price": "540 руб.",
-      "Icon": "iap_icon_2"
+      "Quantity": 69,
+      "Price": "180 СЂСѓР±.",
+      "IconPath": "Prefabs/UI/Popups/Shop/ShopIcons/iap_icon_1"
     },
     {
       "Id": "skulls420",
       "ProductType": 0,
-      "MaxPurchaseCount": "1",
+      "MaxPurchaseCount": "3",
       "ItemType": 1,
       "Quantity": 420,
-      "Price": "1800 руб.",
-      "Icon": "iap_icon_3"
+      "Price": "850 СЂСѓР±.",
+      "IconPath": "Prefabs/UI/Popups/Shop/ShopIcons/iap_icon_2"
+    },
+    {
+      "Id": "skulls900",
+      "ProductType": 0,
+      "MaxPurchaseCount": "1",
+      "ItemType": 1,
+      "Quantity": 900,
+      "Price": "1300 СЂСѓР±.",
+      "IconPath": "Prefabs/UI/Popups/Shop/ShopIcons/iap_icon_3"
     }
   ]
 }
