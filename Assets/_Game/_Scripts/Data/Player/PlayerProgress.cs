@@ -1,4 +1,5 @@
 using System;
+using _Game._Scripts.Data.IAP;
 
 namespace _Game._Scripts.Data.Player
 {
@@ -9,6 +10,7 @@ namespace _Game._Scripts.Data.Player
         public HeroState HeroState;
         public HeroStats HeroStats;
         public KillData KillData;
+        public PurchaseData PurchaseData;
 
         public PlayerProgress(string initialLevel)
         {
@@ -16,6 +18,7 @@ namespace _Game._Scripts.Data.Player
             HeroState = new HeroState();
             HeroStats = new HeroStats();
             KillData = new KillData();
+            PurchaseData = new PurchaseData();
         }
     }
 }

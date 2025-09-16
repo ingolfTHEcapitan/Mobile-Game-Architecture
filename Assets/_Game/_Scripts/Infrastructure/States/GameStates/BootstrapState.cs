@@ -2,6 +2,7 @@ using _Game._Scripts.Infrastructure.Services;
 using _Game._Scripts.Infrastructure.Services.Ads;
 using _Game._Scripts.Infrastructure.Services.AssetManagement;
 using _Game._Scripts.Infrastructure.Services.Factory;
+using _Game._Scripts.Infrastructure.Services.IAP;
 using _Game._Scripts.Infrastructure.Services.Input;
 using _Game._Scripts.Infrastructure.Services.PersistantProgress;
 using _Game._Scripts.Infrastructure.Services.SaveLoad;
@@ -49,11 +50,16 @@ namespace _Game._Scripts.Infrastructure.States.GameStates
         private void RegisterServices()
         {
             _services.RegisterSingle<IStateMachine>(_stateMachine);
-            _services.RegisterSingle<IAdsService>(InitializeAdsService());
             _services.RegisterSingle<IInputService>(GetInputService());
+            _services.RegisterSingle<IAdsService>(InitializeAdsService());
             _services.RegisterSingle<IStaticDataService>(InitializeStaticDataService());
             _services.RegisterSingle<IAssetProvider>(new AssetProvider());
             _services.RegisterSingle<IPersistantProgressService>(new PersistantProgressService());
+            
+            _services.RegisterSingle<IIAPService>(InitializeIAPService(
+                new IAPProvider(),
+                _services.Single<IPersistantProgressService>())
+            );
 
             _services.RegisterSingle<IUIFactory>(new UIFactory(
                 _services.Single<IAssetProvider>(), 
@@ -97,9 +103,16 @@ namespace _Game._Scripts.Infrastructure.States.GameStates
 
         private AdsService InitializeAdsService()
         {
-            var adsService = new AdsService();
+            AdsService adsService = new AdsService();
             adsService.Initialize();
             return adsService;
+        }
+
+        private IAPService InitializeIAPService(IAPProvider iapProvider, IPersistantProgressService progressService)
+        {
+            IAPService iapService = new IAPService(iapProvider, progressService);
+            iapService.Initialize();
+            return iapService;
         }
     }
 }
