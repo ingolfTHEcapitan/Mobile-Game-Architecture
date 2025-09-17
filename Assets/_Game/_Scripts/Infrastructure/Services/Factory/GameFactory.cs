@@ -99,10 +99,10 @@ namespace _Game._Scripts.Infrastructure.Services.Factory
             return lootPiece;
         }
 
-        public void CreateEnemySpawner(string spawnerId, EnemyTypeId enemyTypeId, Vector3 position)
+        public void CreateEnemySpawner(string spawnerId, EnemyTypeId enemyTypeId, Vector3 position, Transform parent)
         {
-            EnemySpawner spawner = InstantiateRegistered(AssetPath.EnemySpawner, position).GetComponent<EnemySpawner>();
-            
+            GameObject spawnerObject = InstantiateRegistered(AssetPath.EnemySpawner, position).SetParent(parent.gameObject);
+            EnemySpawner spawner = spawnerObject.GetComponent<EnemySpawner>();
             spawner.Initialize(this);
             spawner.Id = spawnerId;
             spawner.EnemyTypeId = enemyTypeId;

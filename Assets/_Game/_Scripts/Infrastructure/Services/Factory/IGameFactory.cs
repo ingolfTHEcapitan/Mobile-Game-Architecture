@@ -15,6 +15,6 @@ namespace _Game._Scripts.Infrastructure.Services.Factory
         GameObject CreateEnemy(EnemyTypeId enemyTypeId, Transform transform);
         LootPiece CreateLoot();
         void CleanupProgressReadersWriters();
-        void CreateEnemySpawner(string spawnerId, EnemyTypeId enemyTypeId, Vector3 position);
+        void CreateEnemySpawner(string spawnerId, EnemyTypeId enemyTypeId, Vector3 position, Transform parent);
     }
 }

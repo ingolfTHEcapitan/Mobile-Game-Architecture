@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using _Game._Scripts.Enemy;
 using _Game._Scripts.Hero;
 using _Game._Scripts.Infrastructure.Services.AssetManagement;
@@ -6,6 +7,7 @@ using _Game._Scripts.Infrastructure.Services.PersistantProgress;
 using _Game._Scripts.Infrastructure.Services.SaveLoad;
 using _Game._Scripts.Infrastructure.Services.StaticData;
 using _Game._Scripts.Logic;
+using _Game._Scripts.Logic.EnemySpawner;
 using _Game._Scripts.Logic.Triggers;
 using _Game._Scripts.StaticData;
 using _Game._Scripts.UI.Elements;
@@ -94,17 +96,15 @@ namespace _Game._Scripts.Infrastructure.States.GameStates
 
         private void InitEnemySpawners(LevelStaticData levelData)
         {
+            Dictionary<string, Transform> spawnPoints = GetSpawnPoints();
+
             foreach (EnemySpawnerStaticData spawnerData in levelData.EnemySpawners)
             {
-                _gameFactory.CreateEnemySpawner(spawnerData.SpawnerId, spawnerData.EnemyTypeId, spawnerData.Position);
+                if (spawnPoints.TryGetValue(spawnerData.SpawnerId, out Transform parent))
+                    _gameFactory.CreateEnemySpawner(spawnerData.SpawnerId, spawnerData.EnemyTypeId, spawnerData.Position, parent);
+                else
+                    Debug.LogError($"Spawn point ID {spawnerData.SpawnerId} not found");
             }
-        }
-
-        private LevelStaticData GetLevelData()
-        {
-            string sceneKey = SceneManager.GetActiveScene().name;
-            LevelStaticData levelData = _staticData.ForLevel(sceneKey);
-            return levelData;
         }
 
         private void InitLootPieces()
@@ -115,7 +115,7 @@ namespace _Game._Scripts.Infrastructure.States.GameStates
                 lootPiece.GetComponent<UniqueId>().Id = key;
             }
         }
-        
+
         private GameObject InitHero(LevelStaticData levelData)
         {
             GameObject hero =  _gameFactory.CreateHero(
@@ -131,7 +131,30 @@ namespace _Game._Scripts.Infrastructure.States.GameStates
             HealthBarView healthBarView = hud.GetComponentInChildren<HealthBarView>();
             healthBarView.Initialize(hero.GetComponent<HeroHealth>());
         }
-        
+
+        private static Dictionary<string, Transform> GetSpawnPoints()
+        {
+            Dictionary<string, Transform> spawnPoints = new Dictionary<string, Transform>();
+            SpawnPoint[] spawnPointObjects = Object.FindObjectsOfType<SpawnPoint>();
+            
+            foreach (var spawnPoint in spawnPointObjects)
+            {
+                UniqueId uniqueId = spawnPoint.GetComponent<UniqueId>();
+                
+                if (uniqueId != null) 
+                    spawnPoints.Add(uniqueId.Id, spawnPoint.transform);
+            }
+            
+            return spawnPoints;
+        }
+
+        private LevelStaticData GetLevelData()
+        {
+            string sceneKey = SceneManager.GetActiveScene().name;
+            LevelStaticData levelData = _staticData.ForLevel(sceneKey);
+            return levelData;
+        }
+
         private void InformProgressReaders()
         {
             foreach (ISavedProgressReader progressReader in _gameFactory.ProgressReaders)
