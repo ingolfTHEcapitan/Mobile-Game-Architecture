@@ -1,0 +1,15 @@
+using System.Collections.Generic;
+using UnityEngine;
+
+namespace _Game.Scripts.StaticData
+{
+    [CreateAssetMenu(fileName = "LevelStaticData", menuName = "StaticData/Level")]
+    public class LevelStaticData: ScriptableObject
+    {
+        public string SceneKey;
+        
+        public List<EnemySpawnerStaticData> EnemySpawners;
+
+        public Vector3 PlayerInitialPoint;
+    }
+}

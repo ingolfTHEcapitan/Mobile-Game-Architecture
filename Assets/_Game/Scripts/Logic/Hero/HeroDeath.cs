@@ -1,0 +1,52 @@
+using _Game.Scripts.Data;
+using JetBrains.Annotations;
+using UnityEngine;
+
+namespace _Game.Scripts.Logic.Hero
+{
+    public class HeroDeath: MonoBehaviour
+    {
+        [SerializeField] private HeroHealth _heroHealth;
+        [SerializeField] private HeroAnimator _heroAnimator;
+        [SerializeField] private HeroMove _heroMove;
+        [SerializeField] private HerroAttack _heroAttack;
+        [SerializeField] private GameObject _DeathEffect;
+        
+        private bool _isDeath;
+        
+        private const float _deathEffectPositionOffsetY = 1.5f;
+        private const string _dynamicTag = "Dynamic";
+
+        private void Start()
+        {
+            _heroHealth.HealthChanged += OnHealthHealthChanged;
+        }
+
+        [UsedImplicitly]
+        private void OnDeathAnimationEnded()
+        {
+            GameObject deathFX = Instantiate(_DeathEffect, GetEffectPosition(), Quaternion.identity);
+            deathFX.SetParent(GameObject.FindWithTag(_dynamicTag));
+        }
+        
+        private void OnHealthHealthChanged()
+        {
+            if (!_isDeath && _heroHealth.Current <= 0) 
+                Die();
+        }
+
+        private void Die()
+        {
+            _isDeath = true;
+            
+            _heroMove.enabled = false;
+            _heroAttack.enabled = false;
+            _heroAnimator.PlayDeath();
+        }
+
+        private Vector3 GetEffectPosition()
+        {
+            return transform.position + new Vector3(0f, _deathEffectPositionOffsetY, 0f);
+        }
+    }
+}

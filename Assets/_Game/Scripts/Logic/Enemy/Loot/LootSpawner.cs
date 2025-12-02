@@ -1,0 +1,49 @@
+using _Game.Scripts.Services.Factory;
+using UnityEngine;
+
+namespace _Game.Scripts.Logic.Enemy.Loot
+{
+    public class LootSpawner: MonoBehaviour
+    {
+        [SerializeField] private EnemyDeath _enemyDeath;
+        
+        private IGameFactory _factory;
+        private int _lootMin;
+        private int _lootMax;
+
+        private void Start()
+        {
+            _enemyDeath.Died += SpawnLoot;
+        }
+
+        public void Initialize(IGameFactory factory)
+        {
+            _factory = factory;
+        }
+
+        public void SetLoot(int min, int max)
+        {
+            _lootMin = min;
+            _lootMax = max;
+        }
+
+        private void SpawnLoot()
+        {
+            LootPiece lootPiece =  _factory.CreateLoot();
+            lootPiece.transform.position = transform.position;
+
+            Data.Loot.Loot loot = GenerateLoot();
+            
+            lootPiece.SetLoot(loot);
+        }
+
+        private Data.Loot.Loot GenerateLoot()
+        {
+            Data.Loot.Loot loot = new Data.Loot.Loot()
+            {
+                Value = Random.Range(_lootMin, _lootMax)
+            };
+            return loot;
+        }
+    }
+}

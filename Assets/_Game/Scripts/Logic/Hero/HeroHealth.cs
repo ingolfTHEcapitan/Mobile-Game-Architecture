@@ -1,0 +1,59 @@
+using System;
+using _Game.Scripts.Data.Player;
+using _Game.Scripts.Logic.Common;
+using _Game.Scripts.Services.PersistantProgress;
+using UnityEngine;
+
+namespace _Game.Scripts.Logic.Hero
+{
+    [RequireComponent(typeof(HeroAnimator))]
+    public class HeroHealth : MonoBehaviour, ISavedProgress, IHealth
+    {
+        [SerializeField] private HeroAnimator _heroAnimator;
+        
+        private HeroState _state;
+        
+        public event Action HealthChanged;
+
+        public float Current
+        {
+            get => _state.CurrentHealth;
+            set
+            {
+                if (_state.CurrentHealth != value)
+                {
+                    _state.CurrentHealth = Mathf.Clamp(value, 0, Max); 
+                    HealthChanged?.Invoke();
+                }
+            }
+        }
+
+        public float Max
+        {
+            get => _state.MaxHealth;
+            set => _state.MaxHealth = value;
+        }
+
+        public void TakeDamage(float damage)
+        {
+            if (Current <= 0)
+                return;
+            
+            Current -= damage;
+            _heroAnimator.PlayHit();
+
+        }
+        
+        public void LoadProgress(PlayerProgress progress)
+        {
+            _state = progress.HeroState;
+            HealthChanged?.Invoke();
+        }
+
+        public void UpdateProgress(PlayerProgress progress)
+        {
+            progress.HeroState.CurrentHealth = Current;
+            progress.HeroState.MaxHealth = Max;
+        }
+    }
+}
