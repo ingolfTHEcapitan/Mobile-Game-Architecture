@@ -9,7 +9,7 @@ namespace _Game.Scripts.Logic.Enemy.Movement
         private Transform _heroTransform;
         private Vector3 _positionToLook;
         
-        public void Initialize(Transform heroTransform) => 
+        public void Construct(Transform heroTransform) => 
             _heroTransform = heroTransform;
 
         private void Update()

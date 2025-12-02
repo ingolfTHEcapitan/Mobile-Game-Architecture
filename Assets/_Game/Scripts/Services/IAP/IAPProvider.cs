@@ -21,10 +21,12 @@ namespace _Game.Scripts.Services.IAP
         public Dictionary<string, ProductConfig> _productConfigs { get; private set; }
         public Dictionary<string, Product> _products { get; private set; }
         public bool IsInitialized => _controller != null && _extensions != null;
-
-        public void Initialize(IAPService iapService)
-        {
+        
+        public void Construct(IAPService iapService) => 
             _iapService = iapService;
+
+        public void Initialize()
+        {
             _productConfigs = new Dictionary<string, ProductConfig>();
             _products = new Dictionary<string, Product>();
             

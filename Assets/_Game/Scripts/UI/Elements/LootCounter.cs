@@ -10,11 +10,11 @@ namespace _Game.Scripts.UI.Elements
         
         private WorldData _worldData;
 
-        public void Initialize(WorldData worldData)
-        {
+        public void Construct(WorldData worldData) => 
             _worldData = worldData;
+
+        public void Initialize() => 
             _worldData.LootData.Changed += UpdateCounter;
-        }
 
         private void Start() => 
             UpdateCounter();

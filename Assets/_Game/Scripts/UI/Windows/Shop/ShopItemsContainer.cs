@@ -18,7 +18,7 @@ namespace _Game.Scripts.UI.Windows.Shop
         
         private readonly List<GameObject> _shopItemObjects = new List<GameObject>();
 
-        public void Inject(IIAPService iapService, IPersistantProgressService progressService, IAssetProvider asset)
+        public void Construct(IIAPService iapService, IPersistantProgressService progressService, IAssetProvider asset)
         {
             _iapService = iapService;
             _progressService = progressService;
@@ -59,7 +59,7 @@ namespace _Game.Scripts.UI.Windows.Shop
                 ShopItem shopItem = shopItemObject.GetComponent<ShopItem>();
                 
                 _shopItemObjects.Add(shopItemObject);
-                shopItem.Inject(_iapService, _asset, productDescription);
+                shopItem.Construct(_iapService, _asset, productDescription);
                 shopItem.Initialize();
             }
         }

@@ -16,7 +16,7 @@ namespace _Game.Scripts.UI.Windows.Shop
         private IAdsService _adsService;
         private IPersistantProgressService _progressService;
         
-        public void Inject(IAdsService adsService, IPersistantProgressService progressService)
+        public void Construct(IAdsService adsService, IPersistantProgressService progressService)
         {
             _adsService = adsService;
             _progressService = progressService;

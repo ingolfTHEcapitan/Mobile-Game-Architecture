@@ -44,8 +44,10 @@ namespace _Game.Scripts.Services.Factory
         {
             _heroGameObject = InstantiateRegistered(AssetPath.Hero, position);
             _heroGameObject.SetParent(parent);
-            _heroGameObject.GetComponent<HerroAttack>().Initialize(_inputService);
-            _heroGameObject.GetComponent<HeroMove>().Initialize(_inputService);
+            HerroAttack herroAttack = _heroGameObject.GetComponent<HerroAttack>();
+            herroAttack.Construct(_inputService);
+            herroAttack.Initialize();
+            _heroGameObject.GetComponent<HeroMove>().Construct(_inputService);
             return _heroGameObject;
         }
 
@@ -54,10 +56,11 @@ namespace _Game.Scripts.Services.Factory
             GameObject hud = InstantiateRegistered(AssetPath.Hud).SetParent(parent);
             
             LootCounter lootCounter = hud.GetComponentInChildren<LootCounter>();
-            lootCounter.Initialize(_progressService.Progress.WorldData);
+            lootCounter.Construct(_progressService.Progress.WorldData);
+            lootCounter.Initialize();
             
             foreach (OpenWindowButton openWindowButton in hud.GetComponentsInChildren<OpenWindowButton>())
-                openWindowButton.Initialize(_windowService);
+                openWindowButton.Construct(_windowService);
             
             return hud;
         }
@@ -72,31 +75,31 @@ namespace _Game.Scripts.Services.Factory
             health.Current = data.Health;
 
             HealthBarView healthBarView = enemy.GetComponent<HealthBarView>();
-            healthBarView.Initialize(health);
+            healthBarView.Construct(health);
             healthBarView.UpdateHealthBar();
 
             LootSpawner lootSpawner = enemy.GetComponentInChildren<LootSpawner>();
-            lootSpawner.Initialize(this);
+            lootSpawner.Construct(factory: this);
             lootSpawner.SetLoot(data.MinLoot, data.MaxLoot);
             
-            enemy.GetComponent<AgentMoveToPlayer>().Initialize(_heroGameObject.transform);
+            enemy.GetComponent<AgentMoveToPlayer>().Construct(_heroGameObject.transform);
             enemy.GetComponent<NavMeshAgent>().speed = data.MoveSpeed;
 
             EnemyAttack attack = enemy.GetComponent<EnemyAttack>();
-            attack.Initialize(_heroGameObject.transform);
+            attack.Construct(_heroGameObject.transform);
             attack.Damage = data.AttackDamage;
             attack.Cooldown = data.AttackCooldown;
             attack.Distance = data.AttackDistance;
             attack.Radius = data.AttackRadius;
 
-            enemy.GetComponent<AgentRotateToPlayer>()?.Initialize(_heroGameObject.transform);
+            enemy.GetComponent<AgentRotateToPlayer>()?.Construct(_heroGameObject.transform);
             return enemy;
         }
 
         public LootPiece CreateLoot()
         {
             LootPiece lootPiece = InstantiateRegistered(AssetPath.Loot).GetComponent<LootPiece>();
-            lootPiece.Initialize(_progressService.Progress.WorldData);
+            lootPiece.Construct(_progressService.Progress.WorldData);
             return lootPiece;
         }
 
@@ -104,7 +107,7 @@ namespace _Game.Scripts.Services.Factory
         {
             GameObject spawnerObject = InstantiateRegistered(AssetPath.EnemySpawner, position).SetParent(parent.gameObject);
             EnemySpawner spawner = spawnerObject.GetComponent<EnemySpawner>();
-            spawner.Initialize(this);
+            spawner.Construct(this);
             spawner.Id = spawnerId;
             spawner.EnemyTypeId = enemyTypeId;
         }

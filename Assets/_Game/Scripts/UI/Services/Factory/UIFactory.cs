@@ -35,7 +35,7 @@ namespace _Game.Scripts.UI.Services.Factory
         {
             WindowConfig config = _staticData.ForWindow(WindowId.Shop);
             ShopWindow shopWindow = Object.Instantiate(config.Prefab, parent: _popUpLayer.transform) as ShopWindow;
-            shopWindow.Inject(_adsService, _progressService, _iapService, _asset);
+            shopWindow.Construct(_adsService, _progressService, _iapService, _asset);
         }
 
         public void CreatePopUpLayer()

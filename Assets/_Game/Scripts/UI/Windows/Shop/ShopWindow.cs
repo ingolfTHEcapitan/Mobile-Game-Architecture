@@ -13,12 +13,12 @@ namespace _Game.Scripts.UI.Windows.Shop
         [SerializeField] private RewardedAdItem _rewardedAdItem;
         [SerializeField] private ShopItemsContainer _shopItemsContainer;
         
-        public void Inject(IAdsService adsService, IPersistantProgressService progressService, 
+        public void Construct(IAdsService adsService, IPersistantProgressService progressService, 
             IIAPService iapService, IAssetProvider asset)
         {
-            base.Inject(progressService);
-            _rewardedAdItem.Inject(adsService, progressService);
-            _shopItemsContainer.Inject(iapService, progressService, asset);
+            base.Construct(progressService);
+            _rewardedAdItem.Construct(adsService, progressService);
+            _shopItemsContainer.Construct(iapService, progressService, asset);
         }
         
         protected override void Initialize()

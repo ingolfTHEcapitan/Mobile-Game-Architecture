@@ -9,11 +9,11 @@ namespace _Game.Scripts.UI.Elements
 
         private IHealth _health;
 
-        public void Initialize(IHealth health)
-        {
+        public void Construct(IHealth health) => 
             _health = health;
+
+        public void Initialize() => 
             _health.HealthChanged += UpdateHealthBar;
-        }
 
         public void UpdateHealthBar() => 
             _progressBar.SetValue(_health.Current, _health.Max);

@@ -12,7 +12,7 @@ namespace _Game.Scripts.Logic.Triggers
         private IStateMachine _gameStateMachine;
         private bool _triggered;
         
-        public void Initialize(IStateMachine gameStateMachine) => 
+        public void Construct(IStateMachine gameStateMachine) => 
             _gameStateMachine = gameStateMachine;
 
         private void OnTriggerEnter(Collider other)

@@ -17,7 +17,7 @@ namespace _Game.Scripts.Logic.Hero
         private Vector3 _movementVector;
         private Vector3Data position;
 
-        public void Initialize(IInputService inputService) => 
+        public void Construct(IInputService inputService) => 
             _inputService = inputService;
 
         private void Start() => 

@@ -23,6 +23,9 @@ namespace _Game.Scripts.Logic.Enemy.Loot
         private string _id;
         private bool _loadedFromProgress;
 
+        public void Construct(WorldData worldData) => 
+            _worldData = worldData;
+
         private void Start()
         {
             if (!_loadedFromProgress)
@@ -41,9 +44,6 @@ namespace _Game.Scripts.Logic.Enemy.Loot
                 Pickup();
             }
         }
-
-        public void Initialize(WorldData worldData) => 
-            _worldData = worldData;
 
         public void SetLoot(Data.Loot.Loot loot) => 
             _loot = loot;

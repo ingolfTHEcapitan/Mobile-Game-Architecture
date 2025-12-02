@@ -25,7 +25,8 @@ namespace _Game.Scripts.Services.IAP
 
         public void Initialize()
         {
-            _iapProvider.Initialize(iapService: this);
+            _iapProvider.Construct(iapService: this);
+            _iapProvider.Initialize();
             _iapProvider.Initialized += () => Initialized?.Invoke();
         }
 

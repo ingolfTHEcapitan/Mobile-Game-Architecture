@@ -19,6 +19,12 @@ namespace _Game.Scripts.Logic.Hero
         private int _layerMask;
         private HeroStats heroStats;
         
+        public void Construct(IInputService inputService) => 
+            _input = inputService;
+
+        public void Initialize() => 
+            _layerMask = LayerMask.GetMask("Hittable");
+
         private void Update()
         {
             if (_input.IsAttackButtonUp() && !_heroAnimator.IsAttacking)
@@ -40,12 +46,6 @@ namespace _Game.Scripts.Logic.Hero
                 IHealth targetHealth = _hits[index].transform.GetComponentInParent<IHealth>();
                 targetHealth.TakeDamage(heroStats.AttackDamage);
             }
-        }
-
-        public void Initialize(IInputService inputService)
-        {
-            _input = inputService;
-            _layerMask = LayerMask.GetMask("Hittable");
         }
 
         public void LoadProgress(PlayerProgress progress) => 

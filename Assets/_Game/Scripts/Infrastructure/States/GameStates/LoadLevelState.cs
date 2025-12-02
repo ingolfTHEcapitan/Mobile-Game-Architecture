@@ -81,13 +81,13 @@ namespace _Game.Scripts.Infrastructure.States.GameStates
         private void InitSaveTriggers()
         {
             foreach (var saveTriggerObject in GameObject.FindGameObjectsWithTag(Tags.SaveTrigger)) 
-                saveTriggerObject.GetComponent<SaveTrigger>().Initialize(_saveLoadService);
+                saveTriggerObject.GetComponent<SaveTrigger>().Construct(_saveLoadService);
         }
 
         private void InitLevelTransferTriggers()
         {
             foreach (var saveTriggerObject in GameObject.FindGameObjectsWithTag(Tags.LevelTransferTrigger)) 
-                saveTriggerObject.GetComponent<LevelTransferTrigger>().Initialize(_stateMachine);
+                saveTriggerObject.GetComponent<LevelTransferTrigger>().Construct(_stateMachine);
         }
 
         private void InitEnemySpawners(LevelStaticData levelData)
@@ -125,7 +125,8 @@ namespace _Game.Scripts.Infrastructure.States.GameStates
             GameObject hud = _gameFactory.CreateHud(parent: GameObject.FindWithTag(Tags.UI));
             
             HealthBarView healthBarView = hud.GetComponentInChildren<HealthBarView>();
-            healthBarView.Initialize(hero.GetComponent<HeroHealth>());
+            healthBarView.Construct(hero.GetComponent<HeroHealth>());
+            healthBarView.Initialize();
         }
 
         private static Dictionary<string, Transform> GetSpawnPoints()
@@ -153,15 +154,11 @@ namespace _Game.Scripts.Infrastructure.States.GameStates
 
         private void InformProgressReaders()
         {
-            foreach (ISavedProgressReader progressReader in _gameFactory.ProgressReaders)
-            {
+            foreach (ISavedProgressReader progressReader in _gameFactory.ProgressReaders) 
                 progressReader.LoadProgress(_progressService.Progress);
-            }
         }
 
-        private void CameraFollow(GameObject target)
-        {
+        private void CameraFollow(GameObject target) => 
             Camera.main.GetComponent<CameraFollow>().Follow(target);
-        }
     }
 }

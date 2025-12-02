@@ -12,6 +12,9 @@ namespace _Game.Scripts.UI.Windows
         private IPersistantProgressService _progressService;
         protected PlayerProgress Progress => _progressService.Progress;
 
+        public void Construct(IPersistantProgressService progressService) => 
+            _progressService = progressService;
+
         private void Awake() => 
             OnAwake();
 
@@ -24,11 +27,6 @@ namespace _Game.Scripts.UI.Windows
         private void OnDestroy() => 
             UnSubscribe();
 
-        public void Inject(IPersistantProgressService progressService)
-        {
-            _progressService = progressService;
-        }
-        
         protected virtual void OnAwake() => 
             _closeButton.onClick.AddListener(()=> Destroy(gameObject));
 

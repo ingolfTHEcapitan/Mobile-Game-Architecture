@@ -19,7 +19,7 @@ namespace _Game.Scripts.UI.Windows.Shop
         private IAssetProvider _asset;
         private ProductDescription _productDescription;
 
-        public void Inject(IIAPService iapService, IAssetProvider asset, ProductDescription productDescription)
+        public void Construct(IIAPService iapService, IAssetProvider asset, ProductDescription productDescription)
         {
             _iapService = iapService;
             _productDescription = productDescription;

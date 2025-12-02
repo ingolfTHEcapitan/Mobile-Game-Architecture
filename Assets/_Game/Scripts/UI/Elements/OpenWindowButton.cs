@@ -11,11 +11,11 @@ namespace _Game.Scripts.UI.Elements
         
         private IWindowService _windowService;
 
+        public void Construct(IWindowService windowService) => 
+            _windowService = windowService;
+
         private void Start() => 
             _button.onClick.AddListener(OpenWindow);
-
-        public void Initialize(IWindowService windowService) => 
-            _windowService = windowService;
 
         private void OpenWindow() => 
             _windowService.Open(_windowId);
