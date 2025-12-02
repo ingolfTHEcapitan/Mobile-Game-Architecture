@@ -27,7 +27,6 @@ namespace _Game.Scripts.Services.Factory
         private readonly IWindowService _windowService;
 
         private GameObject _heroGameObject { get; set; }
-        
         public List<ISavedProgressReader> ProgressReaders { get; } = new List<ISavedProgressReader>();
         public List<ISavedProgress> ProgressWriters { get; } = new List<ISavedProgress>();
 
@@ -91,7 +90,6 @@ namespace _Game.Scripts.Services.Factory
             attack.Radius = data.AttackRadius;
 
             enemy.GetComponent<AgentRotateToPlayer>()?.Initialize(_heroGameObject.transform);
-
             return enemy;
         }
 

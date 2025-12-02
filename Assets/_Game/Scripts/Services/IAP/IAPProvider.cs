@@ -11,16 +11,15 @@ namespace _Game.Scripts.Services.IAP
     public class IAPProvider: IStoreListener
     {
         private const string IAPConfigsPath = "IAP/products";
+
+        public event Action Initialized;
         
         private IStoreController _controller;
         private IExtensionProvider _extensions;
         private IAPService _iapService;
-        
+
         public Dictionary<string, ProductConfig> _productConfigs { get; private set; }
         public Dictionary<string, Product> _products { get; private set; }
-        
-        public event Action Initialized;
-        
         public bool IsInitialized => _controller != null && _extensions != null;
 
         public void Initialize(IAPService iapService)
@@ -67,11 +66,9 @@ namespace _Game.Scripts.Services.IAP
             return _iapService.ProcessPurchase(purchaseEvent.purchasedProduct);
         }
 
-        public void OnPurchaseFailed(Product product, PurchaseFailureReason failureReason)
-        {
+        public void OnPurchaseFailed(Product product, PurchaseFailureReason failureReason) =>
             Debug.LogError($"product {product.definition.id} purchase failed, PurchaseFailureReason: {failureReason}," +
                            $" transaction id: {product.transactionID}");
-        }
 
         private void AddProducts(ConfigurationBuilder builder)
         {

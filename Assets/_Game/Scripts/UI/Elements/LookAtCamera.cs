@@ -6,10 +6,8 @@ namespace _Game.Scripts.UI.Elements
     {
         private Camera _camera;
 
-        private void Start()
-        {
+        private void Start() => 
             _camera = Camera.main;
-        }
 
         private void LateUpdate()
         {

@@ -11,11 +11,9 @@ namespace _Game.Scripts.Logic.Enemy.Movement
         
         private Transform _heroTransform;
 
-        public void Initialize(Transform heroTransform)
-        {
+        public void Initialize(Transform heroTransform) => 
             _heroTransform = heroTransform;
-        }
-        
+
         private void Update()
         {
             if (HeroInitialised() && HeroNotReached())
@@ -24,11 +22,8 @@ namespace _Game.Scripts.Logic.Enemy.Movement
 
         private bool HeroInitialised() => 
             _heroTransform is not null;
-
-
-        private bool HeroNotReached()
-        {
-            return Vector3.Distance(_agent.transform.position, _heroTransform.position) >= MinimalDistance;
-        }
+        
+        private bool HeroNotReached() => 
+            Vector3.Distance(_agent.transform.position, _heroTransform.position) >= MinimalDistance;
     }
 }

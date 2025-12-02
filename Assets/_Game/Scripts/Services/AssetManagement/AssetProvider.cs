@@ -22,9 +22,7 @@ namespace _Game.Scripts.Services.AssetManagement
             return Object.Instantiate(prefab, under);
         }
 
-        public T Load<T>(string path) where T : Object
-        {
-            return Resources.Load<T>(path);
-        }
+        public T Load<T>(string path) where T : Object => 
+            Resources.Load<T>(path);
     }
 }

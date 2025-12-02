@@ -8,15 +8,15 @@ namespace _Game.Scripts.Logic.Enemy
 {
     public class EnemyDeath: MonoBehaviour
     {
+        private const float DestroyDelay = 2f;
+
+        public event Action Died;
+        
         [SerializeField] private EnemyAnimator _animator;
         [SerializeField] private EnemyHealth _health;
         [SerializeField] private GameObject _deathEffect;
         [SerializeField] private NavMeshAgent _agent;
         
-        private float _destroyDelay = 2f;
-
-        public event Action Died;
-
         private void Start() => 
             _health.HealthChanged += OnHealthChanged;
 
@@ -41,13 +41,13 @@ namespace _Game.Scripts.Logic.Enemy
             Died?.Invoke();
         }
 
-        private void SpawnDeathEffect() => 
-            Instantiate(_deathEffect, transform.position, Quaternion.identity);
-
         private IEnumerator DestroyTimer()
         {
-            yield return new WaitForSeconds(_destroyDelay);
+            yield return new WaitForSeconds(DestroyDelay);
             Destroy(gameObject);
         }
+
+        private void SpawnDeathEffect() => 
+            Instantiate(_deathEffect, transform.position, Quaternion.identity);
     }
 }

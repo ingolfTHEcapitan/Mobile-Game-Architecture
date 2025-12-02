@@ -45,10 +45,5 @@ namespace _Game.Scripts.Editor
             if(uniqueIds.Any(other => other != uniqueId && other.Id == uniqueId.Id))
                 Generate(uniqueId);
         }
-    
-        private string GetSceneName(UniqueId uniqueId)
-        {
-            return uniqueId.gameObject.scene.name;
-        }
     }
 }

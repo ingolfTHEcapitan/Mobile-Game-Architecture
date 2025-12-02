@@ -49,10 +49,8 @@ namespace _Game.Scripts.Infrastructure.States.GameStates
             _sceneLoader.Load(sceneName, OnLoaded);
         }
 
-        public void Exit()
-        {
+        public void Exit() => 
             _curtain.Hide();
-        }
 
         private void OnLoaded()
         {
@@ -63,11 +61,9 @@ namespace _Game.Scripts.Infrastructure.States.GameStates
             _stateMachine.Enter<GameLoopState>();
         }
 
-        private void InitPopUpLayer()
-        {
+        private void InitPopUpLayer() => 
             _uiFactory.CreatePopUpLayer();
-        }
-        
+
         private void InitGameWorld()
         {
             LevelStaticData levelData = GetLevelData();

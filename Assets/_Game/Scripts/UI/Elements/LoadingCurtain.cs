@@ -8,10 +8,8 @@ namespace _Game.Scripts.UI.Elements
         [SerializeField] private CanvasGroup _curtain;
         [SerializeField] private float _fadeStep = 0.03f;
 
-        private void Awake()
-        {
+        private void Awake() => 
             DontDestroyOnLoad(gameObject);
-        }
 
         public void Show()
         {
@@ -19,10 +17,8 @@ namespace _Game.Scripts.UI.Elements
             _curtain.alpha = 1;
         }
 
-        public void Hide()
-        {
+        public void Hide() => 
             StartCoroutine(FadeIn());
-        }
 
         private IEnumerator FadeIn()
         {

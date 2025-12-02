@@ -19,7 +19,6 @@ namespace _Game.Scripts.Logic.Hero
         private int _layerMask;
         private HeroStats heroStats;
         
-
         private void Update()
         {
             if (_input.IsAttackButtonUp() && !_heroAnimator.IsAttacking)

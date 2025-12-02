@@ -35,10 +35,9 @@ namespace _Game.Scripts.Editor
             {
                 var spawnerId = spawnPoint.GetComponent<UniqueId>().Id;
                 var spawnerData = new EnemySpawnerStaticData(spawnerId, spawnPoint.EnemyTypeId, spawnPoint.transform.position);
-                    
                 list.Add(spawnerData);
             }
-
+            
             return list;
         }
     }

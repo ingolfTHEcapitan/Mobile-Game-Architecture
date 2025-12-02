@@ -9,11 +9,9 @@ namespace _Game.Scripts.Logic.Enemy.Movement
         private Transform _heroTransform;
         private Vector3 _positionToLook;
         
-        public void Initialize(Transform heroTransform)
-        {
+        public void Initialize(Transform heroTransform) => 
             _heroTransform = heroTransform;
-        }
-        
+
         private void Update()
         {
             if (HeroInitialised())
@@ -32,10 +30,8 @@ namespace _Game.Scripts.Logic.Enemy.Movement
             _positionToLook = new Vector3(positionDifference.x, transform.position.y, positionDifference.z);
         }
 
-        private Quaternion SmoothRotation(Quaternion rotation, Vector3 positionToLook)
-        {
-            return Quaternion.Lerp(rotation, TargetRotation(positionToLook), SpeedFactor());
-        }
+        private Quaternion SmoothRotation(Quaternion rotation, Vector3 positionToLook) => 
+            Quaternion.Lerp(rotation, TargetRotation(positionToLook), SpeedFactor());
 
         private Quaternion TargetRotation(Vector3 positionToLook) => 
             Quaternion.LookRotation(positionToLook);

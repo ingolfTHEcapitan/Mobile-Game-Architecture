@@ -29,7 +29,6 @@ namespace _Game.Scripts.UI.Windows.Shop
         public void Initialize()
         {
             _byItemButton.onClick.AddListener(OnByItemButtonClick);
-            
             FillShopItem();
         }
 

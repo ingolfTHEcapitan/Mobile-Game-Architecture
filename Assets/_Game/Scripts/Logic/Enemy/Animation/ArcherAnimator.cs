@@ -7,30 +7,29 @@ namespace _Game.Scripts.Logic.Enemy.Animation
     [RequireComponent(typeof(Animator))]
     public class ArcherAnimator : MonoBehaviour, IAnimationStateReader
     {
-        private static readonly int DieHash = Animator.StringToHash("Die");
-        private static readonly int LoadHash = Animator.StringToHash("Load");
-        private static readonly int NoTargetHash = Animator.StringToHash("NoTarget");
+        public event Action<AnimatorState> StateEntered;
+        public event Action<AnimatorState> StateExited;
         
+        private readonly int _dieHash = Animator.StringToHash("Die");
+        private readonly int _loadHash = Animator.StringToHash("Load");
+        private readonly int _noTargetHash = Animator.StringToHash("NoTarget");
         private readonly int _combatIdleStateHash = Animator.StringToHash("CombatIdle");
         private readonly int _deathStateHash = Animator.StringToHash("Death");
         private readonly int _bowLoadStateHash = Animator.StringToHash("BowLoad");
         private readonly int _bowHoldStateHash = Animator.StringToHash("BowHold");
-        
+
         private Animator _animator;
-        
-        public event Action<AnimatorState> StateEntered;
-        public event Action<AnimatorState> StateExited;
-        
         public AnimatorState State { get; private set; }
 
-        private void Awake()
-        {
+        private void Awake() => 
             _animator = GetComponent<Animator>();
-        }
 
-        public void PlayDeath() => _animator.SetTrigger(DieHash);
-        public void PlayLoadBow() => _animator.SetTrigger(LoadHash);
-        public void PlayNoTarget() => _animator.SetTrigger(NoTargetHash);
+        public void PlayDeath() => 
+            _animator.SetTrigger(_dieHash);
+        public void PlayLoadBow() => 
+            _animator.SetTrigger(_loadHash);
+        public void PlayNoTarget() => 
+            _animator.SetTrigger(_noTargetHash);
         
         public void EnteredState(int stateHash)
         {

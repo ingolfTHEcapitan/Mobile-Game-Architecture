@@ -20,10 +20,7 @@ namespace _Game.Scripts.Logic.Enemy.Animation
                 _animator.StopMoving();
         }
 
-        private bool ShouldMove()
-        {
-            return _agent.velocity.magnitude > MinimalVelocity && _agent.remainingDistance > _agent.radius;
-        }
-
+        private bool ShouldMove() => 
+            _agent.velocity.magnitude > MinimalVelocity && _agent.remainingDistance > _agent.radius;
     }
 }

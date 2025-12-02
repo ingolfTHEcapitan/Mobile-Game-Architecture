@@ -6,10 +6,9 @@ namespace _Game.Scripts.Data.IAP
     [Serializable]
     public class PurchaseData
     {
-        public List<BoughtIAP> BoughtIAPs = new List<BoughtIAP>();
-
         public event Action Changed;
         
+        public List<BoughtIAP> BoughtIAPs = new List<BoughtIAP>();
         
         public void AddPurchase(string id)
         {
@@ -23,9 +22,7 @@ namespace _Game.Scripts.Data.IAP
             Changed?.Invoke();
         }
 
-        private BoughtIAP GetProduct(string id)
-        {
-            return BoughtIAPs.Find(x=> x.IAPId == id);
-        }
+        private BoughtIAP GetProduct(string id) => 
+            BoughtIAPs.Find(boughtIAP=> boughtIAP.IAPId == id);
     }
 }

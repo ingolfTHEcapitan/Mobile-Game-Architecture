@@ -28,7 +28,6 @@ namespace _Game.Scripts.Services.Ads
         public void ShowRewardedVideo(Action onVideoFinished)
         {
             Advertisement.Show(AndroidRewardedVideoId);
-            
             _onVideoFinished = onVideoFinished;
         }
 

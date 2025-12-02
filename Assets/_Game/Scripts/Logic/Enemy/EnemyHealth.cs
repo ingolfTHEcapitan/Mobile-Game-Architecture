@@ -33,7 +33,6 @@ namespace _Game.Scripts.Logic.Enemy
             Current -= damage;
             
             _animator.PlayHit();
-            
             HealthChanged?.Invoke();
         }
     }

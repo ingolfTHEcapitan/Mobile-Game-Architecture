@@ -10,12 +10,12 @@ namespace _Game.Scripts.Services.IAP
 {
     public class IAPService : IIAPService
     {
+        public event Action Initialized;
+        
         private readonly IAPProvider _iapProvider;
         private readonly IPersistantProgressService _progressService;
 
         public bool IsInitialized => _iapProvider.IsInitialized;
-        
-        public event Action Initialized;
         
         public IAPService(IAPProvider iapProvider, IPersistantProgressService progressService)
         {

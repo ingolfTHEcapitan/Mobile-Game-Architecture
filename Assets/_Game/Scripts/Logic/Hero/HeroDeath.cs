@@ -6,21 +6,19 @@ namespace _Game.Scripts.Logic.Hero
 {
     public class HeroDeath: MonoBehaviour
     {
+        private const float _deathEffectPositionOffsetY = 1.5f;
+        private const string _dynamicTag = "Dynamic";
+        
         [SerializeField] private HeroHealth _heroHealth;
         [SerializeField] private HeroAnimator _heroAnimator;
         [SerializeField] private HeroMove _heroMove;
         [SerializeField] private HerroAttack _heroAttack;
         [SerializeField] private GameObject _DeathEffect;
-        
+
         private bool _isDeath;
         
-        private const float _deathEffectPositionOffsetY = 1.5f;
-        private const string _dynamicTag = "Dynamic";
-
-        private void Start()
-        {
+        private void Start() => 
             _heroHealth.HealthChanged += OnHealthHealthChanged;
-        }
 
         [UsedImplicitly]
         private void OnDeathAnimationEnded()
@@ -44,9 +42,7 @@ namespace _Game.Scripts.Logic.Hero
             _heroAnimator.PlayDeath();
         }
 
-        private Vector3 GetEffectPosition()
-        {
-            return transform.position + new Vector3(0f, _deathEffectPositionOffsetY, 0f);
-        }
+        private Vector3 GetEffectPosition() => 
+            transform.position + new Vector3(0f, _deathEffectPositionOffsetY, 0f);
     }
 }

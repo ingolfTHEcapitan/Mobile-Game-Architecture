@@ -11,15 +11,11 @@ namespace _Game.Scripts.Logic.Enemy.Loot
         private int _lootMin;
         private int _lootMax;
 
-        private void Start()
-        {
+        private void Start() => 
             _enemyDeath.Died += SpawnLoot;
-        }
 
-        public void Initialize(IGameFactory factory)
-        {
+        public void Initialize(IGameFactory factory) => 
             _factory = factory;
-        }
 
         public void SetLoot(int min, int max)
         {

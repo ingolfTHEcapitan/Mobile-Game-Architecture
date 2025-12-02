@@ -9,12 +9,12 @@ namespace _Game.Scripts.Logic.Hero
     [RequireComponent(typeof(HeroAnimator))]
     public class HeroHealth : MonoBehaviour, ISavedProgress, IHealth
     {
-        [SerializeField] private HeroAnimator _heroAnimator;
+        public event Action HealthChanged;
         
+        [SerializeField] private HeroAnimator _heroAnimator;
+
         private HeroState _state;
         
-        public event Action HealthChanged;
-
         public float Current
         {
             get => _state.CurrentHealth;

@@ -27,7 +27,6 @@ namespace _Game.Scripts.Logic.Enemy.Attacking
             if (!_hasAgroTarget)
             {
                 _hasAgroTarget = true;
-                
                 StopAgroCoroutine();
                 SwitchFollowOn();
             }
@@ -38,7 +37,6 @@ namespace _Game.Scripts.Logic.Enemy.Attacking
             if (_hasAgroTarget)
             {
                 _hasAgroTarget = false;
-                
                 _agroCoroutine = StartCoroutine(SwitchFollowOffAfterCooldown());
             }
         }

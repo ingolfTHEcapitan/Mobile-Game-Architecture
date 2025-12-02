@@ -37,7 +37,6 @@ namespace _Game.Scripts.Logic.Hero
             }
             
             _movementVector += Physics.gravity;
-            
             _characterController.Move(_movementVector * (_movementSpeed * Time.deltaTime));
         }
 
@@ -69,9 +68,7 @@ namespace _Game.Scripts.Logic.Hero
             _characterController.enabled = true;
         }
 
-        private string GetCurrentLevel()
-        {
-            return SceneManager.GetActiveScene().name;
-        }
+        private string GetCurrentLevel() => 
+            SceneManager.GetActiveScene().name;
     }
 }

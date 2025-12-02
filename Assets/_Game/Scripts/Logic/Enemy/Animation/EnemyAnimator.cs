@@ -7,14 +7,16 @@ namespace _Game.Scripts.Logic.Enemy.Animation
     [RequireComponent(typeof(Animator))]
     public class EnemyAnimator : MonoBehaviour, IAnimationStateReader
     {
-        private static readonly int DieHash = Animator.StringToHash("Die");
-        private static readonly int WinHash = Animator.StringToHash("Win");
-        private static readonly int HitHash = Animator.StringToHash("Hit");
-        private static readonly int Attack01Hash = Animator.StringToHash("Attack_1");
-        private static readonly int Attack02Hash = Animator.StringToHash("Attack_2");
-        private static readonly int SpeedHash = Animator.StringToHash("Speed");
-        private static readonly int IsMovingHash = Animator.StringToHash("IsMoving");
-
+        public event Action<AnimatorState> StateEntered;
+        public event Action<AnimatorState> StateExited;
+        
+        private readonly int _dieHash = Animator.StringToHash("Die");
+        private readonly int _winHash = Animator.StringToHash("Win");
+        private readonly int _hitHash = Animator.StringToHash("Hit");
+        private readonly int _attack01Hash = Animator.StringToHash("Attack_1");
+        private readonly int _attack02Hash = Animator.StringToHash("Attack_2");
+        private readonly int _speedHash = Animator.StringToHash("Speed");
+        private readonly int _isMovingHash = Animator.StringToHash("IsMoving");
         private readonly int _idleStateHash = Animator.StringToHash("Idle");
         private readonly int _dieStateHash = Animator.StringToHash("Die");
         private readonly int _victoryStateHash = Animator.StringToHash("Victory");
@@ -24,34 +26,32 @@ namespace _Game.Scripts.Logic.Enemy.Animation
         private readonly int _attack02StateHash = Animator.StringToHash("Attack02");
 
         private Animator _animator;
-
-        public event Action<AnimatorState> StateEntered;
-        public event Action<AnimatorState> StateExited;
-
+        
         public AnimatorState State { get; private set; }
 
-        private void Awake()
-        {
+        private void Awake() => 
             _animator = GetComponent<Animator>();
-        }
 
-        public void PlayDeath() => _animator.SetTrigger(DieHash);
-        public void PlayVictory() => _animator.SetTrigger(WinHash);
-        public void PlayHit() => _animator.SetTrigger(HitHash);
+        public void PlayDeath() => 
+            _animator.SetTrigger(_dieHash);
+        public void PlayVictory() => 
+            _animator.SetTrigger(_winHash);
+        public void PlayHit() => 
+            _animator.SetTrigger(_hitHash);
 
         public void Move(float speed)
         {
-            _animator.SetBool(IsMovingHash, true);
-            _animator.SetFloat(SpeedHash, speed);
+            _animator.SetBool(_isMovingHash, true);
+            _animator.SetFloat(_speedHash, speed);
         }
 
-        public void StopMoving()
-        {
-            _animator.SetBool(IsMovingHash, false);
-        }
+        public void StopMoving() => 
+            _animator.SetBool(_isMovingHash, false);
 
-        public void PlayAttack01() => _animator.SetTrigger(Attack01Hash);
-        public void PlayAttack02() => _animator.SetTrigger(Attack02Hash);
+        public void PlayAttack01() => 
+            _animator.SetTrigger(_attack01Hash);
+        public void PlayAttack02() => 
+            _animator.SetTrigger(_attack02Hash);
 
         public void EnteredState(int stateHash)
         {

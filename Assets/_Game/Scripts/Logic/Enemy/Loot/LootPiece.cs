@@ -10,15 +10,16 @@ namespace _Game.Scripts.Logic.Enemy.Loot
 {
     public class LootPiece: MonoBehaviour, ISavedProgress
     {
+        private const float DestroyDelay = 1.5f;
+        
         [SerializeField] private GameObject _skull;
         [SerializeField] private GameObject _pickupFxPrefab;
         [SerializeField] private TextMeshProUGUI _lootText;
         [SerializeField] private GameObject _pickupPopup;
-        
+
         private Data.Loot.Loot _loot;
         private WorldData _worldData;
         private bool _pickedUp;
-        private readonly float _destroyDelay = 1.5f;
         private string _id;
         private bool _loadedFromProgress;
 
@@ -41,22 +42,17 @@ namespace _Game.Scripts.Logic.Enemy.Loot
             }
         }
 
-        public void Initialize(WorldData worldData)
-        {
+        public void Initialize(WorldData worldData) => 
             _worldData = worldData;
-        }
 
-        public void SetLoot(Data.Loot.Loot loot)
-        {
+        public void SetLoot(Data.Loot.Loot loot) => 
             _loot = loot;
-        }
-        
+
         public void LoadProgress(PlayerProgress progress)
         {
             _loadedFromProgress = true;
+            _id = GetComponent<UniqueId>().Id;
             
-            _id =  GetComponent<UniqueId>().Id;
-
             LootPieceData lootPieceData = progress.WorldData.LootData.LootPiecesOnScene.Dictionary[_id];
             SetLoot(lootPieceData.Loot);
             transform.position = lootPieceData.Position.AsUnityVector();
@@ -70,10 +66,8 @@ namespace _Game.Scripts.Logic.Enemy.Loot
 
             LootPieceDataDictionary lootPieceOnScene = progress.WorldData.LootData.LootPiecesOnScene;
             
-            if (!lootPieceOnScene.Dictionary.ContainsKey(_id))
-            {
+            if (!lootPieceOnScene.Dictionary.ContainsKey(_id)) 
                 lootPieceOnScene.Dictionary.Add(_id, new LootPieceData(_loot, transform.position.AsVectorData()));
-            }
         }
 
         private void Pickup()
@@ -84,7 +78,7 @@ namespace _Game.Scripts.Logic.Enemy.Loot
             _skull.SetActive(false);
             PlayPickupFx();
             ShowText();
-            Destroy(gameObject, _destroyDelay);
+            Destroy(gameObject, DestroyDelay);
         }
 
         private void RemoveLootPieceFromSavedPieces()

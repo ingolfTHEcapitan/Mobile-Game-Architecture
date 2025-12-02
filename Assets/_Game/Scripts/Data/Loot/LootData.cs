@@ -5,10 +5,10 @@ namespace _Game.Scripts.Data.Loot
     [Serializable]
     public class LootData
     {
+        public event Action Changed;
+        
         public int Collected;
         public LootPieceDataDictionary LootPiecesOnScene = new LootPieceDataDictionary();
-
-        public event Action Changed;
         
         public void Collect(Loot loot)
         {

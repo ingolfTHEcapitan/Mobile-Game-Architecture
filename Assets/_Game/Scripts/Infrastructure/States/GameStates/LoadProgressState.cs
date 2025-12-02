@@ -23,17 +23,14 @@ namespace _Game.Scripts.Infrastructure.States.GameStates
         {
             LoadProgressOrInitNew();
             _stateMachine.Enter<LoadLevelState, string>(_progressService.Progress.WorldData.PositionOnLevel.Level);
-            
         }
 
         public void Exit()
         {
         }
 
-        private void LoadProgressOrInitNew()
-        {
+        private void LoadProgressOrInitNew() => 
             _progressService.Progress = _saveLoadService.LoadProgress() ?? NewProgress();
-        }
 
         private PlayerProgress NewProgress()
         {
@@ -41,11 +38,10 @@ namespace _Game.Scripts.Infrastructure.States.GameStates
             
             progress.HeroState.MaxHealth = 100;
             progress.HeroState.ResetHealth();
-
+            
             progress.HeroStats.AttackDamage = 25f;
             progress.HeroStats.AttackDistance = 1f;
             progress.HeroStats.AttackRadius = 0.5f;
-            
             return progress;
         }
     }

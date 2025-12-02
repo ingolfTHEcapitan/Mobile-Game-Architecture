@@ -7,6 +7,7 @@ namespace _Game.Scripts.UI.Elements
     public class LootCounter: MonoBehaviour
     {
         [SerializeField] private TextMeshProUGUI _counterText;
+        
         private WorldData _worldData;
 
         public void Initialize(WorldData worldData)
@@ -15,14 +16,10 @@ namespace _Game.Scripts.UI.Elements
             _worldData.LootData.Changed += UpdateCounter;
         }
 
-        private void Start()
-        {
+        private void Start() => 
             UpdateCounter();
-        }
 
-        private void UpdateCounter()
-        {
+        private void UpdateCounter() => 
             _counterText.text = _worldData.LootData.Collected.ToString();
-        }
     }
 }

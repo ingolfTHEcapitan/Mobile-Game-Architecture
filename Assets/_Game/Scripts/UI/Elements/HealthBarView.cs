@@ -15,9 +15,7 @@ namespace _Game.Scripts.UI.Elements
             _health.HealthChanged += UpdateHealthBar;
         }
 
-        public void UpdateHealthBar()
-        {
+        public void UpdateHealthBar() => 
             _progressBar.SetValue(_health.Current, _health.Max);
-        }
     }
 }

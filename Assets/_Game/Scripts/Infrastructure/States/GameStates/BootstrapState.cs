@@ -42,10 +42,8 @@ namespace _Game.Scripts.Infrastructure.States.GameStates
 
         }
 
-        private void EnterLoadProgress()
-        {
+        private void EnterLoadProgress() => 
             _stateMachine.Enter<LoadProgressState>();
-        }
 
         private void RegisterServices()
         {
@@ -89,8 +87,8 @@ namespace _Game.Scripts.Infrastructure.States.GameStates
         {
             if (Application.isEditor)
                 return new StandaloneInputService();
-            else
-                return new MobileInputService();
+            
+            return new MobileInputService();
         }
 
         private StaticDataService InitializeStaticDataService()

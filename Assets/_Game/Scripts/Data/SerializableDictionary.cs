@@ -10,11 +10,8 @@ namespace _Game.Scripts.Data
     {
         public Dictionary<TKey, TValue> Dictionary = new Dictionary<TKey, TValue>();
         
-        [SerializeField]
-        private TKey[] _keys;
-        
-        [SerializeField]
-        private TValue[] _values;
+        [SerializeField] private TKey[] _keys;
+        [SerializeField] private TValue[] _values;
         
         public void OnBeforeSerialize()
         {

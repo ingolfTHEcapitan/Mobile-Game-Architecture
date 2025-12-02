@@ -17,14 +17,10 @@ namespace _Game.Scripts.Logic.Enemy.Attacking
             _enemyAttack.DisableAttack();
         }
 
-        private void OnTriggerEnter(Collider obj)
-        {
+        private void OnTriggerEnter(Collider obj) => 
             _enemyAttack.EnableAttack();
-        }
 
-        private void OnTriggerExit(Collider obj)
-        {
+        private void OnTriggerExit(Collider obj) => 
             _enemyAttack.DisableAttack();
-        }
     }
 }

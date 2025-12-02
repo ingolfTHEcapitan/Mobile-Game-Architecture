@@ -8,9 +8,10 @@ namespace _Game.Scripts.Services.SaveLoad
 {
     internal class SaveLoadService: ISaveLoadService
     {
+        private const string PlayerProgressKey = "PlayerProgress";
+        
         private readonly IPersistantProgressService _progressService;
         private readonly IGameFactory _gameFactory;
-        private const string PlayerProgressKey = "PlayerProgress";
 
         public SaveLoadService(IPersistantProgressService progressService, IGameFactory gameFactory)
         {
@@ -28,9 +29,7 @@ namespace _Game.Scripts.Services.SaveLoad
             PlayerPrefs.SetString(PlayerProgressKey, _progressService.Progress.ToJson());
         }
 
-        public PlayerProgress LoadProgress()
-        {
-             return PlayerPrefs.GetString(PlayerProgressKey)?.ToDeserialized<PlayerProgress>();
-        }
+        public PlayerProgress LoadProgress() => 
+            PlayerPrefs.GetString(PlayerProgressKey)?.ToDeserialized<PlayerProgress>();
     }
 }

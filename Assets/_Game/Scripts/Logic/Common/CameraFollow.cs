@@ -21,17 +21,14 @@ namespace _Game.Scripts.Logic.Common
             transform.rotation = rotation;
         }
 
-        public void Follow(GameObject followTarget)
-        {
+        public void Follow(GameObject followTarget) => 
             _followTarget = followTarget.transform;
-        }
-    
+
         private Vector3 FollowingPointPosition()
         {
             Vector3 followPosition = _followTarget.position;
             followPosition.y += _offsetY;
             return followPosition;
-        
         }
     }
 }

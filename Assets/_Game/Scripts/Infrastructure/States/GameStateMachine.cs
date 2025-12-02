@@ -58,13 +58,10 @@ namespace _Game.Scripts.Infrastructure.States
             
             TState state = GetState<TState>();
             _activeState = state;
-            
             return state;
         }
         
-        private TState GetState<TState>() where TState : class, IExitableState
-        {
-            return _states[typeof(TState)] as TState;
-        }
+        private TState GetState<TState>() where TState : class, IExitableState => 
+            _states[typeof(TState)] as TState;
     }
 }

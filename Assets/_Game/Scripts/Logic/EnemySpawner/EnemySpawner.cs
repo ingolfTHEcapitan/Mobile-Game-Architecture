@@ -15,12 +15,9 @@ namespace _Game.Scripts.Logic.EnemySpawner
         private IGameFactory _factory;
         private EnemyDeath _enemyDeath;
         private bool _slain;
-
-
-        public void Initialize(IGameFactory factory)
-        {
+        
+        public void Initialize(IGameFactory factory) => 
             _factory = factory;
-        }
 
         public void LoadProgress(PlayerProgress progress)
         {

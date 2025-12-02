@@ -14,8 +14,7 @@ namespace _Game.Scripts.Editor
                 return;
 
             Gizmos.color = trigger.BoxColor;
-            Gizmos.DrawCube(trigger.transform.position
-                            + trigger.BoxCollider.center, trigger.BoxCollider.size);
+            Gizmos.DrawCube(trigger.transform.position + trigger.BoxCollider.center, trigger.BoxCollider.size);
         }
     }
 }

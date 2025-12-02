@@ -27,10 +27,8 @@ namespace _Game.Scripts.Logic.Enemy.Attacking
         private Collider[] _hits = new Collider[1];
         private int _layerMask;
 
-        private void Awake()
-        {
+        private void Awake() => 
             _layerMask = LayerMask.GetMask("Player");
-        }
 
         private void Update()
         {
@@ -60,10 +58,8 @@ namespace _Game.Scripts.Logic.Enemy.Attacking
             _isAttacking = false;
         }
 
-        public void Initialize(Transform heroTransform)
-        {
+        public void Initialize(Transform heroTransform) => 
             _heroTransform = heroTransform;
-        }
 
         public void EnableAttack() =>
             _attackIsActive = true;
@@ -75,7 +71,6 @@ namespace _Game.Scripts.Logic.Enemy.Attacking
         {
             transform.LookAt(_heroTransform);
             _animator.PlayAttack01();
-            
             _isAttacking = true;
         }
 

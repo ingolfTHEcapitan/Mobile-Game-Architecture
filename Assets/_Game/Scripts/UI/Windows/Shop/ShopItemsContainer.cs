@@ -25,10 +25,8 @@ namespace _Game.Scripts.UI.Windows.Shop
             _asset = asset;
         }
 
-        public void Initialize()
-        {
+        public void Initialize() => 
             RefreshAvailableShopItems();
-        }
 
         public void SubscribeUpdates()
         {
