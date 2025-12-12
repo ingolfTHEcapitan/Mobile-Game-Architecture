@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using _Game.Scripts.Logic.Enemy.Loot;
 using _Game.Scripts.Services.PersistantProgress;
 using _Game.Scripts.StaticData;
@@ -10,11 +11,12 @@ namespace _Game.Scripts.Services.Factory
     {
         List<ISavedProgressReader> ProgressReaders { get; }
         List<ISavedProgress> ProgressWriters { get; }
-        GameObject CreateHero(Vector3 position, GameObject parent);
-        GameObject CreateHud(GameObject parent);
-        GameObject CreateEnemy(EnemyTypeId enemyTypeId, Transform transform);
-        LootPiece CreateLoot();
-        void CleanupProgressReadersWriters();
-        void CreateEnemySpawner(string spawnerId, EnemyTypeId enemyTypeId, Vector3 position, Transform parent);
+        Task<GameObject> CreateHero(Vector3 position, GameObject parent);
+        Task WarmUp();
+        Task<GameObject> CreateHud(GameObject parent);
+        Task<GameObject> CreateEnemy(EnemyTypeId enemyTypeId, Transform transform);
+        Task<LootPiece> CreateLoot();
+        Task CreateEnemySpawner(string spawnerId, EnemyTypeId enemyTypeId, Vector3 position, Transform parent);
+        void CleanUp();
     }
 }

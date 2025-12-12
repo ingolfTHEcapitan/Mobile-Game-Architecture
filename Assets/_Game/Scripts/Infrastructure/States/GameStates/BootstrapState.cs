@@ -51,7 +51,7 @@ namespace _Game.Scripts.Infrastructure.States.GameStates
             _services.RegisterSingle<IInputService>(GetInputService());
             _services.RegisterSingle<IAdsService>(InitializeAdsService());
             _services.RegisterSingle<IStaticDataService>(InitializeStaticDataService());
-            _services.RegisterSingle<IAssetProvider>(new AssetProvider());
+            _services.RegisterSingle<IAssetProvider>(InitializeAssetProvider());
             _services.RegisterSingle<IPersistantProgressService>(new PersistantProgressService());
             
             _services.RegisterSingle<IIAPService>(InitializeIAPService(
@@ -81,6 +81,13 @@ namespace _Game.Scripts.Infrastructure.States.GameStates
                 _services.Single<IPersistantProgressService>(),
                 _services.Single<IGameFactory>()
             ));
+        }
+
+        private static AssetProvider InitializeAssetProvider()
+        {
+            AssetProvider assetProvider = new AssetProvider();
+            assetProvider.Initialize();
+            return assetProvider;
         }
 
         private static IInputService GetInputService()

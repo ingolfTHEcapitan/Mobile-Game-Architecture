@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using _Game.Scripts.Services.Ads;
 using _Game.Scripts.Services.AssetManagement;
 using _Game.Scripts.Services.IAP;
@@ -38,10 +39,10 @@ namespace _Game.Scripts.UI.Services.Factory
             shopWindow.Construct(_adsService, _progressService, _iapService, _asset);
         }
 
-        public void CreatePopUpLayer()
+        public async Task CreatePopUpLayer()
         {
             _ui = GameObject.FindWithTag(Tags.UI);
-            _popUpLayer = _asset.Instantiate(AssetPath.PopUpLayer, _ui.transform);
+            _popUpLayer = await _asset.Instantiate(AssetAddress.PopUpLayer, _ui.transform);
         }
     }
 }

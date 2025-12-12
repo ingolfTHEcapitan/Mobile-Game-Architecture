@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 
 namespace _Game.Scripts.StaticData
 {
@@ -28,6 +29,6 @@ namespace _Game.Scripts.StaticData
         public int MinLoot = 1;
         public int MaxLoot = 3;
 
-        public GameObject Model;
+        public AssetReferenceGameObject PrefabReference;
     }
 }

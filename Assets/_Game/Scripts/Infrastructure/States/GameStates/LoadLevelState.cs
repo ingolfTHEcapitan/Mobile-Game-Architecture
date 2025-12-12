@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using _Game.Scripts.Logic.Common;
 using _Game.Scripts.Logic.Enemy.Loot;
 using _Game.Scripts.Logic.EnemySpawner;
@@ -45,36 +46,36 @@ namespace _Game.Scripts.Infrastructure.States.GameStates
         public void Enter(string sceneName)
         {
             _curtain.Show();
-            _gameFactory.CleanupProgressReadersWriters();
+            _gameFactory.CleanUp();
+            _gameFactory.WarmUp();
             _sceneLoader.Load(sceneName, OnLoaded);
         }
 
         public void Exit() => 
             _curtain.Hide();
 
-        private void OnLoaded()
+        private async void OnLoaded()
         {
-            InitPopUpLayer();
-            InitGameWorld();
+            await InitPopUpLayer();
+            await InitGameWorld();
             InformProgressReaders();
 
             _stateMachine.Enter<GameLoopState>();
         }
 
-        private void InitPopUpLayer() => 
-            _uiFactory.CreatePopUpLayer();
+        private async Task InitPopUpLayer() => 
+           await _uiFactory.CreatePopUpLayer();
 
-        private void InitGameWorld()
+        private async Task InitGameWorld()
         {
             LevelStaticData levelData = GetLevelData();
             InitSaveTriggers();
             InitLevelTransferTriggers();
-            InitEnemySpawners(levelData);
-            InitLootPieces();
+            await InitEnemySpawners(levelData);
+            await InitLootPieces();
 
-            GameObject hero = InitHero(levelData);
-
-            InitHud(hero);
+            GameObject hero = await InitHero(levelData);
+            await InitHud(hero);
             CameraFollow(hero);
         }
 
@@ -90,39 +91,39 @@ namespace _Game.Scripts.Infrastructure.States.GameStates
                 saveTriggerObject.GetComponent<LevelTransferTrigger>().Construct(_stateMachine);
         }
 
-        private void InitEnemySpawners(LevelStaticData levelData)
+        private async Task InitEnemySpawners(LevelStaticData levelData)
         {
             Dictionary<string, Transform> spawnPoints = GetSpawnPoints();
 
             foreach (EnemySpawnerStaticData spawnerData in levelData.EnemySpawners)
             {
                 if (spawnPoints.TryGetValue(spawnerData.SpawnerId, out Transform parent))
-                    _gameFactory.CreateEnemySpawner(spawnerData.SpawnerId, spawnerData.EnemyTypeId, spawnerData.Position, parent);
+                    await _gameFactory.CreateEnemySpawner(spawnerData.SpawnerId, spawnerData.EnemyTypeId, spawnerData.Position, parent);
                 else
                     Debug.LogError($"Spawn point ID {spawnerData.SpawnerId} not found");
             }
         }
 
-        private void InitLootPieces()
+        private async Task InitLootPieces()
         {
             foreach (string key in _progressService.Progress.WorldData.LootData.LootPiecesOnScene.Dictionary.Keys)
             {
-                LootPiece lootPiece = _gameFactory.CreateLoot();
+                LootPiece lootPiece = await _gameFactory.CreateLoot();
                 lootPiece.GetComponent<UniqueId>().Id = key;
             }
         }
 
-        private GameObject InitHero(LevelStaticData levelData)
+        private async Task<GameObject> InitHero(LevelStaticData levelData)
         {
-            GameObject hero =  _gameFactory.CreateHero(
+            GameObject hero =  await _gameFactory.CreateHero(
                 position: levelData.PlayerInitialPoint,
                 parent: GameObject.FindWithTag(Tags.Game));
             return hero;
         }
 
-        private void InitHud(GameObject hero)
+        private async Task InitHud(GameObject hero)
         {
-            GameObject hud = _gameFactory.CreateHud(parent: GameObject.FindWithTag(Tags.UI));
+            GameObject hud = await _gameFactory.CreateHud(parent: GameObject.FindWithTag(Tags.UI));
             
             HealthBarView healthBarView = hud.GetComponentInChildren<HealthBarView>();
             healthBarView.Construct(hero.GetComponent<HeroHealth>());

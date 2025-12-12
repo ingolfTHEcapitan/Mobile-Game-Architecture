@@ -20,11 +20,14 @@ namespace _Game.Scripts.Logic.Hero
         public void Construct(IInputService inputService) => 
             _inputService = inputService;
 
-        private void Start() => 
+        public void Initialize() => 
             _camera = Camera.main;
 
         private void Update()
         {
+            if (_inputService == null)
+                return;
+            
             _movementVector = Vector3.zero;
 
             if (_inputService.Axis.sqrMagnitude > float.Epsilon)

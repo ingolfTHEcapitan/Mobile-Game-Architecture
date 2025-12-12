@@ -4,11 +4,12 @@ namespace _Game.Scripts.Logic.Common
 {
     public class CameraFollow : MonoBehaviour
     {
-        [SerializeField] private Transform _followTarget;
         [SerializeField] private float _rotationAngleX;
         [SerializeField] private float _rotationAngleY;
         [SerializeField] private float _distance;
         [SerializeField] private float _offsetY;
+        
+        private Transform _followTarget;
 
         private void LateUpdate()
         {

@@ -19,4 +19,10 @@ MonoBehaviour:
   AttackRadius: 1
   AttackDistance: 1
   MoveSpeed: 1.8
-  Model: {fileID: 3932544871551375525, guid: 2029a6cc805999c4980c9286f451e7d8, type: 3}
+  MinLoot: 1
+  MaxLoot: 3
+  PrefabReference:
+    m_AssetGUID: 2029a6cc805999c4980c9286f451e7d8
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0

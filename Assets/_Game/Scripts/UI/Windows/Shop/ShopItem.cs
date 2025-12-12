@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using _Game.Scripts.Services.AssetManagement;
 using _Game.Scripts.Services.IAP;
 using _Game.Scripts.Services.IAP.Confings;
@@ -26,21 +27,21 @@ namespace _Game.Scripts.UI.Windows.Shop
             _asset = asset;
         }
 
-        public void Initialize()
+        public async Task Initialize()
         {
             _byItemButton.onClick.AddListener(OnByItemButtonClick);
-            FillShopItem();
+            await FillShopItem();
         }
 
         private void OnByItemButtonClick() => 
             _iapService.StartPurchase(_productDescription.Id);
 
-        private void FillShopItem()
+        private async Task FillShopItem()
         {
             _priceText.text = _productDescription.Config.Price;
             _quantityText.text = _productDescription.Config.Quantity.ToString();
             _availableItemsLeftText.text = $"Left {_productDescription.AvailablePurchasesLeft}";
-            _icon.sprite = _asset.Load<Sprite>(_productDescription.Config.IconPath);
+            _icon.sprite = await _asset.LoadAsync<Sprite>(_productDescription.Config.IconPath);
         }
     }
 }

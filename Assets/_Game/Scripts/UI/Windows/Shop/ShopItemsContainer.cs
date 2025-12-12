@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using _Game.Scripts.Services.AssetManagement;
 using _Game.Scripts.Services.IAP;
 using _Game.Scripts.Services.IAP.Confings;
@@ -40,7 +41,7 @@ namespace _Game.Scripts.UI.Windows.Shop
             _progressService.Progress.PurchaseData.Changed -= RefreshAvailableShopItems;
         }
 
-        private void RefreshAvailableShopItems()
+        private async void RefreshAvailableShopItems()
         {
             UpdateShopUnavailableObjects();
 
@@ -48,19 +49,19 @@ namespace _Game.Scripts.UI.Windows.Shop
                 return;
             
             ClearShopItems();
-            FillShopItems();
+            await FillShopItems();
         }
 
-        private void FillShopItems()
+        private async Task FillShopItems()
         {
             foreach (ProductDescription productDescription in _iapService.GetProducts())
             {
-                GameObject shopItemObject = _asset.Instantiate(AssetPath.ShopItem,_parent);
+                GameObject shopItemObject = await _asset.Instantiate(AssetAddress.ShopItem, _parent);
                 ShopItem shopItem = shopItemObject.GetComponent<ShopItem>();
                 
                 _shopItemObjects.Add(shopItemObject);
                 shopItem.Construct(_iapService, _asset, productDescription);
-                shopItem.Initialize();
+                await shopItem.Initialize();
             }
         }
 

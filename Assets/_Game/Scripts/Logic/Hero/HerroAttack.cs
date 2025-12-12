@@ -27,6 +27,9 @@ namespace _Game.Scripts.Logic.Hero
 
         private void Update()
         {
+            if (_input == null)
+                return;
+            
             if (_input.IsAttackButtonUp() && !_heroAnimator.IsAttacking)
             {
                 _heroAnimator.PlayAttack01();

@@ -7,7 +7,7 @@
       "ItemType": 1,
       "Quantity": 69,
       "Price": "180 руб.",
-      "IconPath": "Prefabs/UI/Popups/Shop/ShopIcons/iap_icon_1"
+      "IconPath": "Iap_icon_1"
     },
     {
       "Id": "skulls420",
@@ -16,7 +16,7 @@
       "ItemType": 1,
       "Quantity": 420,
       "Price": "850 руб.",
-      "IconPath": "Prefabs/UI/Popups/Shop/ShopIcons/iap_icon_2"
+      "IconPath": "Iap_icon_2"
     },
     {
       "Id": "skulls900",
@@ -25,7 +25,7 @@
       "ItemType": 1,
       "Quantity": 900,
       "Price": "1300 руб.",
-      "IconPath": "Prefabs/UI/Popups/Shop/ShopIcons/iap_icon_3"
+      "IconPath": "Iap_icon_3"
     }
   ]
 }

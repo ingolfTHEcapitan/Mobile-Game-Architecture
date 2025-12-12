@@ -13,12 +13,12 @@ namespace _Game.Scripts.UI.Elements
         public void Construct(WorldData worldData) => 
             _worldData = worldData;
 
-        public void Initialize() => 
+        public void Initialize()
+        {
             _worldData.LootData.Changed += UpdateCounter;
-
-        private void Start() => 
             UpdateCounter();
-
+        }
+   
         private void UpdateCounter() => 
             _counterText.text = _worldData.LootData.Collected.ToString();
     }

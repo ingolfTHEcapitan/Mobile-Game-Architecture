@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using _Game.Scripts.Data;
 using _Game.Scripts.Logic.Enemy;
 using _Game.Scripts.Logic.Enemy.Attacking;
@@ -40,20 +41,28 @@ namespace _Game.Scripts.Services.Factory
             _windowService = windowService;
         }
 
-        public GameObject CreateHero(Vector3 position, GameObject parent)
+        public async Task WarmUp()
         {
-            _heroGameObject = InstantiateRegistered(AssetPath.Hero, position);
+            await _assets.LoadAsync<GameObject>(AssetAddress.Loot);
+            await _assets.LoadAsync<GameObject>(AssetAddress.EnemySpawner);
+        }
+        
+        public async Task<GameObject> CreateHero(Vector3 position, GameObject parent)
+        {
+            _heroGameObject = await InstantiateRegisteredAsync(AssetAddress.Hero, position);
             _heroGameObject.SetParent(parent);
             HerroAttack herroAttack = _heroGameObject.GetComponent<HerroAttack>();
             herroAttack.Construct(_inputService);
             herroAttack.Initialize();
-            _heroGameObject.GetComponent<HeroMove>().Construct(_inputService);
+            HeroMove heroMove = _heroGameObject.GetComponent<HeroMove>();
+            heroMove.Construct(_inputService);
+            heroMove.Initialize();
             return _heroGameObject;
         }
 
-        public GameObject CreateHud(GameObject parent)
+        public async Task<GameObject> CreateHud(GameObject parent)
         {
-            GameObject hud = InstantiateRegistered(AssetPath.Hud).SetParent(parent);
+            GameObject hud = await InstantiateRegisteredAsync(AssetAddress.Hud, parent.transform);
             
             LootCounter lootCounter = hud.GetComponentInChildren<LootCounter>();
             lootCounter.Construct(_progressService.Progress.WorldData);
@@ -65,10 +74,11 @@ namespace _Game.Scripts.Services.Factory
             return hud;
         }
 
-        public GameObject CreateEnemy(EnemyTypeId typeId, Transform parent)
+        public async Task<GameObject> CreateEnemy(EnemyTypeId typeId, Transform parent)
         {
             EnemyStaticData data = _staticData.ForEnemy(typeId);
-            GameObject enemy = Object.Instantiate(data.Model, parent.position, Quaternion.identity, parent);
+            GameObject enemyPrefab = await _assets.LoadAsync<GameObject>(data.PrefabReference);
+            GameObject enemy = Object.Instantiate(enemyPrefab, parent.position, Quaternion.identity, parent);
             
             EnemyHealth health = enemy.GetComponent<EnemyHealth>();
             health.Max = data.Health;
@@ -97,26 +107,31 @@ namespace _Game.Scripts.Services.Factory
             return enemy;
         }
 
-        public LootPiece CreateLoot()
+        public async Task<LootPiece> CreateLoot()
         {
-            LootPiece lootPiece = InstantiateRegistered(AssetPath.Loot).GetComponent<LootPiece>();
+            GameObject gameObject = await _assets.LoadAsync<GameObject>(AssetAddress.Loot);
+            LootPiece lootPiece = InstantiateRegistered(gameObject).GetComponent<LootPiece>();
             lootPiece.Construct(_progressService.Progress.WorldData);
             return lootPiece;
         }
 
-        public void CreateEnemySpawner(string spawnerId, EnemyTypeId enemyTypeId, Vector3 position, Transform parent)
+        public async Task CreateEnemySpawner(string spawnerId, EnemyTypeId enemyTypeId, Vector3 position,
+            Transform parent)
         {
-            GameObject spawnerObject = InstantiateRegistered(AssetPath.EnemySpawner, position).SetParent(parent.gameObject);
-            EnemySpawner spawner = spawnerObject.GetComponent<EnemySpawner>();
+            GameObject gameObject = await _assets.LoadAsync<GameObject>(AssetAddress.EnemySpawner);
+            EnemySpawner spawner = InstantiateRegistered(gameObject, position)
+                .SetParent(parent.gameObject)
+                .GetComponent<EnemySpawner>();
             spawner.Construct(this);
             spawner.Id = spawnerId;
             spawner.EnemyTypeId = enemyTypeId;
         }
 
-        public void CleanupProgressReadersWriters()
+        public void CleanUp()
         {
             ProgressReaders.Clear();
             ProgressWriters.Clear();
+            _assets.CleanUp();
         }
 
         private void RegisterProgressReaders(GameObject gameObject)
@@ -133,16 +148,37 @@ namespace _Game.Scripts.Services.Factory
             ProgressReaders.Add(progressReader);
         }
 
-        private GameObject InstantiateRegistered(string prefabPath, Vector3 at)
+        private async Task<GameObject> InstantiateRegisteredAsync(string prefabPath, Vector3 at)
         {
-            GameObject gameObject = _assets.Instantiate(prefabPath, at);
+            GameObject gameObject = await _assets.Instantiate(prefabPath, at);
+            RegisterProgressReaders(gameObject);
+            return gameObject;
+        }
+        
+        private async Task<GameObject> InstantiateRegisteredAsync(string prefabPath, Transform parent)
+        {
+            GameObject gameObject = await _assets.Instantiate(prefabPath, parent);
             RegisterProgressReaders(gameObject);
             return gameObject;
         }
 
-        private GameObject InstantiateRegistered(string prefabPath)
+        private async Task<GameObject> InstantiateRegisteredAsync(string prefabPath)
         {
-            GameObject gameObject = _assets.Instantiate(prefabPath);
+            GameObject gameObject = await _assets.Instantiate(prefabPath);
+            RegisterProgressReaders(gameObject);
+            return gameObject;
+        }
+        
+        private GameObject InstantiateRegistered(GameObject prefab, Vector3 at)
+        {
+            GameObject gameObject = Object.Instantiate(prefab, at, Quaternion.identity);
+            RegisterProgressReaders(gameObject);
+            return gameObject;
+        }
+        
+        private GameObject InstantiateRegistered(GameObject prefab)
+        {
+            GameObject gameObject = Object.Instantiate(prefab);
             RegisterProgressReaders(gameObject);
             return gameObject;
         }

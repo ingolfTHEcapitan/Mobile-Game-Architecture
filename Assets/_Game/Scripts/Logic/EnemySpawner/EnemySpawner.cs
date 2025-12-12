@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using _Game.Scripts.Data.Player;
 using _Game.Scripts.Logic.Enemy;
 using _Game.Scripts.Services.Factory;
@@ -33,9 +34,9 @@ namespace _Game.Scripts.Logic.EnemySpawner
                 progress.KillData.SlainSpawners.Add(Id);
         }
 
-        private void Spawn()
+        private async Task Spawn()
         {
-            GameObject enemy = _factory.CreateEnemy(EnemyTypeId, transform);
+            GameObject enemy = await _factory.CreateEnemy(EnemyTypeId, transform);
             _enemyDeath = enemy.GetComponent<EnemyDeath>();
             _enemyDeath.Died += Slay;
         }

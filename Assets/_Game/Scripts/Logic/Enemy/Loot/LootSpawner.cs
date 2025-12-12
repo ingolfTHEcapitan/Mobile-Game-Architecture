@@ -23,9 +23,9 @@ namespace _Game.Scripts.Logic.Enemy.Loot
             _lootMax = max;
         }
 
-        private void SpawnLoot()
+        private async void SpawnLoot()
         {
-            LootPiece lootPiece =  _factory.CreateLoot();
+            LootPiece lootPiece =  await _factory.CreateLoot();
             lootPiece.transform.position = transform.position;
 
             Data.Loot.Loot loot = GenerateLoot();
