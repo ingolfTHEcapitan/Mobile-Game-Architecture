@@ -76,6 +76,7 @@ namespace _Game.Scripts.Services.Factory
 
             HealthBarView healthBarView = enemy.GetComponent<HealthBarView>();
             healthBarView.Construct(health);
+            healthBarView.Initialize();
             healthBarView.UpdateHealthBar();
 
             LootSpawner lootSpawner = enemy.GetComponentInChildren<LootSpawner>();
