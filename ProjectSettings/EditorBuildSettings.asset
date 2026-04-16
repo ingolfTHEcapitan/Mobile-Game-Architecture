@@ -15,5 +15,5 @@ EditorBuildSettings:
     path: Assets/_Game/Scenes/LevelTwo.unity
     guid: 94615af6a3d79cf4b87c044d6526fc83
   m_configObjects:
-    com.unity.addressableassets: {fileID: 11400000, guid: 8600042633f051348933b206a592ba39,
+    com.unity.addressableassets: {fileID: 11400000, guid: b84d8fa2059ed904ab37796fdc2665ea,
       type: 2}

@@ -1,0 +1,73 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Default Local Group
+  m_EditorClassIdentifier: 
+  m_GroupName: Default Local Group
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 03f6234df54c4c84aa0176b0273463f6
+  m_SerializeEntries:
+  - m_GUID: 098036e16511b8e4e8003b952e47a1c7
+    m_Address: PopUpLayer
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: de8c1224d676d0c40b4387c11afcd228
+    m_Address: ShopItem
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 953b0af98802d7b419092f8af2d26765
+    m_Address: EnemySpawner
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: cbd6731cde7fcd34ea7fd8553bd838a3
+    m_Address: Loot
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: adae149a8933fa342bcb6752cc495a5e
+    m_Address: HudLayer
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: fbf44c94d88b27547bd458cfc11d7eaa
+    m_Address: Hero
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 1004336e9ed494a489fabcaee7b6a672
+    m_Address: Archer
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 2029a6cc805999c4980c9286f451e7d8
+    m_Address: Golem Variant
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 94ded69a849c80e408fe21534c95b392
+    m_Address: Lich Variant
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: ff8ff8c247a0183449a7901983b056f2
+    m_Address: Iap_icon_3
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 4f8a31339f4a508419fab6b217421a69
+    m_Address: Iap_icon_1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 57f38990ffcf15f49a7db333646ce8ab
+    m_Address: Iap_icon_2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: f626c338cae201b449259fbe24646769, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 7ad03863e8de1ad42aee42b97f569996, type: 2}
+    - {fileID: 11400000, guid: 269b1edba6541f245a9981f9291f36c7, type: 2}
